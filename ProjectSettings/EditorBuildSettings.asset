@@ -12,5 +12,6 @@ EditorBuildSettings:
     path: Assets/Games/Iribus/Scenes/IribusMainMenu.unity
     guid: 84b93f5f89ad6be40bec9baaf097ba61
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a1f1417478abb3a4481f932fcedbff05, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

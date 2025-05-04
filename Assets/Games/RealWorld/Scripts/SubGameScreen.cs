@@ -1,12 +1,18 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneScreen : MonoBehaviour
+public class SubGameScreen : MonoBehaviour
 {
     [SerializeField] private SceneAsset sceneAsset;
+    [SerializeField, Layer] private int defaultLayer;
+    [SerializeField] private LayerMask cullingMask;
+    [SerializeField] private RenderingLayerMask renderingLayerMask;
 
     private MeshRenderer meshRenderer;
     private Scene scene;
@@ -36,9 +42,12 @@ public class SceneScreen : MonoBehaviour
 
     private void InitializeFromScene()
     {
-        sceneCamera = scene.GetRootGameObjects().SelectMany(c => c.GetComponents<Camera>().Concat(c.GetComponentsInChildren<Camera>())).FirstOrDefault();
+        sceneCamera = GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
         renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
         sceneCamera.targetTexture = renderTexture;
         meshRenderer.material = new Material(meshRenderer.material) { mainTexture = renderTexture };
     }
+
+    private IEnumerable<T> GetSceneComponents<T>(bool includeInactive = true)
+        => scene.GetRootGameObjects().SelectMany(c => c.GetComponents<T>().Concat(c.GetComponentsInChildren<T>(includeInactive)));
 }

@@ -28,9 +28,9 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
     #endregion
 
     private readonly Dictionary<SubGame, CustomInputSystem> inputs = new();
-    private readonly Dictionary<SubGame, SceneScreen> screens = new();
+    private readonly Dictionary<SubGame, SubGameScreen> screens = new();
 
-    public (CustomInputSystem Input, SceneScreen Screen) this[SubGame subGame]
+    public (CustomInputSystem Input, SubGameScreen Screen) this[SubGame subGame]
         => (GetInput(subGame), GetScreen(subGame));
 
     public CustomInputSystem GetInput(SubGame subGame)
@@ -45,6 +45,6 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
         return ret;
     }
 
-    public SceneScreen GetScreen(SubGame subGame)
+    public SubGameScreen GetScreen(SubGame subGame)
         => screens.ContainsKey(subGame) ? screens[subGame] : null;
 }
