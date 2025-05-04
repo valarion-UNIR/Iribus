@@ -72,7 +72,7 @@
                     "name": "Next",
                     "type": "Button",
                     "id": "b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -986,6 +986,174 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Subgames",
+            "id": "62fce882-bc19-49f2-804f-8f5ef0d431af",
+            "actions": [
+                {
+                    "name": "RealWorld",
+                    "type": "Button",
+                    "id": "150f08f2-e5e2-4ecb-9442-91438314bf25",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Iribus",
+                    "type": "Button",
+                    "id": "14d8bdf5-18d2-49b4-a661-f2b5e2693560",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CrossTheBeaver",
+                    "type": "Button",
+                    "id": "f0ce2b18-3ac3-40da-999c-b7f478d8abbf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DirtAndSteel",
+                    "type": "Button",
+                    "id": "38025c8f-7649-4c62-976f-6dc50b055027",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TorpedoTrouble",
+                    "type": "Button",
+                    "id": "d81fe956-4781-4e7b-9ace-475eacef665f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Stacker",
+                    "type": "Button",
+                    "id": "e7500c2c-5a7a-424d-85f2-bfdc97c262bd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Garra",
+                    "type": "Button",
+                    "id": "fdb6f326-a277-43d7-9d39-f9fd1a8da8ea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pachinko",
+                    "type": "Button",
+                    "id": "c3febaf1-4900-446b-b19c-3bf726bc071b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6494142e-3753-4ae1-8e49-df55bda43852",
+                    "path": "<Keyboard>/#(1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RealWorld",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a7c6d5a-82cc-4da5-bc92-a55c2504f327",
+                    "path": "<Keyboard>/#(2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Iribus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6de224d5-b822-4902-ab0a-ff0797f83be4",
+                    "path": "<Keyboard>/#(3)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CrossTheBeaver",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ddb6c16-5495-4324-af75-f506e2f895f5",
+                    "path": "<Keyboard>/#(4)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DirtAndSteel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1e7a444-0938-45a9-9439-a50f0883d3a7",
+                    "path": "<Keyboard>/#(5)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TorpedoTrouble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab4a4e02-b602-49d7-aaca-f3b9421210b4",
+                    "path": "<Keyboard>/#(6)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stacker",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "051b41a2-04b2-4f3a-bd1a-cca7c7a10d3c",
+                    "path": "<Keyboard>/#(7)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Garra",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa92162c-2b4b-40fb-bced-7ff903042e58",
+                    "path": "<Keyboard>/#(8)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pachinko",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

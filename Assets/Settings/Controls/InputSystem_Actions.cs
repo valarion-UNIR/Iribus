@@ -158,7 +158,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1076,6 +1076,174 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Subgames"",
+            ""id"": ""62fce882-bc19-49f2-804f-8f5ef0d431af"",
+            ""actions"": [
+                {
+                    ""name"": ""RealWorld"",
+                    ""type"": ""Button"",
+                    ""id"": ""150f08f2-e5e2-4ecb-9442-91438314bf25"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Iribus"",
+                    ""type"": ""Button"",
+                    ""id"": ""14d8bdf5-18d2-49b4-a661-f2b5e2693560"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrossTheBeaver"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0ce2b18-3ac3-40da-999c-b7f478d8abbf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DirtAndSteel"",
+                    ""type"": ""Button"",
+                    ""id"": ""38025c8f-7649-4c62-976f-6dc50b055027"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TorpedoTrouble"",
+                    ""type"": ""Button"",
+                    ""id"": ""d81fe956-4781-4e7b-9ace-475eacef665f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stacker"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7500c2c-5a7a-424d-85f2-bfdc97c262bd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Garra"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdb6f326-a277-43d7-9d39-f9fd1a8da8ea"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pachinko"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3febaf1-4900-446b-b19c-3bf726bc071b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6494142e-3753-4ae1-8e49-df55bda43852"",
+                    ""path"": ""<Keyboard>/#(1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RealWorld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a7c6d5a-82cc-4da5-bc92-a55c2504f327"",
+                    ""path"": ""<Keyboard>/#(2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Iribus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6de224d5-b822-4902-ab0a-ff0797f83be4"",
+                    ""path"": ""<Keyboard>/#(3)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CrossTheBeaver"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ddb6c16-5495-4324-af75-f506e2f895f5"",
+                    ""path"": ""<Keyboard>/#(4)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DirtAndSteel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1e7a444-0938-45a9-9439-a50f0883d3a7"",
+                    ""path"": ""<Keyboard>/#(5)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TorpedoTrouble"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab4a4e02-b602-49d7-aaca-f3b9421210b4"",
+                    ""path"": ""<Keyboard>/#(6)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stacker"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""051b41a2-04b2-4f3a-bd1a-cca7c7a10d3c"",
+                    ""path"": ""<Keyboard>/#(7)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Garra"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa92162c-2b4b-40fb-bced-7ff903042e58"",
+                    ""path"": ""<Keyboard>/#(8)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pachinko"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1164,12 +1332,23 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Subgames
+        m_Subgames = asset.FindActionMap("Subgames", throwIfNotFound: true);
+        m_Subgames_RealWorld = m_Subgames.FindAction("RealWorld", throwIfNotFound: true);
+        m_Subgames_Iribus = m_Subgames.FindAction("Iribus", throwIfNotFound: true);
+        m_Subgames_CrossTheBeaver = m_Subgames.FindAction("CrossTheBeaver", throwIfNotFound: true);
+        m_Subgames_DirtAndSteel = m_Subgames.FindAction("DirtAndSteel", throwIfNotFound: true);
+        m_Subgames_TorpedoTrouble = m_Subgames.FindAction("TorpedoTrouble", throwIfNotFound: true);
+        m_Subgames_Stacker = m_Subgames.FindAction("Stacker", throwIfNotFound: true);
+        m_Subgames_Garra = m_Subgames.FindAction("Garra", throwIfNotFound: true);
+        m_Subgames_Pachinko = m_Subgames.FindAction("Pachinko", throwIfNotFound: true);
     }
 
     ~@CustomInputSystem()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, CustomInputSystem.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, CustomInputSystem.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Subgames.enabled, "This will cause a leak and performance issues, CustomInputSystem.Subgames.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1620,6 +1799,179 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // Subgames
+    private readonly InputActionMap m_Subgames;
+    private List<ISubgamesActions> m_SubgamesActionsCallbackInterfaces = new List<ISubgamesActions>();
+    private readonly InputAction m_Subgames_RealWorld;
+    private readonly InputAction m_Subgames_Iribus;
+    private readonly InputAction m_Subgames_CrossTheBeaver;
+    private readonly InputAction m_Subgames_DirtAndSteel;
+    private readonly InputAction m_Subgames_TorpedoTrouble;
+    private readonly InputAction m_Subgames_Stacker;
+    private readonly InputAction m_Subgames_Garra;
+    private readonly InputAction m_Subgames_Pachinko;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Subgames".
+    /// </summary>
+    public struct SubgamesActions
+    {
+        private @CustomInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SubgamesActions(@CustomInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/RealWorld".
+        /// </summary>
+        public InputAction @RealWorld => m_Wrapper.m_Subgames_RealWorld;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/Iribus".
+        /// </summary>
+        public InputAction @Iribus => m_Wrapper.m_Subgames_Iribus;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/CrossTheBeaver".
+        /// </summary>
+        public InputAction @CrossTheBeaver => m_Wrapper.m_Subgames_CrossTheBeaver;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/DirtAndSteel".
+        /// </summary>
+        public InputAction @DirtAndSteel => m_Wrapper.m_Subgames_DirtAndSteel;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/TorpedoTrouble".
+        /// </summary>
+        public InputAction @TorpedoTrouble => m_Wrapper.m_Subgames_TorpedoTrouble;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/Stacker".
+        /// </summary>
+        public InputAction @Stacker => m_Wrapper.m_Subgames_Stacker;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/Garra".
+        /// </summary>
+        public InputAction @Garra => m_Wrapper.m_Subgames_Garra;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/Pachinko".
+        /// </summary>
+        public InputAction @Pachinko => m_Wrapper.m_Subgames_Pachinko;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Subgames; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SubgamesActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SubgamesActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SubgamesActions" />
+        public void AddCallbacks(ISubgamesActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SubgamesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SubgamesActionsCallbackInterfaces.Add(instance);
+            @RealWorld.started += instance.OnRealWorld;
+            @RealWorld.performed += instance.OnRealWorld;
+            @RealWorld.canceled += instance.OnRealWorld;
+            @Iribus.started += instance.OnIribus;
+            @Iribus.performed += instance.OnIribus;
+            @Iribus.canceled += instance.OnIribus;
+            @CrossTheBeaver.started += instance.OnCrossTheBeaver;
+            @CrossTheBeaver.performed += instance.OnCrossTheBeaver;
+            @CrossTheBeaver.canceled += instance.OnCrossTheBeaver;
+            @DirtAndSteel.started += instance.OnDirtAndSteel;
+            @DirtAndSteel.performed += instance.OnDirtAndSteel;
+            @DirtAndSteel.canceled += instance.OnDirtAndSteel;
+            @TorpedoTrouble.started += instance.OnTorpedoTrouble;
+            @TorpedoTrouble.performed += instance.OnTorpedoTrouble;
+            @TorpedoTrouble.canceled += instance.OnTorpedoTrouble;
+            @Stacker.started += instance.OnStacker;
+            @Stacker.performed += instance.OnStacker;
+            @Stacker.canceled += instance.OnStacker;
+            @Garra.started += instance.OnGarra;
+            @Garra.performed += instance.OnGarra;
+            @Garra.canceled += instance.OnGarra;
+            @Pachinko.started += instance.OnPachinko;
+            @Pachinko.performed += instance.OnPachinko;
+            @Pachinko.canceled += instance.OnPachinko;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SubgamesActions" />
+        private void UnregisterCallbacks(ISubgamesActions instance)
+        {
+            @RealWorld.started -= instance.OnRealWorld;
+            @RealWorld.performed -= instance.OnRealWorld;
+            @RealWorld.canceled -= instance.OnRealWorld;
+            @Iribus.started -= instance.OnIribus;
+            @Iribus.performed -= instance.OnIribus;
+            @Iribus.canceled -= instance.OnIribus;
+            @CrossTheBeaver.started -= instance.OnCrossTheBeaver;
+            @CrossTheBeaver.performed -= instance.OnCrossTheBeaver;
+            @CrossTheBeaver.canceled -= instance.OnCrossTheBeaver;
+            @DirtAndSteel.started -= instance.OnDirtAndSteel;
+            @DirtAndSteel.performed -= instance.OnDirtAndSteel;
+            @DirtAndSteel.canceled -= instance.OnDirtAndSteel;
+            @TorpedoTrouble.started -= instance.OnTorpedoTrouble;
+            @TorpedoTrouble.performed -= instance.OnTorpedoTrouble;
+            @TorpedoTrouble.canceled -= instance.OnTorpedoTrouble;
+            @Stacker.started -= instance.OnStacker;
+            @Stacker.performed -= instance.OnStacker;
+            @Stacker.canceled -= instance.OnStacker;
+            @Garra.started -= instance.OnGarra;
+            @Garra.performed -= instance.OnGarra;
+            @Garra.canceled -= instance.OnGarra;
+            @Pachinko.started -= instance.OnPachinko;
+            @Pachinko.performed -= instance.OnPachinko;
+            @Pachinko.canceled -= instance.OnPachinko;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SubgamesActions.UnregisterCallbacks(ISubgamesActions)" />.
+        /// </summary>
+        /// <seealso cref="SubgamesActions.UnregisterCallbacks(ISubgamesActions)" />
+        public void RemoveCallbacks(ISubgamesActions instance)
+        {
+            if (m_Wrapper.m_SubgamesActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SubgamesActions.AddCallbacks(ISubgamesActions)" />
+        /// <seealso cref="SubgamesActions.RemoveCallbacks(ISubgamesActions)" />
+        /// <seealso cref="SubgamesActions.UnregisterCallbacks(ISubgamesActions)" />
+        public void SetCallbacks(ISubgamesActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SubgamesActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SubgamesActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SubgamesActions" /> instance referencing this action map.
+    /// </summary>
+    public SubgamesActions @Subgames => new SubgamesActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1833,5 +2185,69 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Subgames" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SubgamesActions.AddCallbacks(ISubgamesActions)" />
+    /// <seealso cref="SubgamesActions.RemoveCallbacks(ISubgamesActions)" />
+    public interface ISubgamesActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "RealWorld" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRealWorld(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Iribus" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnIribus(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CrossTheBeaver" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCrossTheBeaver(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DirtAndSteel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDirtAndSteel(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TorpedoTrouble" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTorpedoTrouble(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Stacker" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStacker(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Garra" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGarra(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pachinko" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPachinko(InputAction.CallbackContext context);
     }
 }

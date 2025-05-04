@@ -14,7 +14,11 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
     public SubGame CurrentGame
     {
         get => currentGame;
-        set => SetValue(ref currentGame, value, OnInnerCurrentGameChanged, OnCurrentGameChanged);
+        set
+        {
+            if (inputs.ContainsKey(value))
+                SetValue(ref currentGame, value, OnInnerCurrentGameChanged, OnCurrentGameChanged);
+        }
     }
 
     private void OnInnerCurrentGameChanged(SubGame oldGame, SubGame newGame)
@@ -23,7 +27,7 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
         GetInput(newGame).Enable();
     }
 
-    private SubGame currentGame = SubGame.RealWorld;
+    [DoNotSerialize] private SubGame currentGame = SubGame.RealWorld;
 
     #endregion
 
@@ -35,6 +39,9 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
 
     public CustomInputSystem GetInput(SubGame subGame)
     {
+        if (inputs.Count <= 0)
+            currentGame = SubGame.RealWorld;
+
         if (inputs.ContainsKey(subGame))
             return inputs[subGame];
         var ret = inputs[subGame] = new CustomInputSystem();
