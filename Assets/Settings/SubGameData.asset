@@ -31,3 +31,30 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 4096
+  - subGame: 3
+    mainScene: {fileID: 102900000, guid: d8c1db1f84491fc47aace3111643519a, type: 3}
+    defaultLayer: 17
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 1966080
+    renderingLayerMask:
+      serializedVersion: 0
+      m_Bits: 131072
+  - subGame: 4
+    mainScene: {fileID: 102900000, guid: 209f7faf9eeef494eabfc7b98e56295d, type: 3}
+    defaultLayer: 22
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 62914560
+    renderingLayerMask:
+      serializedVersion: 0
+      m_Bits: 4194304
+  - subGame: 5
+    mainScene: {fileID: 102900000, guid: 3a3b7a45cba530c4abe901f9e5d56519, type: 3}
+    defaultLayer: 27
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 2013265920
+    renderingLayerMask:
+      serializedVersion: 0
+      m_Bits: 134217728

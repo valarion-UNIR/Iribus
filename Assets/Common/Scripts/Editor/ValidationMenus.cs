@@ -82,6 +82,9 @@ public class ValidationMenus : MonoBehaviour
             var gameObject = transform.gameObject;
 
             ProcessGameObject(subgame, data, dryRun, ref changedSomething, gameObject);
+
+            if (changedSomething)
+                EditorSceneManager.MarkSceneDirty(scene);
         }
 
         return changedSomething;

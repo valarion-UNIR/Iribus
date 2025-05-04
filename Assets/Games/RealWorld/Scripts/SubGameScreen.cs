@@ -10,9 +10,6 @@ using UnityEngine.SceneManagement;
 public class SubGameScreen : MonoBehaviour
 {
     [SerializeField] private SceneAsset sceneAsset;
-    [SerializeField, Layer] private int defaultLayer;
-    [SerializeField] private LayerMask cullingMask;
-    [SerializeField] private RenderingLayerMask renderingLayerMask;
 
     private MeshRenderer meshRenderer;
     private Scene scene;
