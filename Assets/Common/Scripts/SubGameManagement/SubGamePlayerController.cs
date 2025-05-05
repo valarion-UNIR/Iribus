@@ -1,4 +1,4 @@
-using System;
+ using System;
 using UnityEngine;
 
 public abstract class SubGamePlayerController : MonoBehaviour
@@ -18,5 +18,4 @@ public abstract class SubGamePlayerController : MonoBehaviour
     private void Start()
     {
     }
-
 }

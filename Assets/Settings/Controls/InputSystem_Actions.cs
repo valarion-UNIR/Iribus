@@ -113,7 +113,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1244,6 +1244,184 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""DirtAndSteel"",
+            ""id"": ""0bce7396-fa6a-4958-864c-8d9aebc78e05"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""7668ba2d-7204-4fb6-9dcc-5751ff4c6ab1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Accelerate"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf70db13-cc86-40bc-a3dd-3eeef2b54ef1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Break"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a724003-aaa6-410a-a065-ae8bf2661d69"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""04659903-949a-43e8-9d97-a340ec9e7db3"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""cb370234-359a-431f-9b40-0ab82f21c835"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6f047344-0fec-4ef2-8b3c-d86403e72204"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""128b0884-1223-426b-b999-57c8443dab5e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ec368b9e-96da-4d28-b1b7-ec88e4f19f6c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4bf88373-be8a-4574-a371-c0854a94bc39"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""339a945d-81ff-455c-80e5-9d0b20fd4821"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""edbd74d6-4a53-4240-a763-775a46954155"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f0346c1b-a243-42e8-95f7-61d4554ef31e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d5575d2-3345-44a1-a9c1-82b3788ae043"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75193de7-6e1b-4ba3-b239-345bc40bfb6a"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bba1f0a-4368-4d84-b9d0-a99f45ae8827"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""031a0936-7c92-4817-bf4c-e7524de45d89"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Break"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1342,6 +1520,11 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_Subgames_Stacker = m_Subgames.FindAction("Stacker", throwIfNotFound: true);
         m_Subgames_Garra = m_Subgames.FindAction("Garra", throwIfNotFound: true);
         m_Subgames_Pachinko = m_Subgames.FindAction("Pachinko", throwIfNotFound: true);
+        // DirtAndSteel
+        m_DirtAndSteel = asset.FindActionMap("DirtAndSteel", throwIfNotFound: true);
+        m_DirtAndSteel_Move = m_DirtAndSteel.FindAction("Move", throwIfNotFound: true);
+        m_DirtAndSteel_Accelerate = m_DirtAndSteel.FindAction("Accelerate", throwIfNotFound: true);
+        m_DirtAndSteel_Break = m_DirtAndSteel.FindAction("Break", throwIfNotFound: true);
     }
 
     ~@CustomInputSystem()
@@ -1349,6 +1532,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, CustomInputSystem.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, CustomInputSystem.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Subgames.enabled, "This will cause a leak and performance issues, CustomInputSystem.Subgames.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DirtAndSteel.enabled, "This will cause a leak and performance issues, CustomInputSystem.DirtAndSteel.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1972,6 +2156,124 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="SubgamesActions" /> instance referencing this action map.
     /// </summary>
     public SubgamesActions @Subgames => new SubgamesActions(this);
+
+    // DirtAndSteel
+    private readonly InputActionMap m_DirtAndSteel;
+    private List<IDirtAndSteelActions> m_DirtAndSteelActionsCallbackInterfaces = new List<IDirtAndSteelActions>();
+    private readonly InputAction m_DirtAndSteel_Move;
+    private readonly InputAction m_DirtAndSteel_Accelerate;
+    private readonly InputAction m_DirtAndSteel_Break;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "DirtAndSteel".
+    /// </summary>
+    public struct DirtAndSteelActions
+    {
+        private @CustomInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public DirtAndSteelActions(@CustomInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_DirtAndSteel_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/Accelerate".
+        /// </summary>
+        public InputAction @Accelerate => m_Wrapper.m_DirtAndSteel_Accelerate;
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/Break".
+        /// </summary>
+        public InputAction @Break => m_Wrapper.m_DirtAndSteel_Break;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_DirtAndSteel; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="DirtAndSteelActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(DirtAndSteelActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="DirtAndSteelActions" />
+        public void AddCallbacks(IDirtAndSteelActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DirtAndSteelActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DirtAndSteelActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Accelerate.started += instance.OnAccelerate;
+            @Accelerate.performed += instance.OnAccelerate;
+            @Accelerate.canceled += instance.OnAccelerate;
+            @Break.started += instance.OnBreak;
+            @Break.performed += instance.OnBreak;
+            @Break.canceled += instance.OnBreak;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="DirtAndSteelActions" />
+        private void UnregisterCallbacks(IDirtAndSteelActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Accelerate.started -= instance.OnAccelerate;
+            @Accelerate.performed -= instance.OnAccelerate;
+            @Accelerate.canceled -= instance.OnAccelerate;
+            @Break.started -= instance.OnBreak;
+            @Break.performed -= instance.OnBreak;
+            @Break.canceled -= instance.OnBreak;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DirtAndSteelActions.UnregisterCallbacks(IDirtAndSteelActions)" />.
+        /// </summary>
+        /// <seealso cref="DirtAndSteelActions.UnregisterCallbacks(IDirtAndSteelActions)" />
+        public void RemoveCallbacks(IDirtAndSteelActions instance)
+        {
+            if (m_Wrapper.m_DirtAndSteelActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="DirtAndSteelActions.AddCallbacks(IDirtAndSteelActions)" />
+        /// <seealso cref="DirtAndSteelActions.RemoveCallbacks(IDirtAndSteelActions)" />
+        /// <seealso cref="DirtAndSteelActions.UnregisterCallbacks(IDirtAndSteelActions)" />
+        public void SetCallbacks(IDirtAndSteelActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DirtAndSteelActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DirtAndSteelActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="DirtAndSteelActions" /> instance referencing this action map.
+    /// </summary>
+    public DirtAndSteelActions @DirtAndSteel => new DirtAndSteelActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2249,5 +2551,34 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPachinko(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "DirtAndSteel" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="DirtAndSteelActions.AddCallbacks(IDirtAndSteelActions)" />
+    /// <seealso cref="DirtAndSteelActions.RemoveCallbacks(IDirtAndSteelActions)" />
+    public interface IDirtAndSteelActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Accelerate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAccelerate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Break" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBreak(InputAction.CallbackContext context);
     }
 }
