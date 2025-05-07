@@ -15,27 +15,32 @@ public class DASPlayerController : SubGamePlayerController
     public float driftFactorSticky = 0.8f;
     public float driftFactorSlippy = 0.95f;
     public float driftThreshold = 0.8f;
+    public float driftMemoryTime = 0.5f; // Duration to continue drifting after releasing steering
 
-    private Rigidbody2D rb;
+    private Rigidbody2D carRigidBody;
     private float steerInput;
     private float accelInput;
     private float currentAngularVelocity;
-    public float steeringDecay = 2f; // Higher = faster decay
+    private float driftTimer;
 
     protected override void Awake()
     {
         base.Awake();
         Input.Enable();
-        rb = GetComponent<Rigidbody2D>();
-
+        carRigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // Basic input handling
-        steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;   // A/D or Left/Right
+        steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;
 
-        if ((!Input.DirtAndSteel.Accelerate.inProgress && !Input.DirtAndSteel.Break.inProgress) || (Input.DirtAndSteel.Accelerate.inProgress && Input.DirtAndSteel.Break.inProgress))
+        if (Mathf.Abs(steerInput) > driftThreshold)
+            driftTimer = driftMemoryTime; 
+        else
+            driftTimer -= Time.deltaTime; 
+
+        if ((!Input.DirtAndSteel.Accelerate.inProgress && !Input.DirtAndSteel.Break.inProgress) ||
+            (Input.DirtAndSteel.Accelerate.inProgress && Input.DirtAndSteel.Break.inProgress))
         {
             accelInput = 0;
             return;
@@ -61,35 +66,33 @@ public class DASPlayerController : SubGamePlayerController
     void ApplyEngineForce()
     {
         Vector2 forward = transform.up;
-        float speed = Vector2.Dot(rb.linearVelocity, forward);
+        float speed = Vector2.Dot(carRigidBody.linearVelocity, forward);
 
-        // Don't exceed max speed
         if (accelInput > 0 && speed >= maxSpeed)
             return;
 
         Vector2 force = forward * accelInput * acceleration;
-        rb.AddForce(force, ForceMode2D.Force);
+        carRigidBody.AddForce(force, ForceMode2D.Force);
     }
+
     void ApplyIdleFriction()
     {
         if (Mathf.Approximately(accelInput, 0f))
         {
             float slowDown = 0.5f;
-            rb.linearVelocity *= (1 - slowDown * Time.fixedDeltaTime);
+            carRigidBody.linearVelocity *= (1 - slowDown * Time.fixedDeltaTime);
         }
     }
 
     void ApplySteering()
     {
-        float velocityFactor = rb.linearVelocity.magnitude / maxSpeed;
+        float velocityFactor = carRigidBody.linearVelocity.magnitude / maxSpeed;
         float steerAmount = steerInput * steering * velocityFactor * Time.fixedDeltaTime;
 
         if (accelInput < 0f)
             steerAmount *= -1;
 
-
-
-        rb.MoveRotation(rb.rotation - steerAmount); // NOTE: Unity rotates clockwise with negative angle
+        carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
     }
 
     void KillOrthogonalVelocity()
@@ -97,12 +100,12 @@ public class DASPlayerController : SubGamePlayerController
         Vector2 forward = transform.up;
         Vector2 right = transform.right;
 
-        float forwardVelocity = Vector2.Dot(rb.linearVelocity, forward);
-        float sidewaysVelocity = Vector2.Dot(rb.linearVelocity, right);
+        float forwardVelocity = Vector2.Dot(carRigidBody.linearVelocity, forward);
+        float sidewaysVelocity = Vector2.Dot(carRigidBody.linearVelocity, right);
 
-        float driftFactor = Mathf.Abs(steerInput) > driftThreshold ? driftFactorSlippy : driftFactorSticky;
+        bool drifting = driftTimer > 0f;
+        float driftFactor = drifting ? driftFactorSlippy : driftFactorSticky;
 
-        // Reconstruct new velocity vector
-        rb.linearVelocity = forward * forwardVelocity + right * sidewaysVelocity * driftFactor;
+        carRigidBody.linearVelocity = forward * forwardVelocity + right * sidewaysVelocity * driftFactor;
     }
 }

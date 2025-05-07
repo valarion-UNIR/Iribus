@@ -744,10 +744,10 @@ MonoBehaviour:
   acceleration: 10
   maxSpeed: 15
   steering: 200
-  driftFactorSticky: 0.3
+  driftFactorSticky: 0.9
   driftFactorSlippy: 0.95
   driftThreshold: 0.8
-  steeringDecay: 0.3
+  driftMemoryTime: 0.5
 --- !u!50 &589436435
 Rigidbody2D:
   serializedVersion: 5
