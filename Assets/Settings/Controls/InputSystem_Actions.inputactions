@@ -1215,39 +1215,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "6f047344-0fec-4ef2-8b3c-d86403e72204",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "128b0884-1223-426b-b999-57c8443dab5e",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "ec368b9e-96da-4d28-b1b7-ec88e4f19f6c",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "left",
                     "id": "4bf88373-be8a-4574-a371-c0854a94bc39",
                     "path": "<Keyboard>/a",
@@ -1293,17 +1260,6 @@
                 },
                 {
                     "name": "",
-                    "id": "4d5575d2-3345-44a1-a9c1-82b3788ae043",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "75193de7-6e1b-4ba3-b239-345bc40bfb6a",
                     "path": "<Joystick>/stick",
                     "interactions": "",
@@ -1327,7 +1283,7 @@
                 {
                     "name": "",
                     "id": "031a0936-7c92-4817-bf4c-e7524de45d89",
-                    "path": "",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
