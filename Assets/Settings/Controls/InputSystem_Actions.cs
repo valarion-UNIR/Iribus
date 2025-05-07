@@ -1378,6 +1378,155 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CrossTheBeaver"",
+            ""id"": ""4db4dc2c-66bd-442a-9bdb-14b762cbc935"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""c566c3a7-f087-48e1-b958-5cbbb9ec77a3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ef885493-398c-4949-906d-a49a1d138470"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""3d45fc8d-249a-4af2-9f4b-3cdfd5d4dc86"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fac9825a-5dd0-462e-972a-5607495b7aba"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e33678a1-eda8-45a6-a355-82f50044793e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9b60b321-5ec4-4d4b-a2a5-aeba3173d32e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""11b5cdb2-e474-4804-8547-c062e356ed0d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c9ebfef6-8258-4413-b34f-7bb10c0cfbcc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9238303d-1ede-4ddd-a71b-3bb2377a4d0a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0ddb4f73-17c0-4341-ba8b-678eb7667aa7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""19c1d525-69c5-40fc-913f-99db8c53f5c5"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1379932f-b50b-4938-b11d-54ab6fd60f93"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12a927b1-fac1-4766-b17a-4a364e8ff2d7"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1481,6 +1630,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_DirtAndSteel_Move = m_DirtAndSteel.FindAction("Move", throwIfNotFound: true);
         m_DirtAndSteel_Accelerate = m_DirtAndSteel.FindAction("Accelerate", throwIfNotFound: true);
         m_DirtAndSteel_Break = m_DirtAndSteel.FindAction("Break", throwIfNotFound: true);
+        // CrossTheBeaver
+        m_CrossTheBeaver = asset.FindActionMap("CrossTheBeaver", throwIfNotFound: true);
+        m_CrossTheBeaver_Move = m_CrossTheBeaver.FindAction("Move", throwIfNotFound: true);
     }
 
     ~@CustomInputSystem()
@@ -1489,6 +1641,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, CustomInputSystem.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Subgames.enabled, "This will cause a leak and performance issues, CustomInputSystem.Subgames.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DirtAndSteel.enabled, "This will cause a leak and performance issues, CustomInputSystem.DirtAndSteel.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CrossTheBeaver.enabled, "This will cause a leak and performance issues, CustomInputSystem.CrossTheBeaver.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2230,6 +2383,102 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="DirtAndSteelActions" /> instance referencing this action map.
     /// </summary>
     public DirtAndSteelActions @DirtAndSteel => new DirtAndSteelActions(this);
+
+    // CrossTheBeaver
+    private readonly InputActionMap m_CrossTheBeaver;
+    private List<ICrossTheBeaverActions> m_CrossTheBeaverActionsCallbackInterfaces = new List<ICrossTheBeaverActions>();
+    private readonly InputAction m_CrossTheBeaver_Move;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "CrossTheBeaver".
+    /// </summary>
+    public struct CrossTheBeaverActions
+    {
+        private @CustomInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public CrossTheBeaverActions(@CustomInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "CrossTheBeaver/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_CrossTheBeaver_Move;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_CrossTheBeaver; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="CrossTheBeaverActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(CrossTheBeaverActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="CrossTheBeaverActions" />
+        public void AddCallbacks(ICrossTheBeaverActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CrossTheBeaverActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CrossTheBeaverActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="CrossTheBeaverActions" />
+        private void UnregisterCallbacks(ICrossTheBeaverActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CrossTheBeaverActions.UnregisterCallbacks(ICrossTheBeaverActions)" />.
+        /// </summary>
+        /// <seealso cref="CrossTheBeaverActions.UnregisterCallbacks(ICrossTheBeaverActions)" />
+        public void RemoveCallbacks(ICrossTheBeaverActions instance)
+        {
+            if (m_Wrapper.m_CrossTheBeaverActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="CrossTheBeaverActions.AddCallbacks(ICrossTheBeaverActions)" />
+        /// <seealso cref="CrossTheBeaverActions.RemoveCallbacks(ICrossTheBeaverActions)" />
+        /// <seealso cref="CrossTheBeaverActions.UnregisterCallbacks(ICrossTheBeaverActions)" />
+        public void SetCallbacks(ICrossTheBeaverActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CrossTheBeaverActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CrossTheBeaverActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="CrossTheBeaverActions" /> instance referencing this action map.
+    /// </summary>
+    public CrossTheBeaverActions @CrossTheBeaver => new CrossTheBeaverActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2536,5 +2785,20 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBreak(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CrossTheBeaver" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="CrossTheBeaverActions.AddCallbacks(ICrossTheBeaverActions)" />
+    /// <seealso cref="CrossTheBeaverActions.RemoveCallbacks(ICrossTheBeaverActions)" />
+    public interface ICrossTheBeaverActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
     }
 }
