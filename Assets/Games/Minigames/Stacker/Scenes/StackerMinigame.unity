@@ -352,6 +352,12 @@ MonoBehaviour:
   bottomTile: {fileID: 1278657693}
   scoreText: {fileID: 1471164362}
   stackOfTiles: []
+  lowPrizeSign: {fileID: 1059369025520503641, guid: 4b10983e576fa34419b4cfb1f189ebfd, type: 3}
+  lpNumber: 8
+  mediumPrizeSign: {fileID: 8449527215426323514, guid: 5c15d426e4d300b418b381482ce0e1ec, type: 3}
+  mpNumber: 15
+  highPrizeSign: {fileID: 16825716182610354, guid: 88d8971567fbf804aba015085c6f74d0, type: 3}
+  hpNumber: 25
   listColors:
   - serializedVersion: 2
     rgba: 1191182536
