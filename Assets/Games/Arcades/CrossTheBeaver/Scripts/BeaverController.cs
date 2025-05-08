@@ -38,6 +38,8 @@ public class BeaverController : SubGamePlayerController
 
     private void FixedUpdate()
     {
+        float clapmedX = Mathf.Clamp(transform.position.x, -13, 13);
+        transform.position = new Vector3(clapmedX, transform.position.y, transform.position.z);
         // Leer input actual del vector 2D
         inputDir = Input.CrossTheBeaver.Move.ReadValue<Vector2>();
 
