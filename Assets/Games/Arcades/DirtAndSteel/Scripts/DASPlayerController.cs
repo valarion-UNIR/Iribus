@@ -17,11 +17,16 @@ public class DASPlayerController : SubGamePlayerController
     public float driftThreshold = 0.8f;
     public float driftMemoryTime = 0.5f; // Duration to continue drifting after releasing steering
 
-    private Rigidbody2D carRigidBody;
-    private float steerInput;
-    private float accelInput;
+    [SerializeField] private float decayStartPercent = 0.1f; // Start decaying after 40% of max speed
+    [SerializeField] private float decaySharpness = 5f;      // How sharp the decay is
+
+    public Rigidbody2D carRigidBody;
+    [HideInInspector] public float steerInput;
+    [HideInInspector] public float accelInput;
     private float currentAngularVelocity;
     private float driftTimer;
+
+    [HideInInspector] public Vector2 currentDirection;
 
     protected override void Awake()
     {
@@ -32,6 +37,7 @@ public class DASPlayerController : SubGamePlayerController
 
     void Update()
     {
+        currentDirection = transform.up;
         steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;
 
         if (Mathf.Abs(steerInput) > driftThreshold)
@@ -68,12 +74,33 @@ public class DASPlayerController : SubGamePlayerController
         Vector2 forward = transform.up;
         float speed = Vector2.Dot(carRigidBody.linearVelocity, forward);
 
-        if (accelInput > 0 && speed >= maxSpeed)
+        if (accelInput == 0)
             return;
 
-        Vector2 force = forward * accelInput * acceleration;
+        float maxSpeedInCurrentDirection = maxSpeed * Mathf.Sign(accelInput);
+        float speedPercent = Mathf.Clamp01(speed / maxSpeedInCurrentDirection);
+
+        float decayFactor;
+
+        if (speedPercent < decayStartPercent)
+        {
+            // No decay yet
+            decayFactor = 1f;
+        }
+        else
+        {
+            // Map speed from [decayStart, 1] to [0, 1] for the decay curve
+            float normalized = (speedPercent - decayStartPercent) / (1f - decayStartPercent);
+            decayFactor = Mathf.Pow(1f - normalized, decaySharpness);
+        }
+
+        Vector2 force = forward * accelInput * acceleration * decayFactor;
         carRigidBody.AddForce(force, ForceMode2D.Force);
+
+        print(carRigidBody.linearVelocity);
     }
+
+
 
     void ApplyIdleFriction()
     {
