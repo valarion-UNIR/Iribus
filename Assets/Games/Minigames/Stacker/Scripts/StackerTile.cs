@@ -51,8 +51,8 @@ public class StackerTile : MonoBehaviour
             _lostTile.transform.position = new Vector3(transform.position.x
                 + (distance > 0 ? 1 : -1) * (transform.localScale.x - lostLength) / 2,
                 transform.position.y, transform.position.z);
-            _lostTile.GetComponent<Renderer>().material.SetColor("_OutlineColor",
-                GetComponent<Renderer>().material.GetColor("_OutlineColor"));
+            _lostTile.GetComponent<MeshRenderer>().material.SetColor("_OutlineColor",
+                GetComponent<MeshRenderer>().material.GetColor("_OutlineColor"));
 
             transform.localScale -= new Vector3(lostLength, 0, 0);
             transform.Translate((distance > 0 ? -1 : 1) * lostLength / 2, 0, 0);

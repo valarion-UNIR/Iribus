@@ -40,9 +40,9 @@ public class StackerSpawner : MonoBehaviour
 
     private void Start()
     {
-        LocatePrize(lowPrizeSign, lpNumber, true);
-        LocatePrize(mediumPrizeSign, mpNumber, false);
-        LocatePrize(highPrizeSign, hpNumber, true);
+        LocatePrize(lowPrizeSign, lpNumber);
+        LocatePrize(mediumPrizeSign, mpNumber);
+        LocatePrize(highPrizeSign, hpNumber);
 
         initialCameraPosition = FindFirstObjectByType<Camera>().transform.position;
         if (scoreText == null)
@@ -55,7 +55,7 @@ public class StackerSpawner : MonoBehaviour
         modifier = 1;
         colorIndex = 0;
         stackOfTiles.Add(bottomTile);
-        stackOfTiles[0].GetComponent<Renderer>().material.color = listColors[0];
+        stackOfTiles[0].GetComponent<MeshRenderer>().material.color = listColors[0];
         CreateTile();
     }
 
@@ -126,7 +126,7 @@ public class StackerSpawner : MonoBehaviour
             modifier *= -1;
             colorIndex += 2 * modifier;
         }
-        activeTile.GetComponent<Renderer>().material.color = listColors[colorIndex];
+        activeTile.GetComponent<MeshRenderer>().material.color = listColors[colorIndex];
     }
 
     public GameObject GetFirstTile()
@@ -139,25 +139,25 @@ public class StackerSpawner : MonoBehaviour
         hasGameEnded = true;
     }
 
-    private void LocatePrize(GameObject sign, int signNumber, bool x)
+    private void LocatePrize(GameObject sign, int signNumber)
     {
         GameObject obj = Instantiate(sign);
         obj.transform.position = new Vector3(0, (signNumber * 2) - 1,0.5f);
-        StartCoroutine(StartMovingPrizeSign(obj, signNumber, x));
+        StartCoroutine(StartMovingPrizeSign(obj, signNumber));
     }
 
-    IEnumerator StartMovingPrizeSign(GameObject g, int x, bool moveLeft)
+    IEnumerator StartMovingPrizeSign(GameObject g, int num)
     {
-        Material m = g.GetComponent<Renderer>().material;
+        Material m = g.GetComponent<MeshRenderer>().material;
         float cont = 0f;
         float speed = 0.5f;
 
-        while (stackOfTiles.Count <= x)
+        while (stackOfTiles.Count - 1 <= num)
         {
             cont += speed * Time.deltaTime;
             float offset = Mathf.Repeat(cont, 1f);
 
-            m.SetVector("_EmissionOffset", new Vector2(offset, 0f));
+            m.mainTextureOffset = new Vector2(offset,0f);
 
             yield return null;
         }
