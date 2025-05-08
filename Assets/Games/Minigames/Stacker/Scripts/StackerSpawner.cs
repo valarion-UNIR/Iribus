@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class StackerSpawner : MonoBehaviour
@@ -10,8 +11,16 @@ public class StackerSpawner : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private List<GameObject> stackOfTiles;
 
-    private bool hasGameStarted, hasGameEnded;
+    [Header("Prizes")]
+    [SerializeField] private GameObject lowPrizeSign;
+    [SerializeField] private int lpNumber;
+    [SerializeField] private GameObject mediumPrizeSign;
+    [SerializeField] private int mpNumber;
+    [SerializeField] private GameObject highPrizeSign;
+    [SerializeField] private int hpNumber;
 
+    private bool hasGameStarted, hasGameEnded;
+    [Header("Colors")]
     [SerializeField] private List<Color32> listColors;
     private int modifier;
     private int colorIndex;
@@ -31,6 +40,10 @@ public class StackerSpawner : MonoBehaviour
 
     private void Start()
     {
+        LocatePrize(lowPrizeSign, lpNumber);
+        LocatePrize(mediumPrizeSign, mpNumber);
+        LocatePrize(highPrizeSign, hpNumber);
+
         initialCameraPosition = FindFirstObjectByType<Camera>().transform.position;
         if (scoreText == null)
         {
@@ -42,8 +55,7 @@ public class StackerSpawner : MonoBehaviour
         modifier = 1;
         colorIndex = 0;
         stackOfTiles.Add(bottomTile);
-        stackOfTiles[0].GetComponent<Renderer>().material.color = listColors[0];
-        //stackOfTiles[0].GetComponent<Renderer>().material.SetColor("Outline Color", (Color)listColors[colorIndex]);
+        stackOfTiles[0].GetComponent<MeshRenderer>().material.color = listColors[0];
         CreateTile();
     }
 
@@ -114,7 +126,7 @@ public class StackerSpawner : MonoBehaviour
             modifier *= -1;
             colorIndex += 2 * modifier;
         }
-        activeTile.GetComponent<Renderer>().material.color = listColors[colorIndex];
+        activeTile.GetComponent<MeshRenderer>().material.color = listColors[colorIndex];
     }
 
     public GameObject GetFirstTile()
@@ -125,5 +137,29 @@ public class StackerSpawner : MonoBehaviour
     public void GameOver()
     {
         hasGameEnded = true;
+    }
+
+    private void LocatePrize(GameObject sign, int signNumber)
+    {
+        GameObject obj = Instantiate(sign);
+        obj.transform.position = new Vector3(0, (signNumber * 2) - 1,0.5f);
+        StartCoroutine(StartMovingPrizeSign(obj, signNumber));
+    }
+
+    IEnumerator StartMovingPrizeSign(GameObject g, int num)
+    {
+        Material m = g.GetComponent<MeshRenderer>().material;
+        float cont = 0f;
+        float speed = 0.5f;
+
+        while (stackOfTiles.Count - 1 <= num)
+        {
+            cont += speed * Time.deltaTime;
+            float offset = Mathf.Repeat(cont, 1f);
+
+            m.mainTextureOffset = new Vector2(offset,0f);
+
+            yield return null;
+        }
     }
 }

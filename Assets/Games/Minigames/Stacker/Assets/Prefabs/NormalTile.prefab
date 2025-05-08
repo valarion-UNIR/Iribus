@@ -124,5 +124,5 @@ MonoBehaviour:
   leftLimit: -14.75
   rightLimit: 14.75
   moveSpeed: 0.5
-  failThreshold: 0.2
+  failThreshold: 1
   lostTile: {fileID: 3622209024862959029, guid: af630ad94a51d934d90ad65fdfc993cf, type: 3}
