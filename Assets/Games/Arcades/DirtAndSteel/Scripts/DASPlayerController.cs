@@ -31,7 +31,6 @@ public class DASPlayerController : SubGamePlayerController
     protected override void Awake()
     {
         base.Awake();
-        Input.Enable();
         carRigidBody = GetComponent<Rigidbody2D>();
     }
 

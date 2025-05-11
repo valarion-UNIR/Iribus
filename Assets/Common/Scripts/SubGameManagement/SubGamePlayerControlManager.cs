@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.ShaderGraph;
+using UnityEngine;
 using static ObservableExtensions;
 
 public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerControlManager>
@@ -23,8 +24,8 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
 
     private void OnInnerCurrentGameChanged(SubGame oldGame, SubGame newGame)
     {
-        GetInput(oldGame).Disable();
-        GetInput(newGame).Enable();
+        oldGame.Disable();
+        newGame.Enable();
     }
 
     [DoNotSerialize] private SubGame currentGame = SubGame.RealWorld;
@@ -39,16 +40,23 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
 
     public CustomInputSystem GetInput(SubGame subGame)
     {
+        // If this is the first game loaded, make current
         if (inputs.Count <= 0)
-            currentGame = SubGame.RealWorld;
+            currentGame = subGame;
 
+        // If input already exist, return it 
         if (inputs.ContainsKey(subGame))
             return inputs[subGame];
+
+        // Else, create it
         var ret = inputs[subGame] = new CustomInputSystem();
+
+        // Enabling/disabling acording to current game.
         if (subGame == currentGame)
-            ret.Enable();
+            subGame.Enable();
         else
-            ret.Disable();
+            subGame.Disable();
+
         return ret;
     }
 
