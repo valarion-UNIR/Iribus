@@ -27,6 +27,9 @@ public class BeaverManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //IMPLEMENTAR POOLING PARA LOS TRONCOS
+
     private void Start()
     {
        currentLevel = Instantiate(levels[currentScore], new Vector3(0, 10, 0), levels[currentScore].transform.rotation);

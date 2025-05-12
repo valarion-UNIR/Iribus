@@ -1527,6 +1527,186 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Claw"",
+            ""id"": ""325c4b4a-b062-4fe8-99d8-4670bffc73ea"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""ec27b379-60b0-4e8f-b1d9-136bcf78671a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""1065b4f2-1723-4b6b-8423-ada0da1cd49a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""597d0145-0e81-4a90-a42c-0ba85ae7df5f"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""9569123a-2915-4671-81d9-2f095f6fbb3c"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7bc9e18e-6683-42c0-ac04-1eb266fad4e8"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""770de4c9-2d58-4d93-972a-b6f151f8b121"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""937631d5-0b31-4d46-9ffc-89a57637f8ee"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5ec93174-a014-4ede-8e9e-9a2da73553fd"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5e60f52a-49eb-4213-b7a4-bcd2ac0cad55"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ab781a77-6ffb-421c-a7b4-3e24e216cd97"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ad03e6ab-9235-49c7-8b5c-f69b9eeb9d01"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""18d65114-b85a-45a2-9896-01968b9f2182"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94fba1c6-65e3-4673-8615-a2948c2036f4"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c0040c4-6d9f-43bd-81ef-19082fd1b978"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee6b0480-bff9-401d-99cd-25086e8aed2d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbd7b94c-74d7-400f-aada-7124fa63bafa"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1633,6 +1813,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         // CrossTheBeaver
         m_CrossTheBeaver = asset.FindActionMap("CrossTheBeaver", throwIfNotFound: true);
         m_CrossTheBeaver_Move = m_CrossTheBeaver.FindAction("Move", throwIfNotFound: true);
+        // Claw
+        m_Claw = asset.FindActionMap("Claw", throwIfNotFound: true);
+        m_Claw_Move = m_Claw.FindAction("Move", throwIfNotFound: true);
+        m_Claw_Grab = m_Claw.FindAction("Grab", throwIfNotFound: true);
     }
 
     ~@CustomInputSystem()
@@ -1642,6 +1826,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Subgames.enabled, "This will cause a leak and performance issues, CustomInputSystem.Subgames.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DirtAndSteel.enabled, "This will cause a leak and performance issues, CustomInputSystem.DirtAndSteel.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_CrossTheBeaver.enabled, "This will cause a leak and performance issues, CustomInputSystem.CrossTheBeaver.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Claw.enabled, "This will cause a leak and performance issues, CustomInputSystem.Claw.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2479,6 +2664,113 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="CrossTheBeaverActions" /> instance referencing this action map.
     /// </summary>
     public CrossTheBeaverActions @CrossTheBeaver => new CrossTheBeaverActions(this);
+
+    // Claw
+    private readonly InputActionMap m_Claw;
+    private List<IClawActions> m_ClawActionsCallbackInterfaces = new List<IClawActions>();
+    private readonly InputAction m_Claw_Move;
+    private readonly InputAction m_Claw_Grab;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Claw".
+    /// </summary>
+    public struct ClawActions
+    {
+        private @CustomInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ClawActions(@CustomInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Claw/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Claw_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Claw/Grab".
+        /// </summary>
+        public InputAction @Grab => m_Wrapper.m_Claw_Grab;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Claw; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ClawActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ClawActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ClawActions" />
+        public void AddCallbacks(IClawActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ClawActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ClawActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Grab.started += instance.OnGrab;
+            @Grab.performed += instance.OnGrab;
+            @Grab.canceled += instance.OnGrab;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ClawActions" />
+        private void UnregisterCallbacks(IClawActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Grab.started -= instance.OnGrab;
+            @Grab.performed -= instance.OnGrab;
+            @Grab.canceled -= instance.OnGrab;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ClawActions.UnregisterCallbacks(IClawActions)" />.
+        /// </summary>
+        /// <seealso cref="ClawActions.UnregisterCallbacks(IClawActions)" />
+        public void RemoveCallbacks(IClawActions instance)
+        {
+            if (m_Wrapper.m_ClawActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ClawActions.AddCallbacks(IClawActions)" />
+        /// <seealso cref="ClawActions.RemoveCallbacks(IClawActions)" />
+        /// <seealso cref="ClawActions.UnregisterCallbacks(IClawActions)" />
+        public void SetCallbacks(IClawActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ClawActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ClawActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ClawActions" /> instance referencing this action map.
+    /// </summary>
+    public ClawActions @Claw => new ClawActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -2800,5 +3092,27 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Claw" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ClawActions.AddCallbacks(IClawActions)" />
+    /// <seealso cref="ClawActions.RemoveCallbacks(IClawActions)" />
+    public interface IClawActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Grab" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGrab(InputAction.CallbackContext context);
     }
 }

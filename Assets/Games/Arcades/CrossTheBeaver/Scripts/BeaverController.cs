@@ -26,6 +26,7 @@ public class BeaverController : SubGamePlayerController
     protected override void Awake()
     {
         base.Awake();
+        //Esto luego cambiarlo a cuando se active el minijuego
         Input.Enable();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -40,7 +41,7 @@ public class BeaverController : SubGamePlayerController
     {
         float clapmedX = Mathf.Clamp(transform.position.x, -13, 13);
         transform.position = new Vector3(clapmedX, transform.position.y, transform.position.z);
-        // Leer input actual del vector 2D
+        // Lee el input actual del vector 2D
         inputDir = Input.CrossTheBeaver.Move.ReadValue<Vector2>();
 
         if (inputDir != Vector2.zero)
