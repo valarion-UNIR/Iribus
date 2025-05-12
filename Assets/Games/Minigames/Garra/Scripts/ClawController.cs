@@ -101,9 +101,9 @@ public class ClawController : SubGamePlayerController
         while (t < 1)
         {
             t += Time.deltaTime * 2;
-            clawArm1.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
-            clawArm2.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
-            clawArm3.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
+            //clawArm1.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
+            //clawArm2.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
+            //clawArm3.localRotation = Quaternion.Slerp(abiertoRot, cerradoRot, t);
             yield return null;
         }
     }

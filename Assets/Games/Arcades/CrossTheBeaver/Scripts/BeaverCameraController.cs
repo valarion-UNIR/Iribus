@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class BeaverCameraController : MonoBehaviour
 {
     public void GoUp(float distance)
     {

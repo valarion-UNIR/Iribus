@@ -6,7 +6,7 @@ public class BeaverManager : MonoBehaviour
 {
     public static BeaverManager Instance { get; private set; }
     //public static event Action CameraGoUp; 
-    [SerializeField] private CameraController cameraController;
+    [SerializeField] private BeaverCameraController cameraController;
     //Luego cambiar esto para ajustarse a los planos pero en principio asi
     private float cameraDistance = 10 * 2;
     [Header("Levels")]
