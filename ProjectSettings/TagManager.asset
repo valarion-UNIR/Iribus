@@ -8,6 +8,9 @@ TagManager:
   - CTBLog
   - CTBWater
   - Beaver
+  - Ball
+  - Health
+  - Ammo
   layers:
   - Default
   - TransparentFX
@@ -40,7 +43,7 @@ TagManager:
   - TorpedoTrouble2
   - TorpedoTrouble3
   - TorpedoTrouble4
-  - 
+  - Balls
   m_SortingLayers:
   - name: Default
     uniqueID: 0
