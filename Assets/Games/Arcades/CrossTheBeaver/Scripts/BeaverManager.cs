@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class BeaverManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BeaverManager : MonoBehaviour
     public int currentScore = 0;
     [SerializeField] private List<GameObject> levels;
     private GameObject currentLevel;
+
+    public ObjectPool<GameObject> logPool;
 
     private void Awake()
     {

@@ -107,7 +107,7 @@ public class BeaverController : SubGamePlayerController
                 currentLog = log;
             }
 
-            moveDistanceVertical = 3.0f;
+            moveDistanceVertical = 2.0f;
             moveSpeed = moveSpeed * 2.5f;
         }
 

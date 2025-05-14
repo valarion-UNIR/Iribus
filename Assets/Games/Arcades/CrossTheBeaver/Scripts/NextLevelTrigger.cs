@@ -5,7 +5,6 @@ public class NextLevelTrigger : MonoBehaviour
 {
     public static event Action OnNextScreenTriggered;
 
-    private Collider2D collider;
     private BeaverController player;
     private float noReturnPosition;
 
@@ -13,7 +12,6 @@ public class NextLevelTrigger : MonoBehaviour
 
     private void Start()
     {
-        collider = GetComponent<Collider2D>();
         player = BeaverManager.Instance.ReturnBeaver();
     }
     private void OnTriggerEnter2D(Collider2D collision)

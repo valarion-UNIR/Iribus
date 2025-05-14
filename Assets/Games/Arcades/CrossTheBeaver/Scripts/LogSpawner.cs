@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class LogSpawner : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class LogSpawner : MonoBehaviour
     [SerializeField] GameObject Log;
     [SerializeField] bool logRight = true;
     [SerializeField] float timeBetweenLog = 1;
+
 
     private void Start()
     {

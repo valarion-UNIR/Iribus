@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LogBehaviour : MonoBehaviour
@@ -13,6 +14,7 @@ public class LogBehaviour : MonoBehaviour
     private void Start()
     {
         lastPosition = transform.position;
+        StartCoroutine(Inmolate(30/Speed + 1));
     }
     private void FixedUpdate()
     {
@@ -21,5 +23,11 @@ public class LogBehaviour : MonoBehaviour
 
         DeltaPosition = transform.position - lastPosition;
         lastPosition = transform.position;
+    }
+
+    IEnumerator Inmolate(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 }
