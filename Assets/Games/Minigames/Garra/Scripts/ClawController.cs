@@ -125,8 +125,13 @@ public class ClawController : SubGamePlayerController
 
         //Aqui arriba comprobamos si hay un objeto y se lo atachemos al padre para que no se salga
         Collider col = Physics.OverlapSphere(transform.position, detectionRadius, ballsLayer)[0];
-        col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        col.gameObject.transform.SetParent(transform);
+
+        if(col != null)
+        {
+            col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            col.gameObject.transform.SetParent(transform);
+        }
+        
 
         yield return new WaitForSeconds(1f);
 
@@ -144,9 +149,12 @@ public class ClawController : SubGamePlayerController
         }
 
         //Desatacheamos el objeto
-        col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        col.gameObject.transform.SetParent(null);
-
+        if(col != null)
+        {
+            col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            col.gameObject.transform.SetParent(null);
+        }
+        
         //Volvemos  brir
         StartCoroutine(CloseOpen(clawArm1.transform, 60f, closeDuration));
         StartCoroutine(CloseOpen(clawArm2.transform, 60f, closeDuration));
