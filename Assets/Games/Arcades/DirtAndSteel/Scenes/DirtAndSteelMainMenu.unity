@@ -394,7 +394,7 @@ MonoBehaviour:
   subGame: 4
   acceleration: 50
   maxSpeed: 50
-  steering: 900
+  steering: 500
   driftFactorSticky: 0.3
   driftFactorSlippy: 0.97
   driftThreshold: 1
@@ -402,10 +402,11 @@ MonoBehaviour:
   decayStartPercent: 0.1
   decaySharpness: 10
   carRigidBody: {fileID: 589436435}
-  steerInput: 0
+  steerInput: 0.0000007967788
   accelInput: 0
-  driftRecoveryTime: 1.5
-  currentDirection: {x: 0, y: 0}
+  driftRecoveryTime: 0.3
+  currentDirection: {x: -0.11072233, y: 0.99385136}
+  steerBrakeStrength: 0.7
 --- !u!50 &589436435
 Rigidbody2D:
   serializedVersion: 5

@@ -30,6 +30,9 @@ public class DASPlayerController : SubGamePlayerController
     private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
 
+    [Header("Steering Brake")]
+    [Tooltip("How much speed to lose per second when steering (0 = no brake, 1 = full stop)")]
+    public float steerBrakeStrength = 0.2f;
     protected override void Awake()
     {
         base.Awake();
@@ -82,13 +85,29 @@ public class DASPlayerController : SubGamePlayerController
 
     void FixedUpdate()
     {
-        if ((accelInput == 0 && driftRecoveryTimer <= 0f))
+        bool isSteering = Mathf.Abs(steerInput) > 0.1f;
+        bool isDrifting = driftTimer > 0f || driftRecoveryTimer > 0f;
+
+        // 1) If steering (but NOT in a drift), apply extra “steering brake”
+        if (isSteering && !isDrifting)
+        {
+            // bleed off speed proportionally each second
+            carRigidBody.linearVelocity *=
+                1f - steerBrakeStrength * Time.fixedDeltaTime * Mathf.Abs(steerInput);
+        }
+
+        // 2) Your existing idle friction when neither accelerating nor drifting
+        if (accelInput == 0 && driftRecoveryTimer <= 0f)
             ApplyIdleFriction();
 
+        // 3) Engine force as usual (so you can still accelerate if the wheel’s straight)
         ApplyEngineForce();
+
+        // 4) Kill sideways slip and rotate
         KillOrthogonalVelocity();
         ApplySteering();
     }
+
 
     void ApplyEngineForce()
     {
