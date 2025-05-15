@@ -11,6 +11,10 @@ TagManager:
   - Ball
   - Health
   - Ammo
+  - PCKCorrect
+  - PCKIncorrect
+  - PCKStar
+  - cc
   layers:
   - Default
   - TransparentFX

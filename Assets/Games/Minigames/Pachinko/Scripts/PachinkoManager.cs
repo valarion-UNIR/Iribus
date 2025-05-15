@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PachinkoManager : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
-
-    [SerializeField] private int numberOfRemainingBalls;
+    
     [SerializeField] private Camera mainCamera;
 
     [Header("Ball Thrower Opctions")]
@@ -21,7 +21,14 @@ public class PachinkoManager : MonoBehaviour
     [SerializeField] private Material matCorrect;
     [SerializeField] private Material matStarred;
 
+    [Header("Canvas")]
+    [SerializeField] private Canvas canvas;
+    [SerializeField] public int numberOfRemainingBalls;
+    [SerializeField] public int numberOfPrize;
+    [SerializeField] public int numberOfScore;
+
     private GameObject instBall;
+    private bool ballThrown = false;
 
     private void Awake()
     {
@@ -31,19 +38,27 @@ public class PachinkoManager : MonoBehaviour
     void Start()
     {
         instBall = CreatePachinkoBall(ball);
+        ballThrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveArrowAndBall(throwPoint.gameObject);
-        if (Input.GetKeyDown(KeyCode.Space))
+        UpdateSideCanvas();
+        if (!ballThrown)
         {
-            mainCamera.transform.SetParent(instBall.transform);
-            instBall.transform.SetParent(null);
-            instBall.GetComponent<Rigidbody>().isKinematic = false;
-            instBall.GetComponent<Rigidbody>().useGravity = true;
-            instBall = null;
+            MoveArrowAndBall(throwPoint.gameObject);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                numberOfRemainingBalls--;
+                //mainCamera.transform.SetParent(instBall.transform);
+                ballThrown = true;
+                instBall.transform.SetParent(transform);
+                instBall.GetComponent<Rigidbody>().isKinematic = false;
+                instBall.GetComponent<Rigidbody>().useGravity = true;
+                instBall.AddComponent<PachinkoBall>();
+                instBall = null;
+            }
         }
     }
 
@@ -59,6 +74,36 @@ public class PachinkoManager : MonoBehaviour
         {
             return null;
         }   
+    }
+
+    private void UpdateSideCanvas()
+    {
+        char[] score = "0000".ToCharArray();
+        int cont = score.Length - 1;
+
+        foreach (char s in numberOfScore.ToString().Reverse())
+        {
+            score[cont] = s;
+            cont--;
+        }
+
+        string finalScore = new string(score);
+
+        canvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = finalScore;
+
+        char[] balls = "00".ToCharArray();
+        int cont2 = balls.Length - 1;
+
+        foreach (char b in numberOfRemainingBalls.ToString().Reverse())
+        {
+            balls[cont2] = b;
+            cont2--;
+        }
+
+        string finalBalls = new string(balls);
+
+        canvas.transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>().text = "x"+finalBalls;
+        canvas.transform.GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = numberOfPrize.ToString();
     }
 
     private void MoveArrowAndBall(GameObject go)
@@ -80,21 +125,39 @@ public class PachinkoManager : MonoBehaviour
         }
     }
 
+    
+
     private void BuildSlotCombination(GameObject go, string combString)
     {
         int cont = 0;
         foreach (char t in combString)
         {
+            Transform child = go.transform.GetChild(cont);
             switch (t)
             {
                 case 'X':
-                    go.transform.GetChild(cont).GetChild(0).GetComponent<MeshRenderer>().material = matIncorrect;
+                    child.gameObject.tag = TagsIribus.PCKIncorrect;
+                    child.GetChild(0).GetComponent<MeshRenderer>().material = matIncorrect;
+                    foreach (Transform o in child)
+                    {
+                        o.gameObject.tag = TagsIribus.PCKIncorrect;
+                    }
                     break;
                 case 'O':
-                    go.transform.GetChild(cont).GetChild(0).GetComponent<MeshRenderer>().material = matCorrect;
+                    child.gameObject.tag = TagsIribus.PCKCorrect;
+                    child.GetChild(0).GetComponent<MeshRenderer>().material = matCorrect;
+                    foreach (Transform o in child)
+                    {
+                        o.gameObject.tag = TagsIribus.PCKCorrect;
+                    }
                     break;
                 case 'S':
-                    go.transform.GetChild(cont).GetChild(0).GetComponent<MeshRenderer>().material = matStarred;
+                    child.gameObject.tag = TagsIribus.PCKStar;
+                    child.GetChild(0).GetComponent<MeshRenderer>().material = matStarred;
+                    foreach (Transform o in child)
+                    {
+                        o.gameObject.tag = TagsIribus.PCKStar;
+                    }
                     break;
             }
             cont++;
@@ -119,5 +182,13 @@ public class PachinkoManager : MonoBehaviour
 
         string result = new string(chars.ToArray());
         return result;
+    }
+
+    public void NextBallToCreate()
+    {
+        if (numberOfRemainingBalls == 0) return;
+
+        instBall = CreatePachinkoBall(ball);
+        ballThrown = false;
     }
 }
