@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DASPlayerController : SubGamePlayerController
 {
@@ -20,12 +20,14 @@ public class DASPlayerController : SubGamePlayerController
     [SerializeField] private float decayStartPercent = 0.1f; // Start decaying after 40% of max speed
     [SerializeField] private float decaySharpness = 5f;      // How sharp the decay is
 
-    public Rigidbody2D carRigidBody;
+    [HideInInspector] public Rigidbody2D carRigidBody;
     [HideInInspector] public float steerInput;
     [HideInInspector] public float accelInput;
     private float currentAngularVelocity;
     private float driftTimer;
-
+    [SerializeField] private float driftRecoveryTime = 0.5f; // Time to fully return to grip after drifting
+    private float driftRecoveryTimer = 0f;
+    private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
 
     protected override void Awake()
@@ -39,10 +41,30 @@ public class DASPlayerController : SubGamePlayerController
         currentDirection = transform.up;
         steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;
 
-        if (Mathf.Abs(steerInput) > driftThreshold)
-            driftTimer = driftMemoryTime; 
+        if (Input.DirtAndSteel.Drift.IsPressed())
+        {
+            driftTimer = driftMemoryTime;
+            driftRecoveryTimer = 0f; // reset recovery if drifting again
+        }
         else
-            driftTimer -= Time.deltaTime; 
+        {
+            if (driftTimer > 0f)
+            {
+                driftTimer -= Time.deltaTime;
+                if (driftTimer <= 0f)
+                {
+                    // Drifting just ended — start recovery
+                    driftRecoveryTimer = driftRecoveryTime;
+                }
+            }
+            else
+            {
+                // Count down recovery if in progress
+                driftRecoveryTimer -= Time.deltaTime;
+            }
+        }
+
+        driftTimer = Mathf.Clamp(driftTimer, 0f, driftMemoryTime);
 
         if ((!Input.DirtAndSteel.Accelerate.inProgress && !Input.DirtAndSteel.Break.inProgress) ||
             (Input.DirtAndSteel.Accelerate.inProgress && Input.DirtAndSteel.Break.inProgress))
@@ -60,7 +82,7 @@ public class DASPlayerController : SubGamePlayerController
 
     void FixedUpdate()
     {
-        if (accelInput == 0)
+        if ((accelInput == 0 && driftRecoveryTimer <= 0f))
             ApplyIdleFriction();
 
         ApplyEngineForce();
@@ -95,11 +117,7 @@ public class DASPlayerController : SubGamePlayerController
 
         Vector2 force = forward * accelInput * acceleration * decayFactor;
         carRigidBody.AddForce(force, ForceMode2D.Force);
-
-        print(carRigidBody.linearVelocity);
     }
-
-
 
     void ApplyIdleFriction()
     {
@@ -118,6 +136,10 @@ public class DASPlayerController : SubGamePlayerController
         if (accelInput < 0f)
             steerAmount *= -1;
 
+        if (driftTimer > 0f)
+            steerAmount *= 1.25f;
+
+
         carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
     }
 
@@ -129,8 +151,26 @@ public class DASPlayerController : SubGamePlayerController
         float forwardVelocity = Vector2.Dot(carRigidBody.linearVelocity, forward);
         float sidewaysVelocity = Vector2.Dot(carRigidBody.linearVelocity, right);
 
-        bool drifting = driftTimer > 0f;
-        float driftFactor = drifting ? driftFactorSlippy : driftFactorSticky;
+        float driftFactor = driftFactorSticky;
+
+        if (driftTimer > 0f)
+        {
+            // Actively drifting
+            driftFactor = driftFactorSlippy;
+        }
+        else if (driftRecoveryTimer > 0f)
+        {
+            float t = 1f - (driftRecoveryTimer / driftRecoveryTime);
+            t = Mathf.SmoothStep(0f, 1f, t); // ease-out shape
+            driftFactor = Mathf.Lerp(driftFactorSlippy, driftFactorSticky, t);
+            print(driftFactor);
+        }
+        else if (Mathf.Abs(steerInput) > 0.1f)
+        {
+            // Steering but not drifting: apply a smooth grip lerp
+            float steerSlipLerp = Mathf.Abs(steerInput); // Could also be scaled by speed
+            driftFactor = Mathf.Lerp(driftFactorSticky, 1f, steerSlipLerp * 0.5f); // small allowance for slip
+        }
 
         carRigidBody.linearVelocity = forward * forwardVelocity + right * sidewaysVelocity * driftFactor;
     }

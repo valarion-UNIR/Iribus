@@ -1275,6 +1275,15 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drift"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d105cd5-c03a-4662-b566-fa45dccdc235"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1374,6 +1383,17 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Break"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bf51bf0-0f6d-4d06-b50d-b8989a454ded"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1810,6 +1830,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_DirtAndSteel_Move = m_DirtAndSteel.FindAction("Move", throwIfNotFound: true);
         m_DirtAndSteel_Accelerate = m_DirtAndSteel.FindAction("Accelerate", throwIfNotFound: true);
         m_DirtAndSteel_Break = m_DirtAndSteel.FindAction("Break", throwIfNotFound: true);
+        m_DirtAndSteel_Drift = m_DirtAndSteel.FindAction("Drift", throwIfNotFound: true);
         // CrossTheBeaver
         m_CrossTheBeaver = asset.FindActionMap("CrossTheBeaver", throwIfNotFound: true);
         m_CrossTheBeaver_Move = m_CrossTheBeaver.FindAction("Move", throwIfNotFound: true);
@@ -2457,6 +2478,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_DirtAndSteel_Move;
     private readonly InputAction m_DirtAndSteel_Accelerate;
     private readonly InputAction m_DirtAndSteel_Break;
+    private readonly InputAction m_DirtAndSteel_Drift;
     /// <summary>
     /// Provides access to input actions defined in input action map "DirtAndSteel".
     /// </summary>
@@ -2480,6 +2502,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DirtAndSteel/Break".
         /// </summary>
         public InputAction @Break => m_Wrapper.m_DirtAndSteel_Break;
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/Drift".
+        /// </summary>
+        public InputAction @Drift => m_Wrapper.m_DirtAndSteel_Drift;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2515,6 +2541,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Break.started += instance.OnBreak;
             @Break.performed += instance.OnBreak;
             @Break.canceled += instance.OnBreak;
+            @Drift.started += instance.OnDrift;
+            @Drift.performed += instance.OnDrift;
+            @Drift.canceled += instance.OnDrift;
         }
 
         /// <summary>
@@ -2535,6 +2564,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Break.started -= instance.OnBreak;
             @Break.performed -= instance.OnBreak;
             @Break.canceled -= instance.OnBreak;
+            @Drift.started -= instance.OnDrift;
+            @Drift.performed -= instance.OnDrift;
+            @Drift.canceled -= instance.OnDrift;
         }
 
         /// <summary>
@@ -3077,6 +3109,13 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBreak(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Drift" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDrift(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CrossTheBeaver" which allows adding and removing callbacks.
