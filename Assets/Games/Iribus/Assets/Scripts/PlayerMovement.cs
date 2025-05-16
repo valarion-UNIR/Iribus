@@ -31,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
     public float maxFallSpeed = 20f;
 
+    public float groundPoundFallMult = 8f;
+    public bool groundPoundeadaDeManual = false;
+    private float groundPoundTime = 0.25f;
+    private float groundPoundCounter;
+    public float groundPoundJumpForce = 24f;
+
     private Animator animator;
     private SpriteRenderer sprite;
     private ParticleSystem particulasHumo;
@@ -64,10 +70,35 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter = 0f;
         }
 
+        if (groundPoundeadaDeManual && isGrounded)
+        {
+            groundPoundCounter -= Time.deltaTime;
+            if(groundPoundCounter < 0f)
+            {
+                groundPoundeadaDeManual = false;
+            }
+        }
+        else
+        {
+            groundPoundCounter = groundPoundTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
+        {
+            GroundPoundear();
+        }
+
         if(Input.GetKeyDown(KeyCode.R))
         {
             PlayerDie();
         }
+    }
+
+    private void GroundPoundear()
+    {
+        rb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        rb.gravityScale = groundPoundFallMult;
+        groundPoundeadaDeManual = true;
     }
 
     void FixedUpdate()
@@ -121,7 +152,15 @@ public class PlayerMovement : MonoBehaviour
     {
         particulasHumo.Play();
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if(groundPoundeadaDeManual)
+        {
+            rb.AddForce(Vector2.up * groundPoundJumpForce, ForceMode2D.Impulse);
+            groundPoundeadaDeManual = false;
+        }
+        else
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
     }
 
     void BetterJump()

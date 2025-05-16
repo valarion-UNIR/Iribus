@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "ParticleLibrary", menuName = "Effects/ParticleLibrary")]
+[CreateAssetMenu(fileName = "ParticleLibrary", menuName = "ScriptableObjects/ParticleLibrary")]
 public class ParticleLibrary : ScriptableObject
 {
     public ParticleSystem[] effects;

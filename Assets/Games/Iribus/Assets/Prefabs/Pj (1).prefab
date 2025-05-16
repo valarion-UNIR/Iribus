@@ -4936,7 +4936,7 @@ GameObject:
   - component: {fileID: 5876868532750692450}
   - component: {fileID: 8388645955144277774}
   - component: {fileID: 4137674004368296570}
-  m_Layer: 3
+  m_Layer: 15
   m_Name: Pj (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5103,7 +5103,7 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8192
   groundAccelerationTime: 0.25
   maxFallSpeed: 20
 --- !u!95 &4137674004368296570
