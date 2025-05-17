@@ -26,6 +26,8 @@ public class DASPlayerController : SubGamePlayerController
     private float currentAngularVelocity;
     private float driftTimer;
     [SerializeField] private float driftRecoveryTime = 0.5f; // Time to fully return to grip after drifting
+    [SerializeField] private TrailRenderer trailL;
+    [SerializeField] private TrailRenderer trailR;
     private float driftRecoveryTimer = 0f;
     private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
@@ -87,6 +89,17 @@ public class DASPlayerController : SubGamePlayerController
     {
         bool isSteering = Mathf.Abs(steerInput) > 0.1f;
         bool isDrifting = driftTimer > 0f || driftRecoveryTimer > 0f;
+
+        if (Input.DirtAndSteel.Drift.IsPressed() || driftTimer > 0f)
+        {
+            trailL.emitting = true;
+            trailR.emitting = true;
+        }
+        else
+        {
+            trailL.emitting = false;
+            trailR.emitting = false;
+        }
 
         // 1) If steering (but NOT in a drift), apply extra “steering brake”
         if (isSteering && !isDrifting)
