@@ -1,13 +1,5 @@
 using UnityEngine;
 
-public enum DASCollisionableType
-{
-    TIMER_UP,
-    OBSTACLE,
-    TURBO,
-    END_CHECKERS,
-}
-
 
 public class DASCollisionable : MonoBehaviour
 {

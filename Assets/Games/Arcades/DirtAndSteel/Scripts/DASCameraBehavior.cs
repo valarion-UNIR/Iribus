@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections;
+
 
 public class DASCameraBehavior : MonoBehaviour
 {
@@ -17,9 +19,20 @@ public class DASCameraBehavior : MonoBehaviour
 
     private Vector3 currentOffset;
 
+    private CinemachineBasicMultiChannelPerlin noise;
+
+    private float shakeTimer = 0f;
+    private float initialAmplitude = 0f;
+    private float initialFrequency = 0f;
+    private Coroutine shakeCoroutine;
+
     void Start()
     {
         currentOffset = cinemachineFollow.FollowOffset;
+
+        noise = gameObject.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        initialAmplitude = noise.AmplitudeGain;
+        initialFrequency = noise.FrequencyGain;
     }
 
     void Update()
@@ -50,4 +63,44 @@ public class DASCameraBehavior : MonoBehaviour
         currentOffset = Vector3.Lerp(currentOffset, targetOffset, Time.deltaTime * cameraDampingAmmount);
         cinemachineFollow.FollowOffset = currentOffset;
     }
+
+    public void TriggerShake(float duration, float magnitude, float frequency)
+    {
+        if(shakeCoroutine != null)
+            StopCoroutine(shakeCoroutine);
+
+        shakeCoroutine = StartCoroutine(ShakeCoroutine(duration, magnitude, frequency));
+    }
+
+    private IEnumerator ShakeCoroutine(float duration, float magnitude, float frequency)
+    {
+        if (noise == null)
+            yield break;
+
+        noise.AmplitudeGain = magnitude;
+        noise.FrequencyGain = frequency;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            float easeOut = 1f - Mathf.Pow(t, 2); // quadratic ease-out
+
+            noise.AmplitudeGain = magnitude * easeOut;
+            noise.FrequencyGain = frequency * easeOut;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        noise.AmplitudeGain = initialAmplitude;
+        noise.FrequencyGain = initialFrequency;
+    }
+
+    public void TriggerStandardShake()
+    {
+        TriggerShake(0.5f, 10f, 10f);
+    }
+
 }

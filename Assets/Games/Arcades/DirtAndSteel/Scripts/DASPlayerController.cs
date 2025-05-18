@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class DASPlayerController : SubGamePlayerController
 {
@@ -31,6 +32,8 @@ public class DASPlayerController : SubGamePlayerController
     private float driftRecoveryTimer = 0f;
     private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
+
+    private bool canAccelerate = true;
 
     [Header("Steering Brake")]
     [Tooltip("How much speed to lose per second when steering (0 = no brake, 1 = full stop)")]
@@ -101,22 +104,19 @@ public class DASPlayerController : SubGamePlayerController
             trailR.emitting = false;
         }
 
-        // 1) If steering (but NOT in a drift), apply extra “steering brake”
         if (isSteering && !isDrifting)
         {
-            // bleed off speed proportionally each second
             carRigidBody.linearVelocity *=
                 1f - steerBrakeStrength * Time.fixedDeltaTime * Mathf.Abs(steerInput);
         }
 
-        // 2) Your existing idle friction when neither accelerating nor drifting
         if (accelInput == 0 && driftRecoveryTimer <= 0f)
             ApplyIdleFriction();
 
-        // 3) Engine force as usual (so you can still accelerate if the wheel’s straight)
-        ApplyEngineForce();
+        if(canAccelerate)
+            ApplyEngineForce();
 
-        // 4) Kill sideways slip and rotate
+
         KillOrthogonalVelocity();
         ApplySteering();
     }
@@ -136,10 +136,7 @@ public class DASPlayerController : SubGamePlayerController
         float decayFactor;
 
         if (speedPercent < decayStartPercent)
-        {
-            // No decay yet
             decayFactor = 1f;
-        }
         else
         {
             // Map speed from [decayStart, 1] to [0, 1] for the decay curve
@@ -173,6 +170,30 @@ public class DASPlayerController : SubGamePlayerController
 
 
         carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
+    }
+
+    public IEnumerator ApplySuddenVelocityChange(float slowDownPercentage, float duration)
+    {
+        float timer = 0f;
+
+        Vector2 originalVelocity = carRigidBody.linearVelocity;
+        Vector2 targetVelocity = originalVelocity * (1f - slowDownPercentage);
+
+        canAccelerate = false;
+
+        while (timer < duration)
+        {
+            float t = timer / duration;
+            float easedT = 1f - Mathf.Pow(1f - t, 4f);
+
+            carRigidBody.linearVelocity = Vector2.Lerp(originalVelocity, targetVelocity, easedT);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        carRigidBody.linearVelocity = targetVelocity;
+        canAccelerate = true;
     }
 
     void KillOrthogonalVelocity()
