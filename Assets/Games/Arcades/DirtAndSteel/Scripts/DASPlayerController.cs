@@ -46,6 +46,7 @@ public class DASPlayerController : SubGamePlayerController
 
     void Update()
     {
+        print(carRigidBody.linearVelocity);
         currentDirection = transform.up;
         steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;
 
@@ -172,12 +173,12 @@ public class DASPlayerController : SubGamePlayerController
         carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
     }
 
-    public IEnumerator ApplySuddenVelocityChange(float slowDownPercentage, float duration)
+    public IEnumerator ApplySuddenVelocityChange(float velocityMultiplier, float duration)
     {
         float timer = 0f;
 
         Vector2 originalVelocity = carRigidBody.linearVelocity;
-        Vector2 targetVelocity = originalVelocity * (1f - slowDownPercentage);
+        Vector2 targetVelocity = originalVelocity * velocityMultiplier;
 
         canAccelerate = false;
 
@@ -216,7 +217,6 @@ public class DASPlayerController : SubGamePlayerController
             float t = 1f - (driftRecoveryTimer / driftRecoveryTime);
             t = Mathf.SmoothStep(0f, 1f, t); // ease-out shape
             driftFactor = Mathf.Lerp(driftFactorSlippy, driftFactorSticky, t);
-            print(driftFactor);
         }
         else if (Mathf.Abs(steerInput) > 0.1f)
         {
