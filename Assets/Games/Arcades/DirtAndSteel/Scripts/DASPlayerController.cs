@@ -46,7 +46,6 @@ public class DASPlayerController : SubGamePlayerController
 
     void Update()
     {
-        print(carRigidBody.linearVelocity);
         currentDirection = transform.up;
         steerInput = Input.DirtAndSteel.Move.ReadValue<Vector2>().x;
 
