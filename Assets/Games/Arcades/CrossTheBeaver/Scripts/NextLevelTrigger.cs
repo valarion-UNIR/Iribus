@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class NextLevelTrigger : MonoBehaviour
 {
+
     public static event Action OnNextScreenTriggered;
 
+    [SerializeField] bool checkpoint = false;
     private BeaverController player;
     private float noReturnPosition;
 
@@ -19,9 +21,13 @@ public class NextLevelTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Beaver") && !triggered) 
         { 
             OnNextScreenTriggered?.Invoke(); 
-            Debug.Log("Llega al triger");
             triggered = true;
             noReturnPosition = player.transform.position.y;
+
+            if (checkpoint == true)
+            {
+                //Guardar
+            }
         }
     }
 

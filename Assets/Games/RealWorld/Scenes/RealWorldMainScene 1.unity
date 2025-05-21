@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03df0eb5e307a774497d86a951a7e689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: d8c1db1f84491fc47aace3111643519a, type: 3}
+  sceneAsset: {fileID: 102900000, guid: 611b594f8c6900544991754914462f1e, type: 3}
 --- !u!64 &321243119
 MeshCollider:
   m_ObjectHideFlags: 0
