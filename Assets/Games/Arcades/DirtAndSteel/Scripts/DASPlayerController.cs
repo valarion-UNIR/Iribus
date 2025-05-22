@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class DASPlayerController : SubGamePlayerController
 {
@@ -26,9 +27,13 @@ public class DASPlayerController : SubGamePlayerController
     private float currentAngularVelocity;
     private float driftTimer;
     [SerializeField] private float driftRecoveryTime = 0.5f; // Time to fully return to grip after drifting
+    [SerializeField] private TrailRenderer trailL;
+    [SerializeField] private TrailRenderer trailR;
     private float driftRecoveryTimer = 0f;
     private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
+
+    private bool canAccelerate = true;
 
     [Header("Steering Brake")]
     [Tooltip("How much speed to lose per second when steering (0 = no brake, 1 = full stop)")]
@@ -88,22 +93,30 @@ public class DASPlayerController : SubGamePlayerController
         bool isSteering = Mathf.Abs(steerInput) > 0.1f;
         bool isDrifting = driftTimer > 0f || driftRecoveryTimer > 0f;
 
-        // 1) If steering (but NOT in a drift), apply extra “steering brake”
+        if (Input.DirtAndSteel.Drift.IsPressed() || driftTimer > 0f)
+        {
+            trailL.emitting = true;
+            trailR.emitting = true;
+        }
+        else
+        {
+            trailL.emitting = false;
+            trailR.emitting = false;
+        }
+
         if (isSteering && !isDrifting)
         {
-            // bleed off speed proportionally each second
             carRigidBody.linearVelocity *=
                 1f - steerBrakeStrength * Time.fixedDeltaTime * Mathf.Abs(steerInput);
         }
 
-        // 2) Your existing idle friction when neither accelerating nor drifting
         if (accelInput == 0 && driftRecoveryTimer <= 0f)
             ApplyIdleFriction();
 
-        // 3) Engine force as usual (so you can still accelerate if the wheel’s straight)
-        ApplyEngineForce();
+        if(canAccelerate)
+            ApplyEngineForce();
 
-        // 4) Kill sideways slip and rotate
+
         KillOrthogonalVelocity();
         ApplySteering();
     }
@@ -123,10 +136,7 @@ public class DASPlayerController : SubGamePlayerController
         float decayFactor;
 
         if (speedPercent < decayStartPercent)
-        {
-            // No decay yet
             decayFactor = 1f;
-        }
         else
         {
             // Map speed from [decayStart, 1] to [0, 1] for the decay curve
@@ -162,6 +172,30 @@ public class DASPlayerController : SubGamePlayerController
         carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
     }
 
+    public IEnumerator ApplySuddenVelocityChange(float velocityMultiplier, float duration)
+    {
+        float timer = 0f;
+
+        Vector2 originalVelocity = carRigidBody.linearVelocity;
+        Vector2 targetVelocity = originalVelocity * velocityMultiplier;
+
+        canAccelerate = false;
+
+        while (timer < duration)
+        {
+            float t = timer / duration;
+            float easedT = 1f - Mathf.Pow(1f - t, 4f);
+
+            carRigidBody.linearVelocity = Vector2.Lerp(originalVelocity, targetVelocity, easedT);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        carRigidBody.linearVelocity = targetVelocity;
+        canAccelerate = true;
+    }
+
     void KillOrthogonalVelocity()
     {
         Vector2 forward = transform.up;
@@ -182,7 +216,6 @@ public class DASPlayerController : SubGamePlayerController
             float t = 1f - (driftRecoveryTimer / driftRecoveryTime);
             t = Mathf.SmoothStep(0f, 1f, t); // ease-out shape
             driftFactor = Mathf.Lerp(driftFactorSlippy, driftFactorSticky, t);
-            print(driftFactor);
         }
         else if (Mathf.Abs(steerInput) > 0.1f)
         {

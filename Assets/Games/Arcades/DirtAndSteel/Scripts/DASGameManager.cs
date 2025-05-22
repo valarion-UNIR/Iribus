@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem.Utilities;
 
 public class DASGameManager : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI raceTimerText;
+    [SerializeField] private DASCameraBehavior cameraBehavior;
 
     [SerializeField] private float raceInitTime;
     private float raceTimer;
@@ -46,5 +48,15 @@ public class DASGameManager : MonoBehaviour
     public void AddRaceTime(float ammount)
     {
         raceTimer += ammount;
+    }
+
+    public void CameraShakeStandard()
+    {
+        cameraBehavior.TriggerStandardShake();
+    }
+
+    public void CameraShake(float duration, float magnitude, float frequency)
+    {
+        cameraBehavior.TriggerShake(duration, magnitude, frequency);
     }
 }
