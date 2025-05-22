@@ -39,6 +39,12 @@ public class ValidationMenus : MonoBehaviour
         foreach (var asset in sceneAssets)
         {
             var path = AssetDatabase.GUIDToAssetPath(asset);
+            var scene = loadedScenes.FirstOrDefault(s => s.path == path);
+            var wasSceneOpened = scene.path == path;
+
+            if (onlyOpened && !wasSceneOpened)
+                continue;
+
             if (!sceneAssetSubgames.ContainsKey(path))
             {
                 Debug.LogError($"Scene \"{path}\" is not contained in a sub game asset bundle. Please select the scene in the asset manager and select the appropiate asset bundle.");
@@ -52,8 +58,6 @@ public class ValidationMenus : MonoBehaviour
                 continue;
             }
 
-            var scene = loadedScenes.FirstOrDefault(s => s.path == path);
-            var wasSceneOpened = scene.buildIndex >= 0;
             var sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(path);
 
             if (!wasSceneOpened)
@@ -65,6 +69,9 @@ public class ValidationMenus : MonoBehaviour
             }
 
             var changedSomething = ProcessScene(sceneAssetSubgames[path], scene, subgamesdata[subgame], dryRun);
+
+            if(!changedSomething)
+                Debug.Log($"Processed \"{scene.name}\" for subgame {subgame} and everything was correct");
 
             if (!wasSceneOpened && (dryRun || !changedSomething))
                 EditorSceneManager.CloseScene(scene, true);
