@@ -18,6 +18,7 @@ public class GameManagerMetroidvania : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoSave;
 
     [SerializeField] private ParticleSpawner particleSpawner;
+    [SerializeField] private TextoEscribir dialogoPrueba;
 
     private Vector2 velPlayer;
 
@@ -67,6 +68,18 @@ public class GameManagerMetroidvania : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             CheckGuardado();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GetComponent<DialogueManager>().SetLanguage("ja");
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log(GetComponent<DialogueManager>().GetDialogue("Hello wellers"));
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            dialogoPrueba.EscribirDialogo();
         }
     }
 

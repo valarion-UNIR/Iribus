@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7632983849691645168}
   - component: {fileID: 2708750492493960051}
   - component: {fileID: 3268741810892598148}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SpawnPaDentro
   m_TagString: Untagged
   m_Icon: {fileID: 0}

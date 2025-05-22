@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6318984986160080267}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8584133283830145455}
   - component: {fileID: 817162357401196364}
   - component: {fileID: 6112934428438631061}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HumoSalto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5106,6 +5106,9 @@ MonoBehaviour:
     m_Bits: 8192
   groundAccelerationTime: 0.25
   maxFallSpeed: 20
+  groundPoundFallMult: 8
+  groundPoundeadaDeManual: 0
+  groundPoundJumpForce: 24
 --- !u!95 &4137674004368296570
 Animator:
   serializedVersion: 7

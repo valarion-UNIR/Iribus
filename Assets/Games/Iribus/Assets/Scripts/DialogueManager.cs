@@ -8,8 +8,8 @@ public class DialogueManager : MonoBehaviour
 
     private const string ResourcesFolder = "Dialogos";
 
-    private Dictionary<string, Dictionary<int, string>> _dialogos;
-    private string currentLangCode;
+    private Dictionary<string, Dictionary<string, string>> _translations;
+    private string _currentLangCode = "en";
 
     void Awake()
     {
@@ -20,43 +20,38 @@ public class DialogueManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        //CargarDialogosIdioma();
         SetLanguage(GetLanguageCode(Application.systemLanguage));
     }
 
-    /// <summary>
-    /// Carga y parsea el csv con el idioma del juego correspondiente
-    /// </summary>
-    private void CargarDialogosIdioma(string codeIdioma)
+    private void LoadTranslations()
     {
-        var pathDialogos = $"{ResourcesFolder}/{codeIdioma}_Dialogos";
-        TextAsset csvDialogos = Resources.Load<TextAsset>(pathDialogos);
-
-        if (csvDialogos == null)
+        var path = "AllDialogues";
+        TextAsset csvAsset = Resources.Load<TextAsset>(path);
+        if (csvAsset == null)
         {
-            Debug.LogError($"No se ha encontrado csv en Resources/{pathDialogos}.csv");
-            _dialogos = new Dictionary<string, Dictionary<int, string>>();
+            Debug.LogError($"Falta el CSV en /{path}.csv");
+            _translations = new Dictionary<string, Dictionary<string, string>>();
             return;
         }
 
-        _dialogos = ParseCsv(csvDialogos.text);
-        Debug.Log($"Cargados {_dialogos.Count} personajes de '{codeIdioma}'.");
+        _translations = ParseCsv(csvAsset.text);
+        Debug.Log($"Cargadas {_translations.Count} traducciones.");
     }
 
     public void SetLanguage(string langCode)
     {
-        if (string.Equals(currentLangCode, langCode, StringComparison.OrdinalIgnoreCase))
+        langCode = langCode.ToLowerInvariant();
+        if (string.Equals(_currentLangCode, langCode, StringComparison.OrdinalIgnoreCase))
             return;
 
-        currentLangCode = langCode;
-        CargarDialogosIdioma(currentLangCode);
-        Debug.Log($"[DialogueManager] Language switched to '{currentLangCode}'");
+        _currentLangCode = langCode;
+
+        if (_translations == null)
+            LoadTranslations();
+
+        Debug.Log($"[DialogueManager] Cambio de idioma '{_currentLangCode}'");
     }
 
-    /// <summary>
-    /// Para pillar los idiomas soportados. Igual se hace mejor de otra manera???
-    /// </summary>
     private string GetLanguageCode(SystemLanguage lang)
     {
         switch (lang)
@@ -64,52 +59,56 @@ public class DialogueManager : MonoBehaviour
             case SystemLanguage.Spanish: return "es";
             case SystemLanguage.French: return "fr";
             case SystemLanguage.German: return "de";
+            case SystemLanguage.Japanese: return "ja";
             default: return "en";
         }
     }
 
-    /// <summary>
-    /// Parsea el CSV al diccionario de dialogos, tiene que tener personaje, indice y el texto.
-    /// </summary>
-    private Dictionary<string, Dictionary<int, string>> ParseCsv(string csvText)
+    private Dictionary<string, Dictionary<string, string>> ParseCsv(string csvText)
     {
-        var result = new Dictionary<string, Dictionary<int, string>>(StringComparer.OrdinalIgnoreCase);
-
+        var result = new Dictionary<string, Dictionary<string, string>>(StringComparer.OrdinalIgnoreCase);
         var lines = csvText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        if (lines.Length < 2)
+            return result;
 
-        // La primera linea es cabezera asi que se pasa
+        var headers = lines[0].Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+        var langCodes = new List<string>();
+        foreach (var h in headers)
+            langCodes.Add(h.Trim().ToLowerInvariant());
+
         for (int i = 1; i < lines.Length; i++)
         {
-            var parts = lines[i].Split(new[] { ';' }, 3);
-            if (parts.Length < 3) continue;
+            var parts = lines[i].Split(new[] { ';' }, StringSplitOptions.None);
+            if (parts.Length != langCodes.Count)
+                continue;
 
-            string character = parts[0].Trim();
-            if (!int.TryParse(parts[1].Trim(), out int index)) continue;
-            string text = parts[2].Trim();
+            var key = parts[0].Trim();
+            if (string.IsNullOrEmpty(key))
+                continue;
 
-            if (!result.TryGetValue(character, out var dict))
+            var translationMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            for (int j = 0; j < langCodes.Count; j++)
             {
-                dict = new Dictionary<int, string>();
-                result[character] = dict;
+                translationMap[langCodes[j]] = parts[j].Trim();
             }
-            dict[index] = text;
+
+            result[key] = translationMap;
         }
 
         return result;
     }
 
-    /// <summary>
-    /// Devuelve la linea de dialogo de ese personaje en ese indice
-    /// </summary>
-    public string GetDialogue(string character, int index)
+    public string GetDialogue(string englishText)
     {
-        if (_dialogos != null &&
-            _dialogos.TryGetValue(character, out var dict) &&
-            dict.TryGetValue(index, out var line))
+        if (_translations != null &&
+            _translations.TryGetValue(englishText, out var transMap) &&
+            transMap.TryGetValue(_currentLangCode, out var text) &&
+            !string.IsNullOrEmpty(text))
         {
-            return line;
+            return text;
         }
-        Debug.LogWarning($"Sin dialogo para '{character}' en indice tal {index}");
-        return null;
+
+        Debug.LogWarning($"Falta traduccion de '{englishText}' para '{_currentLangCode}'");
+        return englishText;
     }
 }

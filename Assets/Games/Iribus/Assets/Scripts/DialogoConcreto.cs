@@ -4,13 +4,13 @@ using UnityEngine;
 public class DialogoConcreto : ScriptableObject
 {
     public string subGame;
-
+    public bool skipeable;
     public DialogoModo[] dialogos;
 }
 
 [System.Serializable]
 public class DialogoModo
 {
-    public int dialogoIndex;
+    public string dialogoTexto;
     public float dialogoVelocidad;
 }

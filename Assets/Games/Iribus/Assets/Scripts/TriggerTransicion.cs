@@ -9,6 +9,7 @@ public class TriggerTransicion : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("HOLAAA????");
             if (GameManagerMetroidvania.Instance.CurrentState != GameState.Playing) return;
             GameManagerMetroidvania.Instance.CargarSiguienteEscena(escenaATransicionar, entrada);
         }

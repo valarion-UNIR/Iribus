@@ -14,6 +14,12 @@ public class TextoEscribir : MonoBehaviour
     private string fullText;
 
     [SerializeField]
+    private DialogoConcreto dialogosAEscribir;
+
+    private int index = 0;
+    private int maxDialogues;
+
+    [SerializeField]
     private float delayEscribir = 0.05f;
     [SerializeField]
     private float waitText = 1f;
@@ -26,11 +32,13 @@ public class TextoEscribir : MonoBehaviour
     private void Start()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
+        maxDialogues = dialogosAEscribir.dialogos.Length;
     }
 
-    public void EscribirDialogo(string dialogo)
+    public void EscribirDialogo()
     {
-        textMeshPro.text = dialogo;
+        textMeshPro.text = FindAnyObjectByType<DialogueManager>().GetDialogue(dialogosAEscribir.dialogos[index].dialogoTexto);
+        delayEscribir = dialogosAEscribir.dialogos[index].dialogoVelocidad;
         fullText = textMeshPro.text;
         textMeshPro.maxVisibleCharacters = 0;
         StartCoroutine(RevealText());
@@ -57,5 +65,11 @@ public class TextoEscribir : MonoBehaviour
         //textoAEscribir.text = texto;
         //Debug.Log("Terminada");   
         OnTypingFinished?.Invoke(fullText);
+        index++;
+        if(index == maxDialogues)
+        {
+            return;
+        }
+        EscribirDialogo();
     }
 }

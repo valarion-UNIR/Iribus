@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb34a1bfc9da1f44a3bf9ec87384e6e, type: 3}
   m_Name: DialogoConcreto
   m_EditorClassIdentifier: 
-  subGame: 
+  subGame: Iribus
+  skipeable: 0
   dialogos:
-  - dialogoIndex: 0
-    dialogoVelocidad: 0
-  - dialogoIndex: 0
-    dialogoVelocidad: 0
+  - dialogoTexto: You adentrate in the absolute disgrace
+    dialogoVelocidad: 0.05
+  - dialogoTexto: Repent yourself or die duckling
+    dialogoVelocidad: 0.05
+  - dialogoTexto: The Setul won't forgive you
+    dialogoVelocidad: 0.025

@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 157431420}
   - component: {fileID: 157431419}
   - component: {fileID: 157431418}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174629873}
   - component: {fileID: 174629872}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CheckPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,9 +360,17 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268741810892598148, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_Name
       value: SpawnPaDentro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7632983849691645168, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,9 +475,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542522848461706074, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: m_Name
       value: SpawnPaFuera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6473207999457195698, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: playOnAwake
@@ -500,7 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321616159}
   - component: {fileID: 321616158}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SCENECONTROLLER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +564,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -590,19 +606,19 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.67681897
+    x: 0.07961505
     y: 0
-    width: 0.27072757
-    height: 0.4012539
+    width: 0.839895
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.0937505
+  orthographic size: 6.90625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 61440
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -646,7 +662,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 2
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -707,7 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 466897584}
   - component: {fileID: 466897583}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CheckPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 635733570}
   - component: {fileID: 635733571}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Global Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646025804}
   - component: {fileID: 646025803}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GAMEMANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +906,7 @@ GameObject:
   - component: {fileID: 695004496}
   - component: {fileID: 695004498}
   - component: {fileID: 695004497}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Estado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 735982620}
   - component: {fileID: 735982619}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SpotLight2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Global Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1276,7 @@ GameObject:
   - component: {fileID: 936953675}
   - component: {fileID: 936953677}
   - component: {fileID: 936953676}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Detalles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1302,7 +1318,7 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4096
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -1542,7 +1558,7 @@ GameObject:
   - component: {fileID: 975063319}
   - component: {fileID: 975063318}
   - component: {fileID: 975063321}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,7 +1631,7 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4096
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -1828,9 +1844,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542522848461706074, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: m_Name
       value: SpawnPaFuera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6473207999457195698, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: playOnAwake
@@ -1861,7 +1885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1229159391}
   - component: {fileID: 1229159390}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Entrada1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1912,7 +1936,7 @@ GameObject:
   - component: {fileID: 1308431337}
   - component: {fileID: 1308431336}
   - component: {fileID: 1308431338}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TransicionPantalla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2007,7 +2031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341911737}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BordesPantalla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2045,7 +2069,7 @@ GameObject:
   - component: {fileID: 1497965374}
   - component: {fileID: 1497965373}
   - component: {fileID: 1497965372}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TransicionesCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,9 +2326,17 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268741810892598148, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_Name
       value: SpawnPaDentro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7632983849691645168, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2371,7 +2403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1648891211}
   - component: {fileID: 1648891210}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CHECKPOINTMANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2421,7 +2453,7 @@ GameObject:
   - component: {fileID: 1663392122}
   - component: {fileID: 1663392121}
   - component: {fileID: 1663392120}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2449,7 +2481,7 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4096
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -7299,7 +7331,7 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4096
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -10264,9 +10296,17 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3268741810892598148, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_Name
       value: SpawnPaDentro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7632983849691645168, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10371,9 +10411,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542522848461706074, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: m_Name
       value: SpawnPaFuera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6473207999457195698, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: playOnAwake
@@ -10405,7 +10453,7 @@ GameObject:
   - component: {fileID: 1832071052}
   - component: {fileID: 1832071051}
   - component: {fileID: 1832071050}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10433,7 +10481,7 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4096
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -15250,7 +15298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1982495288}
   - component: {fileID: 1982495287}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15298,7 +15346,7 @@ GameObject:
   - component: {fileID: 2074743642}
   - component: {fileID: 2074743641}
   - component: {fileID: 2074743640}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15538,9 +15586,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542522848461706074, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: m_Name
       value: SpawnPaFuera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4058890609320619428, guid: eaf5784f60a0a1f409a2c81c574342f4, type: 3}
       propertyPath: m_IsActive
@@ -15559,9 +15615,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3268741810892598148, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_Name
       value: SpawnPaDentro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4297824604771099032, guid: 8d45c905fecbf5f4596e1188f6144662, type: 3}
       propertyPath: m_IsActive
