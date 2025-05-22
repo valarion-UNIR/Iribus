@@ -2,6 +2,10 @@
 
 public class FirstPersonInteract : RealWorldSubGamePlayerController
 {
+    [SerializeField] private Camera raycastSource;
+    [SerializeField] private float overlapDistance = 1;
+    [SerializeField] private float overlapRadius = 0.5f;
+
     void Update()
     {
         if (Input.Subgames.RealWorld.triggered)
@@ -27,5 +31,24 @@ public class FirstPersonInteract : RealWorldSubGamePlayerController
 
         else if (Input.Subgames.Pachinko.triggered)
             SubGamePlayerControlManager.instance.CurrentGame = SubGame.Pachinko;
+
+        else if (Input.Player.Attack.triggered)
+        {
+            var overlaps = Physics.OverlapSphere(raycastSource.transform.position + raycastSource.transform.forward * overlapDistance, overlapRadius);
+            foreach(var overlap in overlaps)
+            {
+                if(overlap.TryGetComponent(out Door door))
+                {
+                    door.Open();
+                }
+            }
+        }    
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawSphere(raycastSource.transform.position + raycastSource.transform.forward * overlapDistance, overlapRadius);
     }
 }
