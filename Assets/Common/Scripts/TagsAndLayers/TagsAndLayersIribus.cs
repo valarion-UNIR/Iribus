@@ -10,6 +10,7 @@ public static class TagsIribus
     public const string PCKCorrect = "PCKCorrect";
     public const string PCKIncorrect = "PCKIncorrect";
     public const string PCKStar = "PCKStar";
+    public const string RealWorld_Interacter = "RealWorld Interacter";
 }
 public static class LayersIribus
 {

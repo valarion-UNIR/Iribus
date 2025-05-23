@@ -1,6 +1,7 @@
+using System.Linq;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject pivot;
     [SerializeField] private bool openable = true;
@@ -28,8 +29,19 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void Open()
+    public void Interact()
     {
-        openning = true;
+        if (openable)
+            openning = true;
+    }
+
+    public void Hightlight(bool hightlight)
+    {
+        Debug.Log($"Door {this.name} {(hightlight ? "can be opened now" : "no longer can be opened")}");
+
+        foreach(var mesh in GetComponentsInChildren<MeshRenderer>())
+        {
+            //mesh.
+        }
     }
 }
