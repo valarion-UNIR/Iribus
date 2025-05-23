@@ -21,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - StackerDefault
   - RealWorldDefault
   - RealWorld2
   - RealWorld3
@@ -65,7 +65,7 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - 
+  - Stacker
   - 
   - 
   - 
