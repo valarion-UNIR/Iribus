@@ -1,7 +1,11 @@
 using UnityEngine;
 
-public class PachinkoCamera : MonoBehaviour
+public class PachinkoCamera : SubGamePlayerController
 {
+    public override SubGame SubGame => subGame;
+
+    [SerializeField] private SubGame subGame;
+
     [SerializeField] private float topLimit;
     [SerializeField] private float bottomLimit;
     [SerializeField] private float speedMovement;
@@ -21,7 +25,7 @@ public class PachinkoCamera : MonoBehaviour
     {
         if (TryGetComponent(out Camera cam))
         {
-            float inputV = Input.GetAxisRaw("Vertical");
+            float inputV = Input.Pachinko.Move.ReadValue<Vector2>().y;
 
             Vector3 top = new Vector3(cam.transform.position.x, topLimit, cam.transform.position.z);
             Vector3 bottom = new Vector3(cam.transform.position.x, bottomLimit, cam.transform.position.z);

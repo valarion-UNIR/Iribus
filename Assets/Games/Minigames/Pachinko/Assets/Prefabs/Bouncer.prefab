@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2156019294830185031}
   - component: {fileID: 986250246309885300}
   - component: {fileID: 7393700241347654228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 5351891091580553753}
   - component: {fileID: 764823896588884073}
   - component: {fileID: 8660349545768132441}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Soporte
   m_TagString: Untagged
   m_Icon: {fileID: 0}

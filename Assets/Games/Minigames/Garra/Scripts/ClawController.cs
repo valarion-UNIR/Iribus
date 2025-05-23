@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,12 +38,7 @@ public class ClawController : SubGamePlayerController
 
     private bool esitando = false;
 
-    private void Awake()
-    {
-        base.Awake();
-        //Cambiarlo a cuando se active el minijuego
-        Input.Enable();
-    }
+    private Collider currentCol;
 
     private void Update()
     {
@@ -56,9 +52,9 @@ public class ClawController : SubGamePlayerController
     private void FixedUpdate()
     {
         
-        clampedX = Mathf.Clamp(transform.position.x, -limitX, limitX);
-        clampedY = Mathf.Clamp(transform.position.z, -limitZ, limitZ);
-        transform.position = new Vector3(clampedX, transform.position.y, clampedY);
+        clampedX = Mathf.Clamp(transform.localPosition.x, -limitX, limitX);
+        clampedY = Mathf.Clamp(transform.localPosition.z, -limitZ, limitZ);
+        transform.localPosition = new Vector3(clampedX, transform.localPosition.y, clampedY);
 
         if (!esitando)
         {
@@ -124,12 +120,11 @@ public class ClawController : SubGamePlayerController
         }
 
         //Aqui arriba comprobamos si hay un objeto y se lo atachemos al padre para que no se salga
-        Collider col = Physics.OverlapSphere(transform.position, detectionRadius, ballsLayer)[0];
-
-        if(col != null)
+        if (Physics.OverlapSphere(transform.position, detectionRadius, ballsLayer).Length > 0)
         {
-            col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            col.gameObject.transform.SetParent(transform);
+            currentCol = Physics.OverlapSphere(transform.position, detectionRadius, ballsLayer)[0];
+            currentCol.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            currentCol.gameObject.transform.SetParent(transform);
         }
         
 
@@ -149,10 +144,10 @@ public class ClawController : SubGamePlayerController
         }
 
         //Desatacheamos el objeto
-        if(col != null)
+        if(currentCol != null)
         {
-            col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            col.gameObject.transform.SetParent(null);
+            currentCol.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            currentCol.gameObject.transform.SetParent(null);
         }
         
         //Volvemos  brir

@@ -3,8 +3,12 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class PachinkoManager : MonoBehaviour
+public class PachinkoManager : SubGamePlayerController
 {
+    public override SubGame SubGame => subGame;
+
+    [SerializeField] private SubGame subGame;
+
     [SerializeField] private GameObject ball;
     
     [SerializeField] private Camera mainCamera;
@@ -30,8 +34,10 @@ public class PachinkoManager : MonoBehaviour
     private GameObject instBall;
     private bool ballThrown = false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         string s = CreateSlotCombination(2, slotsList);
         BuildSlotCombination(slotsList, s);
     }
@@ -48,7 +54,7 @@ public class PachinkoManager : MonoBehaviour
         if (!ballThrown)
         {
             MoveArrowAndBall(throwPoint.gameObject);
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.Pachinko.ReleaseBall.triggered)
             {
                 numberOfRemainingBalls--;
                 //mainCamera.transform.SetParent(instBall.transform);
@@ -68,6 +74,7 @@ public class PachinkoManager : MonoBehaviour
         {
             GameObject instantiatedBall = Instantiate(ball, throwPoint.position, Quaternion.identity);
             instantiatedBall.transform.SetParent(throwPoint);
+            instantiatedBall.transform.localScale = throwPoint.transform.localScale/2;
             return instantiatedBall;
         }
         else
@@ -110,7 +117,7 @@ public class PachinkoManager : MonoBehaviour
     {
         if (go != null)
         {
-            float inputH = Input.GetAxisRaw("Horizontal");
+            float inputH = Input.Pachinko.Move.ReadValue<Vector2>().x;
             Vector3 direccion = (rightLimit.position - leftLimit.position).normalized;
             Vector3 movimiento = direccion * inputH * ballLocationMoveSpeed * Time.deltaTime;
             go.transform.position += movimiento;
@@ -124,8 +131,6 @@ public class PachinkoManager : MonoBehaviour
             go.transform.position = leftLimit.position + direccion * proyeccion;
         }
     }
-
-    
 
     private void BuildSlotCombination(GameObject go, string combString)
     {

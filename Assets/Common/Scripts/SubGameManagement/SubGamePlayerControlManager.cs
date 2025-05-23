@@ -57,6 +57,9 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
         else
             subGame.Disable();
 
+        if (subGame == SubGame.RealWorld)
+            CurrentGame = subGame;
+
         return ret;
     }
 

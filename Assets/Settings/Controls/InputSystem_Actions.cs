@@ -1727,6 +1727,175 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Pachinko"",
+            ""id"": ""6369dbc7-8451-4b34-bb4f-66bee260e9b7"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""8f84eea6-24cf-4b3f-b777-a9c6aec44b05"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ReleaseBall"",
+                    ""type"": ""Button"",
+                    ""id"": ""e21126ef-bcdf-4b38-a258-23c9884f4ce5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""44961fb9-9a85-4d2a-82e2-0d112cb54794"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""825509cb-2c5e-4b42-b0cf-fb4e8f6437d4"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6b021614-a924-4150-8ece-5f36937c2f5f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""bf3a35d7-bc6a-41a3-be07-d0c7a4c55919"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c2ff2422-0a0c-4e57-ac44-948c1d13639d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""a83551ac-a86e-47ef-af52-283c3752e8cb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""4c2fd1da-3050-4770-9d85-0f0ced211bd6"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2aeafea3-349a-4fd1-8611-411b400d0aed"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""44116c88-9015-4554-87d6-a60e8c073185"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a29a95ec-3d0c-496c-9d13-f56308c24dee"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7424cc75-0df4-4243-9b78-9cba2ce9411b"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b260a56-6456-48b2-a870-1e5ba9800641"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68ea5c39-e4d8-45b3-a3d1-8d5b00ed3432"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleaseBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1838,6 +2007,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_Claw = asset.FindActionMap("Claw", throwIfNotFound: true);
         m_Claw_Move = m_Claw.FindAction("Move", throwIfNotFound: true);
         m_Claw_Grab = m_Claw.FindAction("Grab", throwIfNotFound: true);
+        // Pachinko
+        m_Pachinko = asset.FindActionMap("Pachinko", throwIfNotFound: true);
+        m_Pachinko_Move = m_Pachinko.FindAction("Move", throwIfNotFound: true);
+        m_Pachinko_ReleaseBall = m_Pachinko.FindAction("ReleaseBall", throwIfNotFound: true);
     }
 
     ~@CustomInputSystem()
@@ -1848,6 +2021,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_DirtAndSteel.enabled, "This will cause a leak and performance issues, CustomInputSystem.DirtAndSteel.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_CrossTheBeaver.enabled, "This will cause a leak and performance issues, CustomInputSystem.CrossTheBeaver.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Claw.enabled, "This will cause a leak and performance issues, CustomInputSystem.Claw.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Pachinko.enabled, "This will cause a leak and performance issues, CustomInputSystem.Pachinko.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2803,6 +2977,113 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ClawActions" /> instance referencing this action map.
     /// </summary>
     public ClawActions @Claw => new ClawActions(this);
+
+    // Pachinko
+    private readonly InputActionMap m_Pachinko;
+    private List<IPachinkoActions> m_PachinkoActionsCallbackInterfaces = new List<IPachinkoActions>();
+    private readonly InputAction m_Pachinko_Move;
+    private readonly InputAction m_Pachinko_ReleaseBall;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Pachinko".
+    /// </summary>
+    public struct PachinkoActions
+    {
+        private @CustomInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PachinkoActions(@CustomInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Pachinko/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Pachinko_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Pachinko/ReleaseBall".
+        /// </summary>
+        public InputAction @ReleaseBall => m_Wrapper.m_Pachinko_ReleaseBall;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Pachinko; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PachinkoActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PachinkoActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PachinkoActions" />
+        public void AddCallbacks(IPachinkoActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PachinkoActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PachinkoActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @ReleaseBall.started += instance.OnReleaseBall;
+            @ReleaseBall.performed += instance.OnReleaseBall;
+            @ReleaseBall.canceled += instance.OnReleaseBall;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PachinkoActions" />
+        private void UnregisterCallbacks(IPachinkoActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @ReleaseBall.started -= instance.OnReleaseBall;
+            @ReleaseBall.performed -= instance.OnReleaseBall;
+            @ReleaseBall.canceled -= instance.OnReleaseBall;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PachinkoActions.UnregisterCallbacks(IPachinkoActions)" />.
+        /// </summary>
+        /// <seealso cref="PachinkoActions.UnregisterCallbacks(IPachinkoActions)" />
+        public void RemoveCallbacks(IPachinkoActions instance)
+        {
+            if (m_Wrapper.m_PachinkoActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PachinkoActions.AddCallbacks(IPachinkoActions)" />
+        /// <seealso cref="PachinkoActions.RemoveCallbacks(IPachinkoActions)" />
+        /// <seealso cref="PachinkoActions.UnregisterCallbacks(IPachinkoActions)" />
+        public void SetCallbacks(IPachinkoActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PachinkoActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PachinkoActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PachinkoActions" /> instance referencing this action map.
+    /// </summary>
+    public PachinkoActions @Pachinko => new PachinkoActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -3153,5 +3434,27 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGrab(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Pachinko" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PachinkoActions.AddCallbacks(IPachinkoActions)" />
+    /// <seealso cref="PachinkoActions.RemoveCallbacks(IPachinkoActions)" />
+    public interface IPachinkoActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReleaseBall" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReleaseBall(InputAction.CallbackContext context);
     }
 }
