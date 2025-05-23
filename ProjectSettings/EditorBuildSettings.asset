@@ -33,8 +33,16 @@ EditorBuildSettings:
     path: Assets/Games/Iribus/Assets/Scenes/MetroidvaniaBosque2.unity
     guid: faa60ee0fd38dc847a0c7eb29ec68bba
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Games/Minigames/Stacker/Scenes/StackerMinigame.unity
     guid: d54f30ef00011d343934bd703d0f7e5d
+=======
+    path: Assets/Games/Iribus/Assets/Scenes/MenuMetroidvania.unity
+    guid: 8f02dfcfa60e2b747b19ef6b4080349f
+  - enabled: 1
+    path: Assets/Games/Arcades/CrossTheBeaver/Scenes/CrossTheBeaverGame.unity
+    guid: 611b594f8c6900544991754914462f1e
+>>>>>>> Stashed changes
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a1f1417478abb3a4481f932fcedbff05, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
