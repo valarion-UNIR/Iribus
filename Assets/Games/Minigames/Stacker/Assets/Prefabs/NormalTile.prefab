@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2863080037936310516}
   - component: {fileID: 6282880477388522789}
   - component: {fileID: 1533703571658335473}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 53c5094439bba994aaeccc31c0c01a30, type: 2}
@@ -124,5 +124,5 @@ MonoBehaviour:
   leftLimit: -14.75
   rightLimit: 14.75
   moveSpeed: 0.5
-  failThreshold: 1
+  failThreshold: 0.1
   lostTile: {fileID: 3622209024862959029, guid: af630ad94a51d934d90ad65fdfc993cf, type: 3}

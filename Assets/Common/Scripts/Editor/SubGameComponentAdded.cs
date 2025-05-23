@@ -43,6 +43,9 @@ public class SubGameComponentAdded
 
             case Camera camera:
                 camera.cullingMask = data.CullingMask;
+                var cameradata = camera.GetComponent<UniversalAdditionalCameraData>();
+                if (cameradata == null)
+                    camera.AddComponent<UniversalAdditionalCameraData>();
                 break;
 
             case Light light:
@@ -54,6 +57,10 @@ public class SubGameComponentAdded
 
             case UniversalAdditionalLightData light:
                 light.renderingLayers = data.RenderingLayerMask;
+                break;
+
+            case UniversalAdditionalCameraData camera:
+                camera.volumeLayerMask = data.CullingMask;
                 break;
 
             case Renderer renderer:

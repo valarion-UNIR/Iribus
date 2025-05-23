@@ -58,3 +58,12 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 134217728
+  - subGame: 6
+    mainScene: {fileID: 102900000, guid: d54f30ef00011d343934bd703d0f7e5d, type: 3}
+    defaultLayer: 6
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 64
+    renderingLayerMask:
+      serializedVersion: 0
+      m_Bits: 2

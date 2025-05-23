@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2566786761715663912}
   - component: {fileID: 5889425942380576492}
   - component: {fileID: 3576753025219474037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MediumPrize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: deec7e041e0e2cb44856abd535c76818, type: 2}
