@@ -1,10 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class FirstPersonInteract : RealWorldSubGamePlayerController
 {
-    [SerializeField] private Camera raycastSource;
-    [SerializeField] private float overlapDistance = 1;
-    [SerializeField] private float overlapRadius = 0.5f;
+    private readonly HashSet<IInteractable> inTrigger = new();
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interact))
+        {
+            inTrigger.Add(interact);
+            if (inTrigger.Count == 1)
+                interact.Hightlight(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interact))
+        {
+            if(inTrigger.Count == 1)
+                interact.Hightlight(false);
+
+            inTrigger.Remove(interact);
+
+            if (inTrigger.Count == 1)
+                inTrigger.First().Hightlight(true);
+        }
+    }
 
     void Update()
     {
@@ -34,21 +58,8 @@ public class FirstPersonInteract : RealWorldSubGamePlayerController
 
         else if (Input.Player.Attack.triggered)
         {
-            var overlaps = Physics.OverlapSphere(raycastSource.transform.position + raycastSource.transform.forward * overlapDistance, overlapRadius);
-            foreach(var overlap in overlaps)
-            {
-                if(overlap.TryGetComponent(out Door door))
-                {
-                    door.Open();
-                }
-            }
+            if (inTrigger.Count == 1)
+                inTrigger.First().Interact();
         }    
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        Gizmos.DrawSphere(raycastSource.transform.position + raycastSource.transform.forward * overlapDistance, overlapRadius);
     }
 }
