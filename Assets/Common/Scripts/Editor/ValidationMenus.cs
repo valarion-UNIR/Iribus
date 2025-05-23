@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
@@ -117,6 +119,15 @@ public class ValidationMenus : MonoBehaviour
                 $"{GetPrefix(camera)} is using a non standard culling mask for {subgame}",
                 $"{GetPrefix(camera)} was using a non standard default layer, changed to {subgame} default layer",
                 () => camera.cullingMask = (camera.cullingMask & data.CullingMask) > 0 ? (camera.cullingMask & data.CullingMask) : data.CullingMask
+                );
+        }
+
+        foreach (var camera in gameObject.GetComponents<UniversalAdditionalCameraData>())
+        {
+            Process((camera.volumeLayerMask & data.CullingMask.value) != camera.volumeLayerMask, dryRun, ref changedSomething, gameObject,
+                $"{GetPrefix(camera)} is using a non standard volume layer mask for {subgame}",
+                $"{GetPrefix(camera)} was using a non standard volume layer mask, constrained to {subgame} volume layer mask",
+                () => camera.volumeLayerMask = (camera.volumeLayerMask & data.CullingMask.value) > 0 ? (camera.volumeLayerMask & data.CullingMask.value) : data.CullingMask.value
                 );
         }
 
