@@ -651,6 +651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4e793a945af634ca25545446f15047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastSource: {fileID: 0}
+  overlapDistance: 1
+  overlapRadius: 0.5
 --- !u!114 &1130349062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762187890}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: SitioPlaceo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

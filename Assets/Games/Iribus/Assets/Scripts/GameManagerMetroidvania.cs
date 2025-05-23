@@ -91,7 +91,7 @@ public class GameManagerMetroidvania : MonoBehaviour
         {
             // ACTIVAR CINEMATICA DE INICIO
             Debug.Log("No existe guardado");
-            progreso = new ProgresoMetroidvania(5, 0);
+            progreso = new ProgresoMetroidvania(7, 0);
             GuardarProgreso();
 
             sceneController.CargarEscenaMetroidvania(progreso.escena, 0, false);

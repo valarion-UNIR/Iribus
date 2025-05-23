@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Agarrafilo : MonoBehaviour, IAgarrar
+public class ObjetoAgarrable : MonoBehaviour, IAgarrar
 {
     public string itemID = "Objeto";
     public string InteractuarID => itemID;
@@ -21,13 +21,11 @@ public class Agarrafilo : MonoBehaviour, IAgarrar
         throw new System.NotImplementedException();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

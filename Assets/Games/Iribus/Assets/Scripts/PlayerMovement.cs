@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundPoundear()
     {
-        animator.SetTrigger("GroundPound");
+
         rb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
         rb.gravityScale = groundPoundFallMult;
         groundPoundeadaDeManual = true;
@@ -156,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         if(groundPoundeadaDeManual)
         {
             rb.AddForce(Vector2.up * groundPoundJumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("GroundPound");
             groundPoundeadaDeManual = false;
         }
         else

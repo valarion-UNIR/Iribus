@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Socketorro : MonoBehaviour, ISocket
+public class SocketEstandar : MonoBehaviour, ISocket
 {
     public string itemID = "Socket";
     public string InteractuarID => itemID;
@@ -15,19 +15,19 @@ public class Socketorro : MonoBehaviour, ISocket
         throw new System.NotImplementedException();
     }
 
-    public bool PlacearObjeto(IAgarrar objeto)
+    public bool PlaceObject(IAgarrar objeto)
     {
         Debug.Log("Se intenta placear");
-        if (objeto.InteractuarID.Equals("Zeporro"))
+        if (objeto.InteractuarID.Equals(InteractuarID))
         {
             objeto.GameObject.transform.parent = sitioSocket;
-            StartCoroutine(DejarEnSocket(objeto));
+            StartCoroutine(PlaceInSocketCoroutine(objeto));
             return true;
         }
         return false;
     }
 
-    private IEnumerator DejarEnSocket(IAgarrar objeto)
+    private IEnumerator PlaceInSocketCoroutine(IAgarrar objeto)
     {
         Transform objTransform = objeto.GameObject.transform;
         while (Vector3.Distance(objTransform.localPosition, Vector3.zero) > 0.05f)

@@ -101,7 +101,7 @@ public class CameraController : MonoBehaviour
             {
                 if (objetoAgarrado != null)
                 {
-                    if (socket.PlacearObjeto(objetoAgarrado))
+                    if (socket.PlaceObject(objetoAgarrado))
                     {
                         SoltarObjeto();
                     }

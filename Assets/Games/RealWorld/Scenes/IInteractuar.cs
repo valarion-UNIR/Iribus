@@ -15,5 +15,5 @@ public interface IAgarrar : IInteractuar
 
 public interface ISocket : IInteractuar
 {
-    bool PlacearObjeto(IAgarrar objeto);
+    bool PlaceObject(IAgarrar objeto);
 }
