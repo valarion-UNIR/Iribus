@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8939127286336555032}
   - component: {fileID: 6965246232796812682}
   - component: {fileID: 1963321645554467477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PartI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8321957611973274150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 5403748064315977571}
   - component: {fileID: 7445568951209855058}
   - component: {fileID: 7067164554476555950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PartII
   m_TagString: Untagged
   m_Icon: {fileID: 0}

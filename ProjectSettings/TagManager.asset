@@ -14,7 +14,6 @@ TagManager:
   - PCKCorrect
   - PCKIncorrect
   - PCKStar
-  - cc
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1039049075440036253}
   - component: {fileID: 1745044773689839928}
   - component: {fileID: 674648780899976202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BottomAspa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5223510820994986498}
   - component: {fileID: 3426266053916254311}
   - component: {fileID: 931084913094628342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TopAspa (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 7719778556064741560}
   - component: {fileID: 7783221003438294933}
   - component: {fileID: 1466287093774879004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TopAspa (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 1823265524076363022}
   - component: {fileID: 2490756589056567897}
   - component: {fileID: 2721314623724582208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TopAspa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 5366969633406375093}
   - component: {fileID: 8583057218160278058}
   - component: {fileID: 3265834741586194002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
