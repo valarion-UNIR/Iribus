@@ -40,13 +40,6 @@ public class ClawController : SubGamePlayerController
 
     private Collider currentCol;
 
-    private void Awake()
-    {
-        base.Awake();
-        //Cambiarlo a cuando se active el minijuego
-        Input.Enable();
-    }
-
     private void Update()
     {
         if (!esitando)
