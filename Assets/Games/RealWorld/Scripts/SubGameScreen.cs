@@ -9,8 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class SubGameScreen : MonoBehaviour
 {
-    [SerializeField] private SceneAsset sceneAsset;
-
+    [SerializeField] private SubGame subGame;
+    
+    private SceneAsset sceneAsset;
     private MeshRenderer meshRenderer;
     private Scene scene;
     private Camera sceneCamera;
@@ -24,7 +25,18 @@ public class SubGameScreen : MonoBehaviour
             Debug.LogWarning("No screen found in hierarchy");
         meshRenderer.material.mainTexture = renderTexture;
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        sceneAsset = GetAllInstances<SubGameDataManager>().First().Data[subGame].MainScene;
         var operation = SceneManager.LoadSceneAsync(sceneAsset.name, LoadSceneMode.Additive);
+    }
+
+    public static IEnumerable<T> GetAllInstances<T>() where T : ScriptableObject
+    {
+        string[] guids = AssetDatabase.FindAssets("t:"+typeof(T).Name); //FindAssets uses tags check documentation for more info
+        foreach(var guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            yield return AssetDatabase.LoadAssetAtPath<T>(path);
+        }
     }
 
     private void SceneManager_sceneLoaded(Scene loadedScene, LoadSceneMode mode)

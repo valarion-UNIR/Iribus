@@ -26,8 +26,6 @@ public class BeaverController : SubGamePlayerController
     protected override void Awake()
     {
         base.Awake();
-        //Esto luego cambiarlo a cuando se active el minijuego
-        Input.Enable();
         rb = GetComponent<Rigidbody2D>();
     }
 

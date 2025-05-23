@@ -54,6 +54,10 @@ public class TagConstantsgenerator : AssetPostprocessor
                 string safeName = MakeSafeIdentifier(layer);
                 classContent += $"    public const int {safeName} = {i};\n";
             }
+            else
+            {
+                classContent += $"\n";
+            }
         }
         classContent += "}\n";
 
