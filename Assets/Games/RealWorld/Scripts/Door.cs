@@ -1,6 +1,8 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Outline))]
 public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject pivot;
@@ -11,6 +13,13 @@ public class Door : MonoBehaviour, IInteractable
     private bool openning = false;
     private bool opened = false;
     private float currentRotation = 0;
+    private Outline outline;
+
+    private void Start()
+    {
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
+    }
 
     public bool CanOpen()
     {
@@ -37,11 +46,6 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Hightlight(bool hightlight)
     {
-        Debug.Log($"Door {this.name} {(hightlight ? "can be opened now" : "no longer can be opened")}");
-
-        foreach(var mesh in GetComponentsInChildren<MeshRenderer>())
-        {
-            //mesh.
-        }
+        outline.enabled = hightlight;
     }
 }

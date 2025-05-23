@@ -7,7 +7,8 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SubGameScreen : MonoBehaviour
+[RequireComponent(typeof(Outline))]
+public class SubGameScreen : MonoBehaviour, IInteractable
 {
     [SerializeField] private SubGame subGame;
     
@@ -16,10 +17,14 @@ public class SubGameScreen : MonoBehaviour
     private Scene scene;
     private Camera sceneCamera;
     private RenderTexture renderTexture;
+    private Outline outline;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
+
         meshRenderer = GetComponentsInChildren<MeshRenderer>().Where(c => c.CompareTag("Screen")).FirstOrDefault();
         if (meshRenderer == null)
             Debug.LogWarning("No screen found in hierarchy");
@@ -59,4 +64,14 @@ public class SubGameScreen : MonoBehaviour
 
     private IEnumerable<T> GetSceneComponents<T>(bool includeInactive = true)
         => scene.GetRootGameObjects().SelectMany(c => c.GetComponents<T>().Concat(c.GetComponentsInChildren<T>(includeInactive)));
+
+    public void Interact()
+    {
+        SubGamePlayerControlManager.instance.CurrentGame = subGame;
+    }
+
+    public void Hightlight(bool hightlight)
+    {
+        outline.enabled = hightlight;
+    }
 }
