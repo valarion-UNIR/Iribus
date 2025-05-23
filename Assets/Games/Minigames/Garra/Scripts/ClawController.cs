@@ -33,63 +33,67 @@ public class ClawController : SubGamePlayerController
 
     private Vector2 moveInput;
 
-    private float clampedX;
-    private float clampedY;
-
-    private bool esitando = false;
+    private bool inProgress = false;
 
     private Collider currentCol;
 
-    private void Update()
+    private void Start()
     {
-        if (!esitando)
-        {
-            Input.Claw.Grab.performed += ClawDescentCall;
-        }
-        
+        detectionRadius *= transform.localScale.y;
+    }
+
+    private void OnEnable()
+    {
+        Input.Claw.Grab.performed += ClawDescentCall;
+    }
+
+    private void OnDisable()
+    {
+        Input.Claw.Grab.performed -= ClawDescentCall;
     }
 
     private void FixedUpdate()
     {
-        
-        clampedX = Mathf.Clamp(transform.localPosition.x, -limitX, limitX);
-        clampedY = Mathf.Clamp(transform.localPosition.z, -limitZ, limitZ);
-        transform.localPosition = new Vector3(clampedX, transform.localPosition.y, clampedY);
 
-        if (!esitando)
+        if (!inProgress)
         {
             moveInput = Input.Claw.Move.ReadValue<Vector2>();
 
             if (moveInput != Vector2.zero)
             {
-                // Para priorizar movimientos y evitar diagonal
+                // Para priorizr un eje y no se mueva en diagonal
                 if (Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y))
-                {
                     moveInput = new Vector2(Mathf.Sign(moveInput.x), 0);
-                }
-
                 else
-                {
                     moveInput = new Vector2(0, Mathf.Sign(moveInput.y));
-                }
 
-                Vector3 dir = new Vector3(moveInput.x, 0, moveInput.y);
-                transform.Translate(dir * moveSpeed * Time.deltaTime, Space.World);
+                // Movimiento propuesto
+                Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
+                Vector3 proposedLocalPos = transform.localPosition + moveDir * moveSpeed * Time.deltaTime;
+
+                // Clamp antes de aplicar el movimiento
+                proposedLocalPos.x = Mathf.Clamp(proposedLocalPos.x, -limitX, limitX);
+                proposedLocalPos.z = Mathf.Clamp(proposedLocalPos.z, -limitZ, limitZ);
+
+                transform.localPosition = proposedLocalPos;
             }
         }
-        
+
     }
 
     private void ClawDescentCall(InputAction.CallbackContext obj)
     {
-        esitando = true;
-        StartCoroutine(ClawDescent());
+        if (!inProgress)
+        {
+            inProgress = true;
+            StartCoroutine(ClawDescent());
+        }
     }
 
     IEnumerator ClawDescent()
     {   
         //Guardamos la posición inicial
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
 
         //Bajamos hasta llegar al límite vertical
         while (transform.localPosition.y > limitY)
@@ -150,7 +154,7 @@ public class ClawController : SubGamePlayerController
             currentCol.gameObject.transform.SetParent(null);
         }
         
-        //Volvemos  brir
+        //Volvemos a abrir
         StartCoroutine(CloseOpen(clawArm1.transform, 60f, closeDuration));
         StartCoroutine(CloseOpen(clawArm2.transform, 60f, closeDuration));
         StartCoroutine(CloseOpen(clawArm3.transform, 60f, closeDuration));
@@ -176,7 +180,7 @@ public class ClawController : SubGamePlayerController
         }
 
         //Permitimos que se vuelva a jugar
-        esitando = false;
+        inProgress = false;
 
     }
 
