@@ -61,7 +61,7 @@ public class ClawController : SubGamePlayerController
         
         clampedX = Mathf.Clamp(transform.localPosition.x, -limitX, limitX);
         clampedY = Mathf.Clamp(transform.localPosition.z, -limitZ, limitZ);
-        transform.position = new Vector3(clampedX, transform.position.y, clampedY);
+        transform.localPosition = new Vector3(clampedX, transform.localPosition.y, clampedY);
 
         if (!esitando)
         {
