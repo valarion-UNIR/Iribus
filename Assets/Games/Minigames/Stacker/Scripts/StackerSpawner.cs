@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
-public class StackerSpawner : MonoBehaviour
+public class StackerSpawner : SubGamePlayerController
 {
+    public override SubGame SubGame => subGame;
+
+    [SerializeField] private SubGame subGame;
+
     [SerializeField] private GameObject tile, bottomTile;
 
     [SerializeField] private TMP_Text scoreText;
@@ -29,13 +32,14 @@ public class StackerSpawner : MonoBehaviour
 
     public static StackerSpawner instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
-
     }
 
     private void Start()
@@ -64,7 +68,7 @@ public class StackerSpawner : MonoBehaviour
     {
         if (hasGameEnded || !hasGameStarted) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.Stacker.PutBlock.triggered)
         {
             if (stackOfTiles.Count == 2)
             {

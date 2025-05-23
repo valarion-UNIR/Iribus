@@ -1810,6 +1810,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Stacker",
+            "id": "94178557-0d25-4e1d-ac05-79f83c8088f5",
+            "actions": [
+                {
+                    "name": "PutBlock",
+                    "type": "Button",
+                    "id": "979be9c3-7c73-4b60-949a-55d401efa90b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c4d164c8-22ad-4ca8-937b-009b53f161de",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "beb1f23a-b31c-4681-8800-f55df3b234f7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
