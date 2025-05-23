@@ -68,6 +68,7 @@ public class PachinkoManager : MonoBehaviour
         {
             GameObject instantiatedBall = Instantiate(ball, throwPoint.position, Quaternion.identity);
             instantiatedBall.transform.SetParent(throwPoint);
+            instantiatedBall.transform.localScale = throwPoint.transform.localScale/2;
             return instantiatedBall;
         }
         else
@@ -124,8 +125,6 @@ public class PachinkoManager : MonoBehaviour
             go.transform.position = leftLimit.position + direccion * proyeccion;
         }
     }
-
-    
 
     private void BuildSlotCombination(GameObject go, string combString)
     {

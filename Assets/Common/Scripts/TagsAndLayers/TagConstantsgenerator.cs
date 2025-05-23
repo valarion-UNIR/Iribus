@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TagConstantsgenerator : AssetPostprocessor
 {
-    private const string outputPath = "Assets/Games/Minigames/Pachinko/TagsAndLayersIribus.cs"; // Puedes cambiar la ruta
+    private const string outputPath = "Assets/Common/Scripts/TagsAndLayers/TagsAndLayersIribus.cs"; // Puedes cambiar la ruta
 
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets,
         string[] movedAssets, string[] movedFromAssetPaths)
