@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2420361990665397312}
   - component: {fileID: 6906842461714567671}
   - component: {fileID: 7873999997216603467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LowPrize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 83675e7980c60994e84983e0ea1b437a, type: 2}

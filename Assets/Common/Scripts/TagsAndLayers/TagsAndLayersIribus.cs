@@ -18,6 +18,7 @@ public static class LayersIribus
     public const int Ignore_Raycast = 2;
     public const int Water = 4;
     public const int UI = 5;
+    public const int StackerDefault = 6;
     public const int RealWorldDefault = 7;
     public const int RealWorld2 = 8;
     public const int RealWorld3 = 9;
