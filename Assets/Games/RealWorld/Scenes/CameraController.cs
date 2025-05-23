@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -21,6 +22,16 @@ public class CameraController : MonoBehaviour
     private float currentPitch = 0f;
     private float originalFov = 0f;
     private float fovReturnSpeed = 15f;
+
+    [SerializeField]
+    private Transform agarrarPlace;
+
+    private IAgarrar objetoAgarrado;
+
+    [SerializeField]
+    private LayerMask interactLayer;
+    [SerializeField]
+    private float rangoRaycast = 10f;
 
     void Start()
     {
@@ -56,6 +67,56 @@ public class CameraController : MonoBehaviour
         {
             realCamera.fieldOfView = Mathf.Lerp(realCamera.fieldOfView, originalFov, Time.deltaTime * fovReturnSpeed);
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Interactuar();
+        }
+    }
+
+    private void Interactuar()
+    {
+        Ray rayo = realCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit hit;
+        Debug.Log("HOLA MAMONGO");
+        if (Physics.Raycast(rayo, out hit, rangoRaycast, interactLayer))
+        {
+            Debug.Log("HOLA BUEMAS");
+            IInteractuar interactuar = hit.collider.GetComponent<IInteractuar>();
+
+            if(interactuar == null) { return; }
+
+            if (interactuar is IAgarrar agarrable)
+            {
+                if(objetoAgarrado == null)
+                {
+                    AgarrarItem(agarrable);
+                }
+                else
+                {
+                    agarrable.Interactuar();
+                }
+            }
+            else if(interactuar is ISocket socket)
+            {
+                if (objetoAgarrado != null)
+                {
+                    if (socket.PlacearObjeto(objetoAgarrado))
+                    {
+                        SoltarObjeto();
+                    }
+                }
+                else
+                {
+                    socket.Interactuar();
+                }
+            }
+            else
+            {
+                interactuar.Interactuar();
+            }
+        }
+
     }
 
     void LateUpdate()
@@ -66,6 +127,30 @@ public class CameraController : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(currentPitch, currentYaw, 0f);
     }
+
+    private void AgarrarItem(IAgarrar agarrar)
+    {
+        objetoAgarrado = agarrar;
+        objetoAgarrado.GameObject.transform.parent = agarrarPlace;
+        StartCoroutine(GrabObjectCoroutine());
+    }
+
+    private void SoltarObjeto()
+    {
+        objetoAgarrado = null;
+    }
+
+    private IEnumerator GrabObjectCoroutine()
+    {
+        Transform objTransform = objetoAgarrado.GameObject.transform;
+        while (Vector3.Distance(objTransform.localPosition, Vector3.zero) > 0.05f)
+        {
+            objTransform.localPosition = Vector3.MoveTowards(objTransform.localPosition, Vector3.zero, 10f * Time.deltaTime);
+            yield return null;
+        }
+        objTransform.localPosition = Vector3.zero;
+    }
+
 
     /// <summary>
     /// Cambia el fov y setea la velocidad a la que volvera al fov original.
