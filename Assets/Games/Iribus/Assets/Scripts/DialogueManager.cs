@@ -57,9 +57,8 @@ public class DialogueManager : MonoBehaviour
         switch (lang)
         {
             case SystemLanguage.Spanish: return "es";
-            case SystemLanguage.French: return "fr";
-            case SystemLanguage.German: return "de";
-            case SystemLanguage.Japanese: return "ja";
+            case SystemLanguage.French: return "eus";
+            case SystemLanguage.German: return "cat";
             default: return "en";
         }
     }

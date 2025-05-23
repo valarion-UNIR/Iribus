@@ -35,9 +35,6 @@ public class PlayerControllerArcade : RealWorldSubGamePlayerController
         float inputX = Input.Player.Move.ReadValue<Vector2>().x;    
         float inputZ = Input.Player.Move.ReadValue<Vector2>().y;
 
-        Debug.Log(inputX);
-        Debug.Log(inputZ);
-
         float yaw = camController != null
             ? camController.GetCurrentYaw()
             : Camera.main.transform.eulerAngles.y;
