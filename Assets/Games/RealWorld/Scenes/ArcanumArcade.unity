@@ -739,10 +739,6 @@ PrefabInstance:
       propertyPath: subGame
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3227056842002171172, guid: 435d3cb5f37f8214099761ddc3bf5540, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3461419114082639408, guid: 435d3cb5f37f8214099761ddc3bf5540, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -786,10 +782,6 @@ PrefabInstance:
     - target: {fileID: 5109212688066295800, guid: 435d3cb5f37f8214099761ddc3bf5540, type: 3}
       propertyPath: m_Name
       value: Arcade TorpedoTrouble
-      objectReference: {fileID: 0}
-    - target: {fileID: 5339612147919610218, guid: 435d3cb5f37f8214099761ddc3bf5540, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1457,8 +1449,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1505,7 +1497,7 @@ MonoBehaviour:
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
-  m_ClearDepth: 1
+  m_ClearDepth: 0
   m_AllowXRRendering: 1
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
@@ -3559,7 +3551,7 @@ Transform:
   m_GameObject: {fileID: 1037122811}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12062224, y: 0.5816179, z: -0.16336337, w: 0.7877076}
-  m_LocalPosition: {x: 2.433, y: 1.61, z: 7.04}
+  m_LocalPosition: {x: 3.5880003, y: 1.61, z: 10.15}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3580,9 +3572,35 @@ MonoBehaviour:
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  precomputeOutline: 1
+  bakeKeys:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  bakeValues:
+  - data:
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
 --- !u!1 &1051785204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,7 +4700,7 @@ Transform:
   m_GameObject: {fileID: 1531441623}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12062224, y: 0.5816179, z: -0.16336337, w: 0.7877076}
-  m_LocalPosition: {x: 3.54, y: 1.61, z: 7.04}
+  m_LocalPosition: {x: 4.695, y: 1.61, z: 10.15}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4703,9 +4721,35 @@ MonoBehaviour:
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  precomputeOutline: 1
+  bakeKeys:
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  bakeValues:
+  - data:
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: -0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
+    - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
+    - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
 --- !u!4 &1555769933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4207293392497186, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
@@ -4724,6 +4768,7 @@ GameObject:
   - component: {fileID: 1571996215}
   - component: {fileID: 1571996214}
   - component: {fileID: 1571996213}
+  - component: {fileID: 1571996218}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -4740,11 +4785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571996212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b9ff947949798469343e96d7a3e789, type: 3}
+  m_Script: {fileID: 11500000, guid: 61555e30545702144a15a1b77c8b7e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: Objeto
-  sitioSocket: {fileID: 1821688242}
+  socketPosition: {fileID: 1821688242}
 --- !u!65 &1571996214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4828,13 +4873,31 @@ Transform:
   m_GameObject: {fileID: 1571996212}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12062224, y: 0.5816179, z: -0.16336337, w: 0.7877076}
-  m_LocalPosition: {x: 6.777, y: 0.710022, z: 7.04}
+  m_LocalPosition: {x: 6.777, y: 0.710022, z: 10.238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1821688242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 72.882, z: -23.433}
+--- !u!114 &1571996218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571996212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1601022945
 GameObject:
   m_ObjectHideFlags: 0

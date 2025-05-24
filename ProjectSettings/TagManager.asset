@@ -15,6 +15,7 @@ TagManager:
   - PCKIncorrect
   - PCKStar
   - RealWorld Interacter
+  - SCKFloor
   layers:
   - Default
   - TransparentFX
