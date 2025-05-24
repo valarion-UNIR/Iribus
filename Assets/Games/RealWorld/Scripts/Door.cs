@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Outline))]
-public class Door : MonoBehaviour, IInteractable
+public class Door : MonoBehaviour, IInteract
 {
     [SerializeField] private GameObject pivot;
     [SerializeField] private bool openable = true;

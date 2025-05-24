@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform agarrarPlace;
 
-    private IAgarrar objetoAgarrado;
+    private IGrab objetoAgarrado; 
 
     [SerializeField]
     private LayerMask interactLayer;
@@ -82,11 +82,11 @@ public class CameraController : MonoBehaviour
         if (Physics.Raycast(rayo, out hit, rangoRaycast, interactLayer))
         {
             Debug.Log("HOLA BUEMAS");
-            IInteractuar interactuar = hit.collider.GetComponent<IInteractuar>();
+            IInteract interactuar = hit.collider.GetComponent<IInteract>();
 
             if(interactuar == null) { return; }
 
-            if (interactuar is IAgarrar agarrable)
+            if (interactuar is IGrab agarrable)
             {
                 if(objetoAgarrado == null)
                 {
@@ -94,7 +94,7 @@ public class CameraController : MonoBehaviour
                 }
                 else
                 {
-                    agarrable.Interactuar();
+                    agarrable.Interact();
                 }
             }
             else if(interactuar is ISocket socket)
@@ -108,12 +108,12 @@ public class CameraController : MonoBehaviour
                 }
                 else
                 {
-                    socket.Interactuar();
+                    socket.Interact();
                 }
             }
             else
             {
-                interactuar.Interactuar();
+                interactuar.Interact();
             }
         }
 
@@ -128,7 +128,7 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(currentPitch, currentYaw, 0f);
     }
 
-    private void AgarrarItem(IAgarrar agarrar)
+    private void AgarrarItem(IGrab agarrar)
     {
         objetoAgarrado = agarrar;
         objetoAgarrado.GameObject.transform.parent = agarrarPlace;

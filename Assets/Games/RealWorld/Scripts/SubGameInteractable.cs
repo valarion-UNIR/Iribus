@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Outline))]
-public class SubGameInteractable : MonoBehaviour, IInteractable
+public class SubGameInteractable : MonoBehaviour, IInteract
 {
     [SerializeField] private SubGame subGame;
     

@@ -51,6 +51,9 @@ public class SubGameScreen : MonoBehaviour
         renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
         sceneCamera.targetTexture = renderTexture;
         meshRenderer.material = new Material(meshRenderer.material) { mainTexture = renderTexture };
+
+        foreach (var listener in GetSceneComponents<AudioListener>())
+            listener.enabled = false;
     }
 
     private IEnumerable<T> GetSceneComponents<T>(bool includeInactive = true)

@@ -2799,7 +2799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754495481323475744}
   - component: {fileID: 3366191045115885798}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HorizontalArcade1 Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
