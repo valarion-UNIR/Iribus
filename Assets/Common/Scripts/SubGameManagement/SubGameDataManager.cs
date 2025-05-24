@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
@@ -36,10 +37,12 @@ public class SubGameData
     [SerializeField, Layer] private int defaultLayer;
     [SerializeField] private LayerMask cullingMask;
     [SerializeField] private RenderingLayerMask renderingLayerMask;
+    [SerializeField] private OutputChannels cinemachineChannel;
 
     public SubGame SubGame => subGame;
     public SceneAsset MainScene => mainScene;
     public int DefaultLayer => defaultLayer;
     public LayerMask CullingMask => cullingMask;
     public RenderingLayerMask RenderingLayerMask => renderingLayerMask;
+    public OutputChannels CinemachineChannel => cinemachineChannel;
 }
