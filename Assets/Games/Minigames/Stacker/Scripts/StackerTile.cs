@@ -4,7 +4,7 @@ public class StackerTile : MonoBehaviour
 {
     [SerializeField] private float leftLimit = -14.75f;
     [SerializeField] private float rightLimit = 14.75f;
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float failThreshold;
 
     [SerializeField] private GameObject lostTile;
@@ -32,6 +32,7 @@ public class StackerTile : MonoBehaviour
         distance = x - startPosition.x;
         transform.position = new Vector3(x, startPosition.y, startPosition.z);
     }
+
 
     public void ScaleTile()
     {
@@ -63,5 +64,11 @@ public class StackerTile : MonoBehaviour
         }
 
         Destroy(this);
+    }
+
+    public void SetStats((float, float ) x)
+    {
+        moveSpeed = x.Item1;
+        failThreshold = x.Item2;
     }
 }

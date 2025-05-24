@@ -11,14 +11,15 @@ public class StackerSpawner : SubGamePlayerController
 
     [SerializeField] private GameObject tile, bottomTile;
 
-    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private List<GameObject> stackOfTiles;
 
     [Header("Prizes")]
     [SerializeField] private GameObject lowPrizeSign;
     [SerializeField] private int lpNumber;
+    [Space]
     [SerializeField] private GameObject mediumPrizeSign;
     [SerializeField] private int mpNumber;
+    [Space]
     [SerializeField] private GameObject highPrizeSign;
     [SerializeField] private int hpNumber;
 
@@ -27,6 +28,18 @@ public class StackerSpawner : SubGamePlayerController
     [SerializeField] private List<Color32> listColors;
     private int modifier;
     private int colorIndex;
+
+    [Header("Tiles Configuration")]
+    [SerializeField] private float moveSpeedTiles;
+    [SerializeField] private float increaserSpeed;
+    private float baseSpeedTile;
+    [Space]
+    [SerializeField] private float failThresholdTiles;
+    [SerializeField] private float decreaserFailThreshold;
+    private float baseFailThresholdTiles;
+
+    [Header("Stacker Settings")]
+    [SerializeField] private bool goalsInMovement;
     public bool gameOverBool;
     private Vector3 initialCameraPosition;
 
@@ -44,22 +57,21 @@ public class StackerSpawner : SubGamePlayerController
 
     private void Start()
     {
+        baseSpeedTile = moveSpeedTiles;
+        baseFailThresholdTiles = failThresholdTiles;
+
         LocatePrize(lowPrizeSign, lpNumber);
         LocatePrize(mediumPrizeSign, mpNumber);
         LocatePrize(highPrizeSign, hpNumber);
 
         initialCameraPosition = FindFirstObjectByType<Camera>().transform.position;
-        if (scoreText == null)
-        {
-            scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
-        }
         stackOfTiles = new List<GameObject>();
         hasGameEnded = false;
         hasGameStarted = true;
         modifier = 1;
         colorIndex = 0;
         stackOfTiles.Add(bottomTile);
-        stackOfTiles[0].GetComponent<MeshRenderer>().material.color = listColors[0];
+        //stackOfTiles[0].GetComponent<MeshRenderer>().material.color = listColors[0];
         CreateTile();
     }
 
@@ -87,7 +99,6 @@ public class StackerSpawner : SubGamePlayerController
             {
                 StartCoroutine(MoveCamera());
             }
-            scoreText.text = (stackOfTiles.Count - 1).ToString();
             CreateTile();
         }
     }
@@ -102,6 +113,19 @@ public class StackerSpawner : SubGamePlayerController
             moveLenght -= stepLenght;
             camera.transform.Translate(0, stepLenght, 0, Space.World);
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void UpdateDifficulty()
+    {
+        if (moveSpeedTiles < 2.0f)
+        {
+            moveSpeedTiles = (baseSpeedTile + (stackOfTiles.Count * increaserSpeed));
+        }
+
+        if (failThresholdTiles > 0.1f)
+        {
+            failThresholdTiles = (baseFailThresholdTiles - (stackOfTiles.Count * decreaserFailThreshold));
         }
     }
 
@@ -131,6 +155,8 @@ public class StackerSpawner : SubGamePlayerController
             colorIndex += 2 * modifier;
         }
         activeTile.GetComponent<MeshRenderer>().material.color = listColors[colorIndex];
+        UpdateDifficulty();
+        activeTile.GetComponent<StackerTile>().SetStats((moveSpeedTiles, failThresholdTiles));
     }
 
     public GameObject GetFirstTile()
@@ -147,7 +173,10 @@ public class StackerSpawner : SubGamePlayerController
     {
         GameObject obj = Instantiate(sign);
         obj.transform.position = new Vector3(0, (signNumber * 2) - 1,0.5f);
-        StartCoroutine(StartMovingPrizeSign(obj, signNumber));
+        if (goalsInMovement)
+        {
+            StartCoroutine(StartMovingPrizeSign(obj, signNumber));
+        }
     }
 
     IEnumerator StartMovingPrizeSign(GameObject g, int num)

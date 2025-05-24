@@ -6,12 +6,18 @@ public class LostTile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Destroy(gameObject, timeToDisappear);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals(TagsIribus.SCKFloor))
+        {
+            Destroy(gameObject);
+        }
     }
 }
