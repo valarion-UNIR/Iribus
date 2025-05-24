@@ -1,17 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PachinkoManager : SubGamePlayerController
 {
-    public override SubGame SubGame => subGame;
-
-    [SerializeField] private SubGame subGame;
+    public override SubGame SubGame => SubGame.Pachinko;
 
     [SerializeField] private GameObject ball;
     
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private CinemachineCamera mainCamera;
 
     [Header("Ball Thrower Opctions")]
     [SerializeField] private float ballLocationMoveSpeed;

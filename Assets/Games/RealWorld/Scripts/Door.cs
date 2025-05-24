@@ -46,6 +46,6 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Hightlight(bool hightlight)
     {
-        outline.enabled = hightlight;
+        outline.enabled = hightlight && SubGamePlayerControlManager.instance.CurrentGame == SubGame.RealWorld;
     }
 }
