@@ -1315,6 +1315,15 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlowDownTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e1c0e8e-234f-4a79-b62d-1e5515d109af"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1425,6 +1434,17 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08b3d073-d7af-45fc-b180-4dd02b67229a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowDownTime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2071,6 +2091,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_DirtAndSteel_Accelerate = m_DirtAndSteel.FindAction("Accelerate", throwIfNotFound: true);
         m_DirtAndSteel_Break = m_DirtAndSteel.FindAction("Break", throwIfNotFound: true);
         m_DirtAndSteel_Drift = m_DirtAndSteel.FindAction("Drift", throwIfNotFound: true);
+        m_DirtAndSteel_SlowDownTime = m_DirtAndSteel.FindAction("SlowDownTime", throwIfNotFound: true);
         // CrossTheBeaver
         m_CrossTheBeaver = asset.FindActionMap("CrossTheBeaver", throwIfNotFound: true);
         m_CrossTheBeaver_Move = m_CrossTheBeaver.FindAction("Move", throwIfNotFound: true);
@@ -2739,6 +2760,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_DirtAndSteel_Accelerate;
     private readonly InputAction m_DirtAndSteel_Break;
     private readonly InputAction m_DirtAndSteel_Drift;
+    private readonly InputAction m_DirtAndSteel_SlowDownTime;
     /// <summary>
     /// Provides access to input actions defined in input action map "DirtAndSteel".
     /// </summary>
@@ -2766,6 +2788,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DirtAndSteel/Drift".
         /// </summary>
         public InputAction @Drift => m_Wrapper.m_DirtAndSteel_Drift;
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/SlowDownTime".
+        /// </summary>
+        public InputAction @SlowDownTime => m_Wrapper.m_DirtAndSteel_SlowDownTime;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2804,6 +2830,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Drift.started += instance.OnDrift;
             @Drift.performed += instance.OnDrift;
             @Drift.canceled += instance.OnDrift;
+            @SlowDownTime.started += instance.OnSlowDownTime;
+            @SlowDownTime.performed += instance.OnSlowDownTime;
+            @SlowDownTime.canceled += instance.OnSlowDownTime;
         }
 
         /// <summary>
@@ -2827,6 +2856,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Drift.started -= instance.OnDrift;
             @Drift.performed -= instance.OnDrift;
             @Drift.canceled -= instance.OnDrift;
+            @SlowDownTime.started -= instance.OnSlowDownTime;
+            @SlowDownTime.performed -= instance.OnSlowDownTime;
+            @SlowDownTime.canceled -= instance.OnSlowDownTime;
         }
 
         /// <summary>
@@ -3586,6 +3618,13 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDrift(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SlowDownTime" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSlowDownTime(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CrossTheBeaver" which allows adding and removing callbacks.

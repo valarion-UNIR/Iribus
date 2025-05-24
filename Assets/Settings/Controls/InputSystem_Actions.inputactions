@@ -1229,6 +1229,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SlowDownTime",
+                    "type": "Button",
+                    "id": "0e1c0e8e-234f-4a79-b62d-1e5515d109af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1339,6 +1348,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Drift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08b3d073-d7af-45fc-b180-4dd02b67229a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlowDownTime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

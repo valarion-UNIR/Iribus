@@ -77,6 +77,9 @@ public class DASPlayerController : SubGamePlayerController
 
         driftTimer = Mathf.Clamp(driftTimer, 0f, driftMemoryTime);
 
+        if (Input.DirtAndSteel.SlowDownTime.IsPressed())
+            DASSlowdownManager.Instance.StartSlowdown(0.5f, 5f);
+
         if ((!Input.DirtAndSteel.Accelerate.inProgress && !Input.DirtAndSteel.Break.inProgress) ||
             (Input.DirtAndSteel.Accelerate.inProgress && Input.DirtAndSteel.Break.inProgress))
         {
@@ -90,6 +93,9 @@ public class DASPlayerController : SubGamePlayerController
         if (Input.DirtAndSteel.Break.IsPressed())
             accelInput = -1;
     }
+
+
+
 
     void FixedUpdate()
     {
@@ -175,7 +181,12 @@ public class DASPlayerController : SubGamePlayerController
         carRigidBody.MoveRotation(carRigidBody.rotation - steerAmount);
     }
 
-    public IEnumerator ApplySuddenVelocityChange(float velocityMultiplier, float duration)
+    public void ApplySuddenVelocityChange(float velocityMultiplier, float duration)
+    {
+        StartCoroutine(CoApplySuddenVelocityChange(velocityMultiplier, duration));
+    }
+
+    public IEnumerator CoApplySuddenVelocityChange(float velocityMultiplier, float duration)
     {
         float timer = 0f;
 
