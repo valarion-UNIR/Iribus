@@ -31,19 +31,21 @@ public class PlayerMovement : MonoBehaviour
 
     public float maxFallSpeed = 20f;
 
+    public float groundPoundImpulsoInicial = 20f;
     public float groundPoundFallMult = 8f;
     public bool groundPoundeadaDeManual = false;
-    private float groundPoundTime = 0.25f;
+    private bool particulasGroundPound = false;
+    public float groundPoundTime = 0.25f;
     private float groundPoundCounter;
     public float groundPoundJumpForce = 24f;
 
     private Animator animator;
     private SpriteRenderer sprite;
-    private ParticleSystem particulasHumo;
+    [SerializeField] private ParticleSystem particulasHumo;
+    [SerializeField] private ParticleSystem particulasHumo2;
 
     void Start()
     {
-        particulasHumo = GetComponentInChildren<ParticleSystem>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -97,9 +99,11 @@ public class PlayerMovement : MonoBehaviour
     private void GroundPoundear()
     {
 
-        rb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.down * groundPoundImpulsoInicial, ForceMode2D.Impulse);
         rb.gravityScale = groundPoundFallMult;
         groundPoundeadaDeManual = true;
+        particulasGroundPound = true;
+        animator.SetBool("GroundPounde", true);
     }
 
     void FixedUpdate()
@@ -127,6 +131,13 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position, groundCheckRadius, groundLayer
         );
+        if (isGrounded && groundPoundeadaDeManual && particulasGroundPound)
+        {
+            particulasGroundPound = false;
+            GameManagerMetroidvania.Instance.GetParticleSpawner().SpawnByIndex(1, groundCheck.position - new Vector3(0, 0.5f, 0), Quaternion.Euler(-90, 0, 0));
+            animator.SetBool("GroundPounde", false);
+        }
+
         animator.SetBool("saltando", !isGrounded);
     }
 
@@ -151,16 +162,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        particulasHumo.Play();
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         if(groundPoundeadaDeManual)
         {
+            particulasHumo2.Play();
             rb.AddForce(Vector2.up * groundPoundJumpForce, ForceMode2D.Impulse);
             animator.SetTrigger("GroundPound");
             groundPoundeadaDeManual = false;
         }
         else
         {
+            particulasHumo.Play();
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
