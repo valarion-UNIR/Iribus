@@ -1,6 +1,7 @@
 using System.Collections;
 using System.IO;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,7 @@ public class GameManagerMetroidvania : MonoBehaviour
     private GameObject playerInstance;
 
     private CheckPointManager checkPManager;
+    private CinemachineCamera currentActiveCamera;
 
     private int entradaUsada;
 
@@ -181,7 +183,13 @@ public class GameManagerMetroidvania : MonoBehaviour
     public void SpawnPlayer(Transform spawnTransform)
     {
         playerInstance = Instantiate(playerPrefab, spawnTransform.position, Quaternion.identity);
-        if(velPlayer != null)
+        if (currentActiveCamera.Follow != null)
+        {
+            Debug.Log("HOLA ME CAMUI");
+            currentActiveCamera.Follow = playerInstance.transform;
+        }
+
+        if (velPlayer != null)
         {
             playerInstance.GetComponent<Rigidbody2D>().linearVelocity = velPlayer;
         }
@@ -228,11 +236,15 @@ public class GameManagerMetroidvania : MonoBehaviour
         if(CurrentState == GameState.GameOver)
         {
             CheckPoint checkPoint = checkPManager.GetCheckPoint(progreso.checkpoint);
+            currentActiveCamera = checkPoint.GetCheckPointCamera();
+            currentActiveCamera.enabled = true;
             StartCoroutine(AnimacionSpawn(checkPoint));
         }
         else if (CurrentState == GameState.Loading)
         {
             CheckPoint checkPoint = checkPManager.GetEntrada(entradaUsada);
+            currentActiveCamera = checkPoint.GetCheckPointCamera();
+            currentActiveCamera.enabled = true;
             SpawnPlayer(checkPoint.transform);
         }
     }

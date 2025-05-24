@@ -1,9 +1,11 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particulasCerrar;
     [SerializeField] private ParticleSystem particulasAbrir;
+    [SerializeField] private CinemachineCamera camaraCheckPoint;
 
     [SerializeField] private int transicion = 0;
 
@@ -24,5 +26,10 @@ public class CheckPoint : MonoBehaviour
     public int GetTransicion()
     {
         return transicion;
+    }
+
+    public CinemachineCamera GetCheckPointCamera()
+    {
+        return camaraCheckPoint;
     }
 }
