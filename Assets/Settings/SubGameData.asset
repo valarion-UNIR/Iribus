@@ -22,6 +22,7 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 128
+    cinemachineChannel: 2
   - subGame: 2
     mainScene: {fileID: 102900000, guid: 84b93f5f89ad6be40bec9baaf097ba61, type: 3}
     defaultLayer: 12
@@ -31,6 +32,7 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 4096
+    cinemachineChannel: 4
   - subGame: 3
     mainScene: {fileID: 102900000, guid: d8c1db1f84491fc47aace3111643519a, type: 3}
     defaultLayer: 17
@@ -40,6 +42,7 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 131072
+    cinemachineChannel: 8
   - subGame: 4
     mainScene: {fileID: 102900000, guid: 209f7faf9eeef494eabfc7b98e56295d, type: 3}
     defaultLayer: 22
@@ -49,6 +52,7 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 4194304
+    cinemachineChannel: 16
   - subGame: 5
     mainScene: {fileID: 102900000, guid: 3a3b7a45cba530c4abe901f9e5d56519, type: 3}
     defaultLayer: 27
@@ -58,6 +62,7 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 134217728
+    cinemachineChannel: 32
   - subGame: 6
     mainScene: {fileID: 102900000, guid: d54f30ef00011d343934bd703d0f7e5d, type: 3}
     defaultLayer: 6
@@ -67,3 +72,4 @@ MonoBehaviour:
     renderingLayerMask:
       serializedVersion: 0
       m_Bits: 2
+    cinemachineChannel: 64
