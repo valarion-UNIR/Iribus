@@ -73,7 +73,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     fileImportMode: 1
-    importHiddenLayers: 0
+    importHiddenLayers: 1
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -86,7 +86,7 @@ ScriptedImporter:
     addShadowCasters: 0
   asepriteImporterSettings:
     fileImportMode: 1
-    importHiddenLayers: 0
+    importHiddenLayers: 1
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638836870842559014
+  platformSettingsDirtyTick: 638837165258647203
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -207,6 +207,90 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 290}
+  - name: Forest 4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 290
+      width: 320
+      height: 278
+    spriteID: 3dc36466b0cbe1048842396c43f7ca59
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 290}
+  - name: Forest 3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 576
+      width: 320
+      height: 227
+    spriteID: 4f83497fc8481994fa8539cb68e759d8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 576}
+  - name: Forest 2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 660
+      y: 290
+      width: 320
+      height: 229
+    spriteID: e5661eafbebe74c42a1bb95c814aafe9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 660, y: 290}
+  - name: Forest 1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 576
+      width: 320
+      height: 224
+    spriteID: 0cb5467a198b54a4e9946f8aa5411bbd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 576}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -290,6 +374,87 @@ ScriptedImporter:
       spriteId: 467c4ccedcec04e4ea88a8cb10fd0e9b
     linkedCells: []
     parentIndex: 0
+  - layerIndex: 5
+    guid: -1831433879
+    name: Forest
+    layerFlags: 34
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 6
+    guid: 230014483
+    name: Forest 4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Forest 4
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 320
+        height: 278
+      spriteId: 3dc36466b0cbe1048842396c43f7ca59
+    linkedCells: []
+    parentIndex: 5
+  - layerIndex: 7
+    guid: 230014476
+    name: Forest 3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Forest 3
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 320
+        height: 227
+      spriteId: 4f83497fc8481994fa8539cb68e759d8
+    linkedCells: []
+    parentIndex: 5
+  - layerIndex: 8
+    guid: 230014477
+    name: Forest 2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Forest 2
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 320
+        height: 229
+      spriteId: e5661eafbebe74c42a1bb95c814aafe9
+    linkedCells: []
+    parentIndex: 5
+  - layerIndex: 9
+    guid: 230014478
+    name: Forest 1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Forest 1
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 320
+        height: 224
+      spriteId: 0cb5467a198b54a4e9946f8aa5411bbd
+    linkedCells: []
+    parentIndex: 5
   platformSettings:
   - name: Default
     overridden: 0
