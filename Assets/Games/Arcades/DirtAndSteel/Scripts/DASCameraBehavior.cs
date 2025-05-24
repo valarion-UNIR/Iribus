@@ -40,7 +40,7 @@ public class DASCameraBehavior : MonoBehaviour
         float speed = player.carRigidBody.linearVelocity.magnitude;
 
         // Normalize speed to 0-1
-        float t = Mathf.Clamp01(speed / player.maxSpeed);
+        float t = Mathf.Clamp01(speed / player.baseMaxSpeed);
 
         // Interpolate zoom based on speed
         float targetZoom = Mathf.Lerp(minZoom, maxZoom, t);

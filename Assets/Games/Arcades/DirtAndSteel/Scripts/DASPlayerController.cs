@@ -12,6 +12,8 @@ public class DASPlayerController : SubGamePlayerController
     public float maxSpeed = 15f;
     public float steering = 200f;
 
+    [HideInInspector] public float baseMaxSpeed = 15f;
+
     [Header("Drifting")]
     public float driftFactorSticky = 0.8f;
     public float driftFactorSlippy = 0.95f;
@@ -42,6 +44,7 @@ public class DASPlayerController : SubGamePlayerController
     {
         base.Awake();
         carRigidBody = GetComponent<Rigidbody2D>();
+        baseMaxSpeed = maxSpeed;
     }
 
     void Update()
@@ -104,7 +107,7 @@ public class DASPlayerController : SubGamePlayerController
             trailR.emitting = false;
         }
 
-        if (isSteering && !isDrifting)
+        if (isSteering && !isDrifting && maxSpeed == baseMaxSpeed)
         {
             carRigidBody.linearVelocity *=
                 1f - steerBrakeStrength * Time.fixedDeltaTime * Mathf.Abs(steerInput);
@@ -127,7 +130,7 @@ public class DASPlayerController : SubGamePlayerController
         Vector2 forward = transform.up;
         float speed = Vector2.Dot(carRigidBody.linearVelocity, forward);
 
-        if (accelInput == 0)
+        if (accelInput == 0 || carRigidBody.linearVelocity.magnitude > maxSpeed)
             return;
 
         float maxSpeedInCurrentDirection = maxSpeed * Mathf.Sign(accelInput);
@@ -159,7 +162,7 @@ public class DASPlayerController : SubGamePlayerController
 
     void ApplySteering()
     {
-        float velocityFactor = carRigidBody.linearVelocity.magnitude / maxSpeed;
+        float velocityFactor = carRigidBody.linearVelocity.magnitude / baseMaxSpeed;
         float steerAmount = steerInput * steering * velocityFactor * Time.fixedDeltaTime;
 
         if (accelInput < 0f)
@@ -225,5 +228,24 @@ public class DASPlayerController : SubGamePlayerController
         }
 
         carRigidBody.linearVelocity = forward * forwardVelocity + right * sidewaysVelocity * driftFactor;
+    }
+
+    public void LimitMaxSpeed(float speedLimit, float lerpSpeed)
+    {
+        maxSpeed = speedLimit;
+
+        Vector2 velocity = carRigidBody.linearVelocity;
+        float currentSpeed = velocity.magnitude;
+
+        if (currentSpeed > speedLimit)
+        {
+            Vector2 targetVelocity = velocity.normalized * speedLimit;
+            carRigidBody.linearVelocity = Vector2.Lerp(velocity, targetVelocity, lerpSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    public void SetBaseMaxSpeed()
+    {
+        maxSpeed = baseMaxSpeed;
     }
 }
