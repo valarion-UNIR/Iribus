@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PachinkoCamera : SubGamePlayerController
 {
-    public override SubGame SubGame => subGame;
-
-    [SerializeField] private SubGame subGame;
+    public override SubGame SubGame => SubGame.Pachinko;
 
     [SerializeField] private float topLimit;
     [SerializeField] private float bottomLimit;
@@ -23,25 +21,22 @@ public class PachinkoCamera : SubGamePlayerController
 
     private void MoveCamera()
     {
-        if (TryGetComponent(out Camera cam))
-        {
-            float inputV = Input.Pachinko.Move.ReadValue<Vector2>().y;
+        float inputV = Input.Pachinko.Move.ReadValue<Vector2>().y;
 
-            Vector3 top = new Vector3(cam.transform.position.x, topLimit, cam.transform.position.z);
-            Vector3 bottom = new Vector3(cam.transform.position.x, bottomLimit, cam.transform.position.z);
+        Vector3 top = new Vector3(transform.position.x, topLimit, transform.position.z);
+        Vector3 bottom = new Vector3(transform.position.x, bottomLimit, transform.position.z);
 
-            // Dirección ahora apunta hacia arriba
-            Vector3 direccion = (top - bottom).normalized;
+        // Dirección ahora apunta hacia arriba
+        Vector3 direccion = (top - bottom).normalized;
 
-            Vector3 movimiento = direccion * inputV * speedMovement * Time.deltaTime;
-            cam.transform.position += movimiento;
+        Vector3 movimiento = direccion * inputV * speedMovement * Time.deltaTime;
+        transform.position += movimiento;
 
-            // Clampear la posición para que no se salga de los límites
-            float distanciaTotal = Vector3.Distance(top, bottom);
-            float proyeccion = Vector3.Dot(cam.transform.position - bottom, direccion);
-            proyeccion = Mathf.Clamp(proyeccion, 0f, distanciaTotal);
+        // Clampear la posición para que no se salga de los límites
+        float distanciaTotal = Vector3.Distance(top, bottom);
+        float proyeccion = Vector3.Dot(transform.position - bottom, direccion);
+        proyeccion = Mathf.Clamp(proyeccion, 0f, distanciaTotal);
 
-            cam.transform.position = bottom + direccion * proyeccion;
-        }
+        transform.position = bottom + direccion * proyeccion;
     }
 }

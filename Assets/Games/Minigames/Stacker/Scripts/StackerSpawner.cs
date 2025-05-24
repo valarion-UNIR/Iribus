@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StackerSpawner : SubGamePlayerController
 {
-    public override SubGame SubGame => subGame;
+    public override SubGame SubGame => SubGame.Stacker;
 
     [SerializeField] private SubGame subGame;
 

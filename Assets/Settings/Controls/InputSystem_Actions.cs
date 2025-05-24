@@ -1152,6 +1152,15 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2434ac3-2740-486f-89a4-7b255be355fc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1240,6 +1249,28 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pachinko"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0758aa73-863f-41da-884c-06d1cba4bd30"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e22af25-6226-4ceb-978a-086ae53fda20"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2033,6 +2064,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_Subgames_Stacker = m_Subgames.FindAction("Stacker", throwIfNotFound: true);
         m_Subgames_Garra = m_Subgames.FindAction("Garra", throwIfNotFound: true);
         m_Subgames_Pachinko = m_Subgames.FindAction("Pachinko", throwIfNotFound: true);
+        m_Subgames_Back = m_Subgames.FindAction("Back", throwIfNotFound: true);
         // DirtAndSteel
         m_DirtAndSteel = asset.FindActionMap("DirtAndSteel", throwIfNotFound: true);
         m_DirtAndSteel_Move = m_DirtAndSteel.FindAction("Move", throwIfNotFound: true);
@@ -2527,6 +2559,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Subgames_Stacker;
     private readonly InputAction m_Subgames_Garra;
     private readonly InputAction m_Subgames_Pachinko;
+    private readonly InputAction m_Subgames_Back;
     /// <summary>
     /// Provides access to input actions defined in input action map "Subgames".
     /// </summary>
@@ -2570,6 +2603,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Subgames/Pachinko".
         /// </summary>
         public InputAction @Pachinko => m_Wrapper.m_Subgames_Pachinko;
+        /// <summary>
+        /// Provides access to the underlying input action "Subgames/Back".
+        /// </summary>
+        public InputAction @Back => m_Wrapper.m_Subgames_Back;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2620,6 +2657,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Pachinko.started += instance.OnPachinko;
             @Pachinko.performed += instance.OnPachinko;
             @Pachinko.canceled += instance.OnPachinko;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         /// <summary>
@@ -2655,6 +2695,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @Pachinko.started -= instance.OnPachinko;
             @Pachinko.performed -= instance.OnPachinko;
             @Pachinko.canceled -= instance.OnPachinko;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         /// <summary>
@@ -3500,6 +3543,13 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPachinko(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Back" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBack(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "DirtAndSteel" which allows adding and removing callbacks.

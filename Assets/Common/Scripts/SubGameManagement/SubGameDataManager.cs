@@ -12,6 +12,20 @@ public class SubGameDataManager : ScriptableObject
     [SerializeField] private List<SubGameData> data = new();
 
     public ReadOnlyDictionary<SubGame, SubGameData> Data => new(data.ToDictionary(data => data.SubGame, data => data));
+
+    private static Lazy<SubGameDataManager> instance = new(() => GetAllInstances<SubGameDataManager>().First());
+    public static SubGameDataManager Instance => instance.Value;
+
+
+    public static IEnumerable<T> GetAllInstances<T>() where T : ScriptableObject
+    {
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name); //FindAssets uses tags check documentation for more info
+        foreach (var guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            yield return AssetDatabase.LoadAssetAtPath<T>(path);
+        }
+    }
 }
 
 [Serializable]

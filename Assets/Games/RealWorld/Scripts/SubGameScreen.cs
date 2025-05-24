@@ -7,10 +7,10 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SubGameInteractable))]
 public class SubGameScreen : MonoBehaviour
 {
-    [SerializeField] private SubGame subGame;
-    
+    private SubGameInteractable interactable;
     private SceneAsset sceneAsset;
     private MeshRenderer meshRenderer;
     private Scene scene;
@@ -20,23 +20,19 @@ public class SubGameScreen : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        interactable = GetComponent<SubGameInteractable>();
+
         meshRenderer = GetComponentsInChildren<MeshRenderer>().Where(c => c.CompareTag("Screen")).FirstOrDefault();
         if (meshRenderer == null)
-            Debug.LogWarning("No screen found in hierarchy");
+        {
+            Debug.LogError("No screen found in hierarchy");
+            return;
+        }
+
         meshRenderer.material.mainTexture = renderTexture;
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        sceneAsset = GetAllInstances<SubGameDataManager>().First().Data[subGame].MainScene;
+        sceneAsset = SubGameDataManager.Instance.Data[interactable.SubGame].MainScene;
         var operation = SceneManager.LoadSceneAsync(sceneAsset.name, LoadSceneMode.Additive);
-    }
-
-    public static IEnumerable<T> GetAllInstances<T>() where T : ScriptableObject
-    {
-        string[] guids = AssetDatabase.FindAssets("t:"+typeof(T).Name); //FindAssets uses tags check documentation for more info
-        foreach(var guid in guids)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            yield return AssetDatabase.LoadAssetAtPath<T>(path);
-        }
     }
 
     private void SceneManager_sceneLoaded(Scene loadedScene, LoadSceneMode mode)
