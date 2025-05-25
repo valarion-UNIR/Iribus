@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using static ObservableExtensions;
 
