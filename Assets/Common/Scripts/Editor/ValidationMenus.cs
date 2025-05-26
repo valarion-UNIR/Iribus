@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEditor.SceneManagement;
@@ -146,6 +147,24 @@ public class ValidationMenus : MonoBehaviour
                 $"{GetPrefix(light)} is using a non standard rendering layer mask for {subgame}",
                 $"{GetPrefix(light)} was using a non standard rendering layer mask, constrained to {subgame} rendering layer mask",
                 () => light.renderingLayers = (light.renderingLayers & data.RenderingLayerMask.value) > 0 ? (light.renderingLayers & data.RenderingLayerMask.value) : data.RenderingLayerMask.value
+                );
+        }
+
+        foreach (var camera in gameObject.GetComponents<CinemachineBrain>())
+        {
+            Process((camera.ChannelMask & data.CinemachineChannel) != camera.ChannelMask, dryRun, ref changedSomething, gameObject,
+                $"{GetPrefix(camera)} is using a non standard channel mask for {subgame}",
+                $"{GetPrefix(camera)} was using a non standard channel mask, changed to {subgame} channel mask",
+                () => camera.ChannelMask = (camera.ChannelMask & data.CinemachineChannel) > 0 ? (camera.ChannelMask & data.CinemachineChannel) : data.CinemachineChannel
+                );
+        }
+
+        foreach (var camera in gameObject.GetComponents<CinemachineCamera>())
+        {
+            Process((camera.OutputChannel & data.CinemachineChannel) != camera.OutputChannel, dryRun, ref changedSomething, gameObject,
+                $"{GetPrefix(camera)} is using a non standard output channel for {subgame}",
+                $"{GetPrefix(camera)} was using a non standard output channel, changed to {subgame} output channel",
+                () => camera.OutputChannel = (camera.OutputChannel & data.CinemachineChannel) > 0 ? (camera.OutputChannel & data.CinemachineChannel) : data.CinemachineChannel
                 );
         }
 

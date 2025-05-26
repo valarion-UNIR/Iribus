@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -61,6 +62,14 @@ public class SubGameComponentAdded
 
             case UniversalAdditionalCameraData camera:
                 camera.volumeLayerMask = data.CullingMask;
+                break;
+
+            case CinemachineCamera camera:
+                camera.OutputChannel = data.CinemachineChannel;
+                break;
+
+            case CinemachineBrain camera:
+                camera.ChannelMask = data.CinemachineChannel;
                 break;
 
             case Renderer renderer:

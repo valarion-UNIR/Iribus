@@ -1,9 +1,9 @@
+using Eflatun.SceneReference;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class SubGameScreen : MonoBehaviour
 {
     private SubGameInteractable interactable;
-    private SceneAsset sceneAsset;
+    private SceneReference sceneReference;
     private MeshRenderer meshRenderer;
     private Scene scene;
     private Camera sceneCamera;
@@ -31,13 +31,13 @@ public class SubGameScreen : MonoBehaviour
 
         meshRenderer.material.mainTexture = renderTexture;
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        sceneAsset = SubGameDataManager.Instance.Data[interactable.SubGame].MainScene;
-        var operation = SceneManager.LoadSceneAsync(sceneAsset.name, LoadSceneMode.Additive);
+        sceneReference = SubGameDataManagerSingleton.Data[interactable.SubGame].MainScene;
+        var operation = SceneManager.LoadSceneAsync(sceneReference.Name, LoadSceneMode.Additive);
     }
 
     private void SceneManager_sceneLoaded(Scene loadedScene, LoadSceneMode mode)
     {
-        if(loadedScene.name == sceneAsset.name)
+        if(loadedScene.name == sceneReference.Name)
         {
             scene = loadedScene;
             SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
