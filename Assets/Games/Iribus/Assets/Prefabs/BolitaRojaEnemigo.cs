@@ -4,8 +4,8 @@ public class BolitaRojaEnemigo : MonoBehaviour
 {
     private CircleCollider2D circleCollider;
     private Rigidbody2D rb;
-    private bool activated = false;
-    private bool playerInRange = false;
+    public bool activated = false;
+    public bool playerInRange = false;
 
     float currentVelX = 0f;
     float smoothTime = 0.55f;
@@ -16,7 +16,7 @@ public class BolitaRojaEnemigo : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameManagerMetroidvania.Instance.GetPlayerTransform();
     }
 
     void FixedUpdate()
@@ -44,7 +44,7 @@ public class BolitaRojaEnemigo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 12)
         {
             activated = true;
         }

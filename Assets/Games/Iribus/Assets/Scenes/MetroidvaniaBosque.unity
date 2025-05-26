@@ -188,7 +188,7 @@ SpriteRenderer:
   m_Size: {x: 3.2, y: 2.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &80785335
@@ -515,10 +515,17 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
+<<<<<<< HEAD
+    x: 0.6785411
+    y: 0
+    width: 0.27141646
+    height: 0.33432835
+=======
     x: 0
     y: 0
     width: 1
     height: 1
+>>>>>>> db4a9402572b9bb8993a1f131458fc26d5a6234f
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -548,7 +555,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
+  m_LocalPosition: {x: 1.2590995, y: 1.4201698, z: -10}
+=======
   m_LocalPosition: {x: 3.5143914, y: 1.4201698, z: -10}
+>>>>>>> db4a9402572b9bb8993a1f131458fc26d5a6234f
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -933,6 +944,75 @@ Transform:
   - {fileID: 1755113334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &581226854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755440928186994242, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880619863218431287, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516248096379923219, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_Name
+      value: TrampaBolita
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516248096379923219, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516248096379923219, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2252e2403e4237b42854041e79f5f03b, type: 3}
 --- !u!1 &635733569
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,7 +14774,7 @@ SpriteRenderer:
   m_Size: {x: 3.2, y: 2.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1713821561
@@ -20183,3 +20263,4 @@ SceneRoots:
   - {fileID: 2064718568}
   - {fileID: 1713821561}
   - {fileID: 80785335}
+  - {fileID: 581226854}
