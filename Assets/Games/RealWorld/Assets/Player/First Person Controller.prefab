@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 4490257326247362}
   - component: {fileID: 844517955420061020}
   - component: {fileID: 114657890492222300}
+  - component: {fileID: 3741001084031318942}
   m_Layer: 7
   m_Name: RealWorld Camera
   m_TagString: MainCamera
@@ -423,14 +424,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593727746557118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec72980442fddac4d86e75ab24b4d027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 4207293392497186}
-  sensitivity: 2
+  sensitivity: 1
   smoothing: 1.5
+--- !u!114 &3741001084031318942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593727746557118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ecf1b2dabf95a41b113748ad2b92b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4207293392497186}
+  mouseSensitivity: 1
+  smoothing: 2
+  invertY: 0
+  cameraOffset: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1773623360729482
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +461,7 @@ GameObject:
   - component: {fileID: 136877096903737240}
   - component: {fileID: 54063890643546284}
   - component: {fileID: 114963311885979670}
+  - component: {fileID: 2684680217996053275}
   - component: {fileID: 114497868231759342}
   - component: {fileID: 114762042097486276}
   - component: {fileID: 5975525385709549004}
@@ -530,7 +549,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773623360729482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97fca36bd81de7c4cafce7bbf02ca611, type: 3}
   m_Name: 
@@ -538,6 +557,26 @@ MonoBehaviour:
   speed: 5
   canRun: 1
   runSpeed: 9
+--- !u!114 &2684680217996053275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773623360729482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9082c915be112bc4ea408cf817d7f192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  gravityMultiplier: 2
+  groundCheck: {fileID: 4773208539257838}
+  groundRadius: 0.2
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1920
+  camController: {fileID: 3741001084031318942}
 --- !u!114 &114497868231759342
 MonoBehaviour:
   m_ObjectHideFlags: 0
