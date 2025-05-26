@@ -249,6 +249,11 @@ public class GameManagerMetroidvania : MonoBehaviour
         }
     }
 
+    public Transform GetPlayerTransform()
+    {
+        return playerInstance.transform;
+    }
+
     public ParticleSpawner GetParticleSpawner()
     {
         return particleSpawner;
