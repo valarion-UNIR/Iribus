@@ -515,17 +515,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 0.6785411
-    y: 0
-    width: 0.27141646
-    height: 0.33432835
-=======
     x: 0
     y: 0
     width: 1
     height: 1
->>>>>>> db4a9402572b9bb8993a1f131458fc26d5a6234f
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -555,11 +548,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 1.2590995, y: 1.4201698, z: -10}
-=======
   m_LocalPosition: {x: 3.5143914, y: 1.4201698, z: -10}
->>>>>>> db4a9402572b9bb8993a1f131458fc26d5a6234f
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
