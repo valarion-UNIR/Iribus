@@ -11,18 +11,32 @@ using UnityEngine.SceneManagement;
 public class SubGameScreen : MonoBehaviour
 {
     private SubGameInteractable interactable;
+    private AudioSource audioSourceTemplate;
+
     private SceneReference sceneReference;
     private MeshRenderer meshRenderer;
     private Scene scene;
     private Camera sceneCamera;
     private RenderTexture renderTexture;
 
+    public AudioSource AudioSourceTemplate => audioSourceTemplate;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interactable = GetComponent<SubGameInteractable>();
+        SubGameScreenManager.instance.Register(interactable.SubGame, this);
 
-        meshRenderer = GetComponentsInChildren<MeshRenderer>().Where(c => c.CompareTag("Screen")).FirstOrDefault();
+        audioSourceTemplate = GetComponentsInChildren<AudioSource>().Where(c => c.CompareTag("Speakers")).FirstOrDefault();
+        if(audioSourceTemplate == null)
+        {
+            Debug.LogWarning("No speakers found in hierarchy, creating one");
+            var speakers = new GameObject("Speakers");
+            speakers.transform.SetParent(transform, false);
+            audioSourceTemplate = speakers.AddComponent<AudioSource>();
+        }
+
+        meshRenderer = GetComponentsInChildren<MeshRenderer>().Where(c => c.CompareTag(TagsIribus.Screen)).FirstOrDefault();
         if (meshRenderer == null)
         {
             Debug.LogError("No screen found in hierarchy");
