@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LostTile : MonoBehaviour
 {
-    [SerializeField] private float timeToDisappear = 0;
+    //[SerializeField] private float timeToDisappear = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

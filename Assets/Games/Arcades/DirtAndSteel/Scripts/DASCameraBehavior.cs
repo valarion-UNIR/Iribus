@@ -21,7 +21,7 @@ public class DASCameraBehavior : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin noise;
 
-    private float shakeTimer = 0f;
+    //private float shakeTimer = 0f;
     private float initialAmplitude = 0f;
     private float initialFrequency = 0f;
     private Coroutine shakeCoroutine;

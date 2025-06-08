@@ -12,6 +12,7 @@ public static class TagsIribus
     public const string PCKStar = "PCKStar";
     public const string RealWorld_Interacter = "RealWorld Interacter";
     public const string SCKFloor = "SCKFloor";
+    public const string Speakers = "Speakers";
 }
 public static class LayersIribus
 {

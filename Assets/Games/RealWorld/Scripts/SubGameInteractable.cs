@@ -1,3 +1,4 @@
+using Eflatun.SceneReference;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ public class SubGameInteractable : MonoBehaviour, IInteract
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Initialize input for this subGame, just in case
+        _ = SubGamePlayerControlManager.instance[subGame];
+
         outline = GetComponent<Outline>();
         outline.enabled = false;
 

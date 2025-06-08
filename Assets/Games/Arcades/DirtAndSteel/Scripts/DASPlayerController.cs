@@ -32,7 +32,7 @@ public class DASPlayerController : SubGamePlayerController
     [SerializeField] private TrailRenderer trailL;
     [SerializeField] private TrailRenderer trailR;
     private float driftRecoveryTimer = 0f;
-    private float lastDriftSteerInput = 0f;
+    //private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
 
     private bool canAccelerate = true;

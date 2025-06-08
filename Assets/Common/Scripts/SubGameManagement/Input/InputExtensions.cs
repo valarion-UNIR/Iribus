@@ -2,7 +2,7 @@ public static class InputExtensions
 {
     public static void Enable(this SubGame game, bool enable = true)
     {
-        var input = SubGamePlayerControlManager.instance.GetInput(game);
+        var input = SubGamePlayerControlManager.instance[game];
 
         if (enable)
             input.Enable();

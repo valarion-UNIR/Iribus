@@ -12,7 +12,7 @@ public abstract class SubGamePlayerController : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
-        Input = SubGamePlayerControlManager.instance.GetInput(SubGame);
+        Input = SubGamePlayerControlManager.instance[SubGame];
     }
 
     private void Start()

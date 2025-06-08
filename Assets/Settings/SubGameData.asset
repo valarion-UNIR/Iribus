@@ -39,8 +39,8 @@ MonoBehaviour:
     cinemachineChannel: 4
   - subGame: 3
     mainScene:
-      asset: {fileID: 102900000, guid: 611b594f8c6900544991754914462f1e, type: 3}
-      guid: 611b594f8c6900544991754914462f1e
+      asset: {fileID: 102900000, guid: d8c1db1f84491fc47aace3111643519a, type: 3}
+      guid: d8c1db1f84491fc47aace3111643519a
     defaultLayer: 17
     cullingMask:
       serializedVersion: 2

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,9 @@ public class SubGameScreen : MonoBehaviour
     private AudioSource audioSourceTemplate;
 
     private SceneReference sceneReference;
+    private Awaitable sceneLoading;
     private MeshRenderer meshRenderer;
+    private Material material;
     private Scene scene;
     private Camera sceneCamera;
     private RenderTexture renderTexture;
@@ -44,9 +47,49 @@ public class SubGameScreen : MonoBehaviour
         }
 
         meshRenderer.material.mainTexture = renderTexture;
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         sceneReference = SubGameDataManagerSingleton.Data[interactable.SubGame].MainScene;
-        var operation = SceneManager.LoadSceneAsync(sceneReference.Name, LoadSceneMode.Additive);
+        LoadScene(sceneReference, physics: LocalPhysicsMode.Physics2D | LocalPhysicsMode.Physics3D);
+    }
+
+    public void LoadScene(SceneReference newScene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
+        => sceneLoading = LoadSceneInner(newScene, loadingScene, physics, sceneLoading);
+
+    private async Awaitable LoadSceneInner(SceneReference newScene, SceneReference loadingScene, LocalPhysicsMode physics, Awaitable currentSceneLoading)
+    {
+        if (currentSceneLoading != null)
+            await sceneLoading;
+
+        // Ensure running in main thread
+        await Awaitable.MainThreadAsync();
+
+        var previousScene = scene;
+
+        // Load "loading" scene if it exists
+        if (loadingScene != null)
+        {
+            await SceneManager.LoadSceneAsync(loadingScene.Name, new LoadSceneParameters(LoadSceneMode.Additive, LocalPhysicsMode.Physics2D | LocalPhysicsMode.Physics3D));
+            sceneReference = loadingScene;
+            scene = newScene.LoadedScene;
+            InitializeFromScene();
+        }
+
+        // Unload previous scene if it exists
+        if (!string.IsNullOrWhiteSpace(previousScene.name))
+            await SceneManager.UnloadSceneAsync(previousScene);
+
+        // Load new scene
+        await SceneManager.LoadSceneAsync(newScene.Name, new LoadSceneParameters(LoadSceneMode.Additive, physics));
+
+        // Unload "loading" scene if it exists
+        if (loadingScene != null)
+            await SceneManager.UnloadSceneAsync(loadingScene.LoadedScene);
+
+        // Initialize 
+        sceneReference = newScene;
+        scene = newScene.LoadedScene;
+        InitializeFromScene();
+
+        sceneLoading = null;
     }
 
     private void SceneManager_sceneLoaded(Scene loadedScene, LoadSceneMode mode)
@@ -62,9 +105,14 @@ public class SubGameScreen : MonoBehaviour
     private void InitializeFromScene()
     {
         sceneCamera = GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
+        if (renderTexture != null)
+            renderTexture.Release();
+        if (material == null)
+            material = meshRenderer.material;
         renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        meshRenderer.material = new Material(material) { mainTexture = renderTexture };
+
         sceneCamera.targetTexture = renderTexture;
-        meshRenderer.material = new Material(meshRenderer.material) { mainTexture = renderTexture };
 
         foreach (var listener in GetSceneComponents<AudioListener>())
             listener.enabled = false;

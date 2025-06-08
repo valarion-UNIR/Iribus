@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using static ObservableExtensions;
 
-public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerControlManager>
+public class SubGamePlayerControlManager : AbstractSubGameObjectCreationManager<CustomInputSystem, SubGamePlayerControlManager>
 {
     #region CurentGame
 
@@ -16,7 +16,7 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
         get => currentGame;
         set
         {
-            if (inputs.ContainsKey(value))
+            if (objects.ContainsKey(value))
                 SetValue(ref currentGame, value, OnInnerCurrentGameChanged, OnCurrentGameChanged);
         }
     }
@@ -31,24 +31,18 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
 
     #endregion
 
-    private readonly Dictionary<SubGame, CustomInputSystem> inputs = new();
-    private readonly Dictionary<SubGame, SubGameScreen> screens = new();
-
-    public (CustomInputSystem Input, SubGameScreen Screen) this[SubGame subGame]
-        => (GetInput(subGame), GetScreen(subGame));
-
-    public CustomInputSystem GetInput(SubGame subGame)
+    protected override CustomInputSystem CreateObject(SubGame subGame)
     {
         // If this is the first game loaded, make current
-        if (inputs.Count <= 0)
+        if (objects.Count <= 0)
             currentGame = subGame;
 
         // If input already exist, return it 
-        if (inputs.ContainsKey(subGame))
-            return inputs[subGame];
+        if (objects.ContainsKey(subGame))
+            return objects[subGame];
 
         // Else, create it
-        var ret = inputs[subGame] = new CustomInputSystem();
+        var ret = objects[subGame] = new CustomInputSystem();
 
         // Enabling/disabling acording to current game.
         if (subGame == currentGame)
@@ -61,7 +55,4 @@ public class SubGamePlayerControlManager : ScriptableSingleton<SubGamePlayerCont
 
         return ret;
     }
-
-    public SubGameScreen GetScreen(SubGame subGame)
-        => screens.ContainsKey(subGame) ? screens[subGame] : null;
 }

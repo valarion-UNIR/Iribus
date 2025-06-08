@@ -1879,7 +1879,9 @@ namespace AutoTiling {
                 meshPrefab = AssetDatabase.LoadAssetAtPath(currentMeshAssetPath + meshFilter.sharedMesh.name.Substring(0, meshFilter.sharedMesh.name.Length - 7) + extensionString, typeof(Mesh)) as Mesh;
             }
             if (meshPrefab) {
+#pragma warning disable CS0618 // Type or member is obsolete
                 AutoTextureTiling[] listOfTextureTilingToolObjects = FindObjectsOfType<AutoTextureTiling>();
+#pragma warning restore CS0618 // Type or member is obsolete
                 for (int i = 0; i < listOfTextureTilingToolObjects.Length; i++) {
                     if (listOfTextureTilingToolObjects[i].meshFilter.sharedMesh == meshPrefab) {
                         listOfTextureTilingToolObjects[i].BreakMeshAssetConnection();
@@ -1919,7 +1921,9 @@ namespace AutoTiling {
 #if UNITY_2018
                     PrefabUtility.UnpackPrefabInstance(this.gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 #else
+#pragma warning disable CS0618 // Type or member is obsolete
                     PrefabUtility.DisconnectPrefabInstance(this.gameObject);
+#pragma warning restore CS0618 // Type or member is obsolete
 #endif
                 }
                 EditorUtility.SetDirty(this);

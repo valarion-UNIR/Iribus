@@ -5,9 +5,7 @@ using UnityEngine.InputSystem;
 
 public class BeaverController : SubGamePlayerController
 {
-    public override SubGame SubGame => subGame;
-
-    [SerializeField] private SubGame subGame;
+    public override SubGame SubGame => SubGame.CrossTheBeaver;
 
     [SerializeField] private float moveDistanceVertical = 1.0f;
     [SerializeField] private float moveDistanceHorizontal = 1.0f;

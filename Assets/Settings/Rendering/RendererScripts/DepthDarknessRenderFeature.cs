@@ -24,7 +24,7 @@ public class OscurecerRenderFeature : ScriptableRendererFeature
             // Seguridad: Si la textura activa es la pantalla directa, saltamos
             if (resourceData.isActiveTargetBackBuffer)
             {
-                Debug.LogWarning("OscurecerPass: saltando porque está escribiendo directo en el backbuffer.");
+                //Debug.LogWarning("OscurecerPass: saltando porque está escribiendo directo en el backbuffer.");
                 return;
             }
 
