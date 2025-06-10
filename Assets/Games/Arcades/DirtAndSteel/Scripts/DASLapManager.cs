@@ -29,13 +29,15 @@ public class DASLapManager : MonoBehaviour
     public void CheckLapPoint(DASLapCheck lapCheck)
     {
         if (lapCheck == lapChecks[currentCheckpointIndex])
+        {
             currentCheckpointIndex += 1;
+            DASGameManager.Instance.LapCheckReached();
+        }
 
         if(currentCheckpointIndex == lapChecks.Count)
         {
             lapCount++;
             currentCheckpointIndex = 0;
-            print("Hemo ganao");
         }
     }
 

@@ -17,8 +17,6 @@ public class DASObstacle : MonoBehaviour
 
             if(destroyGameObjectOnCollision)
                 Destroy(gameObject);
-            else
-                Destroy(this);
         }
     }
 }

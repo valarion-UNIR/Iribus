@@ -1324,6 +1324,15 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""e118817e-63a1-44af-ad05-1af1ff55b1e7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1445,6 +1454,17 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SlowDownTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dbd0940-cae6-44cc-8f04-ba35dcaaab70"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2092,6 +2112,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         m_DirtAndSteel_Break = m_DirtAndSteel.FindAction("Break", throwIfNotFound: true);
         m_DirtAndSteel_Drift = m_DirtAndSteel.FindAction("Drift", throwIfNotFound: true);
         m_DirtAndSteel_SlowDownTime = m_DirtAndSteel.FindAction("SlowDownTime", throwIfNotFound: true);
+        m_DirtAndSteel_Restart = m_DirtAndSteel.FindAction("Restart", throwIfNotFound: true);
         // CrossTheBeaver
         m_CrossTheBeaver = asset.FindActionMap("CrossTheBeaver", throwIfNotFound: true);
         m_CrossTheBeaver_Move = m_CrossTheBeaver.FindAction("Move", throwIfNotFound: true);
@@ -2761,6 +2782,7 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_DirtAndSteel_Break;
     private readonly InputAction m_DirtAndSteel_Drift;
     private readonly InputAction m_DirtAndSteel_SlowDownTime;
+    private readonly InputAction m_DirtAndSteel_Restart;
     /// <summary>
     /// Provides access to input actions defined in input action map "DirtAndSteel".
     /// </summary>
@@ -2792,6 +2814,10 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DirtAndSteel/SlowDownTime".
         /// </summary>
         public InputAction @SlowDownTime => m_Wrapper.m_DirtAndSteel_SlowDownTime;
+        /// <summary>
+        /// Provides access to the underlying input action "DirtAndSteel/Restart".
+        /// </summary>
+        public InputAction @Restart => m_Wrapper.m_DirtAndSteel_Restart;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2833,6 +2859,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @SlowDownTime.started += instance.OnSlowDownTime;
             @SlowDownTime.performed += instance.OnSlowDownTime;
             @SlowDownTime.canceled += instance.OnSlowDownTime;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
         }
 
         /// <summary>
@@ -2859,6 +2888,9 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
             @SlowDownTime.started -= instance.OnSlowDownTime;
             @SlowDownTime.performed -= instance.OnSlowDownTime;
             @SlowDownTime.canceled -= instance.OnSlowDownTime;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
         }
 
         /// <summary>
@@ -3625,6 +3657,13 @@ public partial class @CustomInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSlowDownTime(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRestart(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CrossTheBeaver" which allows adding and removing callbacks.

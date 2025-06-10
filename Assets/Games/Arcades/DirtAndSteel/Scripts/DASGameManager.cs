@@ -3,21 +3,28 @@ using TMPro;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem.Utilities;
 
-public class DASGameManager : MonoBehaviour
+public class DASGameManager : SubGamePlayerController
 {
+    public override SubGame SubGame => SubGame.DirtAndSteel;
 
     [SerializeField] private TextMeshProUGUI raceTimerText;
     [SerializeField] private DASCameraBehavior cameraBehavior;
+    [SerializeField] private DASPlayerController playerController;
 
     [SerializeField] private float raceInitTime;
     private float raceTimer;
 
+    private Vector3 playerInitPosition;
+    private Quaternion playerInitRotation;
     public static DASGameManager Instance { get; private set; }
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Instance = this;
+        playerInitPosition = playerController.transform.position;
+        playerInitRotation = playerController.transform.rotation;
     }
 
     void Start()
@@ -28,6 +35,9 @@ public class DASGameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.DirtAndSteel.Restart.IsPressed())
+            RestartRace();
+
         raceTimer -= Time.deltaTime;
 
         FormatTimer();
@@ -50,6 +60,11 @@ public class DASGameManager : MonoBehaviour
         raceTimer += ammount;
     }
 
+    public void LapCheckReached()
+    {
+        print(raceTimer);
+    }
+
     public void CameraShakeStandard()
     {
         cameraBehavior.TriggerStandardShake();
@@ -58,5 +73,15 @@ public class DASGameManager : MonoBehaviour
     public void CameraShake(float duration, float magnitude, float frequency)
     {
         cameraBehavior.TriggerShake(duration, magnitude, frequency);
+    }
+
+    public void RestartRace()
+    {
+        raceTimer = raceInitTime;
+
+        playerController.transform.position = playerInitPosition;
+        playerController.transform.rotation = playerInitRotation;
+        playerController.carRigidBody.linearVelocity = Vector2.zero;
+        playerController.carRigidBody.angularVelocity = 0f;
     }
 }

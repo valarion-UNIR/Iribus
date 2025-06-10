@@ -32,7 +32,6 @@ public class DASPlayerController : SubGamePlayerController
     [SerializeField] private TrailRenderer trailL;
     [SerializeField] private TrailRenderer trailR;
     private float driftRecoveryTimer = 0f;
-    //private float lastDriftSteerInput = 0f;
     [HideInInspector] public Vector2 currentDirection;
 
     private bool canAccelerate = true;
@@ -113,7 +112,7 @@ public class DASPlayerController : SubGamePlayerController
             trailR.emitting = false;
         }
 
-        if (isSteering && !isDrifting && maxSpeed == baseMaxSpeed)
+        if (isSteering && !isDrifting && maxSpeed <= baseMaxSpeed)
         {
             carRigidBody.linearVelocity *=
                 1f - steerBrakeStrength * Time.fixedDeltaTime * Mathf.Abs(steerInput);
