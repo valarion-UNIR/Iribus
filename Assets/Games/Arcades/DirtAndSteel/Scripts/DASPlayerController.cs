@@ -189,8 +189,11 @@ public class DASPlayerController : SubGamePlayerController
     {
         float timer = 0f;
 
+        // Asumiendo que transform.forward es (0, 0, 1), entonces usa la rotación del objeto para obtener forward en 2D
+        Vector2 forwardDirection = transform.up.normalized; // Usualmente es 'up' en sprites 2D
+
+        Vector2 targetVelocity = forwardDirection * (carRigidBody.linearVelocity.magnitude * velocityMultiplier);
         Vector2 originalVelocity = carRigidBody.linearVelocity;
-        Vector2 targetVelocity = originalVelocity * velocityMultiplier;
 
         canAccelerate = false;
 
@@ -208,6 +211,8 @@ public class DASPlayerController : SubGamePlayerController
         carRigidBody.linearVelocity = targetVelocity;
         canAccelerate = true;
     }
+
+
 
     void KillOrthogonalVelocity()
     {
@@ -257,5 +262,15 @@ public class DASPlayerController : SubGamePlayerController
     public void SetBaseMaxSpeed()
     {
         maxSpeed = baseMaxSpeed;
+    }
+
+    public void ResetPlayer()
+    {
+        canAccelerate = true;
+
+        carRigidBody.linearVelocity = Vector2.zero;
+        carRigidBody.angularVelocity = 0f;
+
+        StopAllCoroutines();
     }
 }

@@ -12,8 +12,7 @@ public class DASCollisionable : MonoBehaviour
         if (collision.tag == "Player")
         {
             DASGameManager.Instance.AddRaceTime(addRaceTimeAmmount);
-            Destroy(this);
+            enabled = false;
         }
-
     }
 }

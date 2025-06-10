@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 306480278027001484}
   - component: {fileID: 960470399651390488}
-  - component: {fileID: 6776801370639609730}
-  - component: {fileID: 2707896864961351188}
-  - component: {fileID: 1805730491204282613}
+  - component: {fileID: 6354530386888155164}
+  - component: {fileID: 3839926139870874649}
   m_Layer: 22
   m_Name: Lap Check
   m_TagString: Untagged
@@ -90,20 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6776801370639609730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5270422825872009622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ead1c6ad123a5e49adfbc2a314f05c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lapManager: {fileID: 0}
---- !u!61 &2707896864961351188
+--- !u!61 &6354530386888155164
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1805730491204282613
+--- !u!114 &3839926139870874649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5270422825872009622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11d4a3f241413945ad6d6e909dd1065, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ead1c6ad123a5e49adfbc2a314f05c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addRaceTimeAmmount: 5
+  lapManager: {fileID: 0}
+  addRaceTimeAmmount: 4

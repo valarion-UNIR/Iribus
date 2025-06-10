@@ -11,6 +11,8 @@ public class DASGameManager : SubGamePlayerController
     [SerializeField] private DASCameraBehavior cameraBehavior;
     [SerializeField] private DASPlayerController playerController;
 
+    [SerializeField] private GameObject LapChecksParent;
+
     [SerializeField] private float raceInitTime;
     private float raceTimer;
 
@@ -31,14 +33,14 @@ public class DASGameManager : SubGamePlayerController
     {
         raceTimer = raceInitTime;
     }
-
-
     void Update()
     {
         if (Input.DirtAndSteel.Restart.IsPressed())
             RestartRace();
 
         raceTimer -= Time.deltaTime;
+        if (raceTimer <= 0f)
+            RestartRace();
 
         FormatTimer();
     }
@@ -79,9 +81,14 @@ public class DASGameManager : SubGamePlayerController
     {
         raceTimer = raceInitTime;
 
+        foreach (Transform lapCheck in LapChecksParent.transform)
+        {
+            lapCheck.GetComponent<DASLapCheck>().enabled = true;
+        }
+
         playerController.transform.position = playerInitPosition;
         playerController.transform.rotation = playerInitRotation;
-        playerController.carRigidBody.linearVelocity = Vector2.zero;
-        playerController.carRigidBody.angularVelocity = 0f;
+
+        playerController.ResetPlayer();
     }
 }
