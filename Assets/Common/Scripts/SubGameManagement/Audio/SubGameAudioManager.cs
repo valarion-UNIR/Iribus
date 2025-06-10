@@ -13,5 +13,4 @@ public class SubGameAudioManager : AbstractSubGameObjectCreationManager<AudioSou
     {
         return new AudioSourcePool(subgame);
     }
-
 }

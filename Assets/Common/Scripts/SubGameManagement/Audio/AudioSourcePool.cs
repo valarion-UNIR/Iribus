@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class AudioSourcePool
 {
@@ -37,7 +38,19 @@ public class AudioSourcePool
         }
         else
         {
-            throw new NotImplementedException();
+            var camera = Camera.main;
+            var template = camera.GetComponentsInChildren<AudioSource>().Where(c => c.CompareTag(TagsIribus.Speakers)).FirstOrDefault();
+            if (template == null)
+            {
+                var speakers = new GameObject("Speakers");
+                speakers.tag = TagsIribus.Speakers;
+                speakers.transform.SetParent(camera.transform, false);
+                template = speakers.AddComponent<AudioSource>();
+            }
+            audioSources.Add(template);
+            var ret = UnityEngine.Object.Instantiate(template, Vector3.zero, Quaternion.identity, template.transform);
+            audioSources.Add(ret);
+            return ret;
         }
     }
 
@@ -76,6 +89,7 @@ public class AudioSourcePool
         source.loop = true;
 
         source.volume *= volumeScale;
+        source.Play();
 
         return new PlayingAudio(pool, coroutinesManager, source, volumeScale: volumeScale);
     }

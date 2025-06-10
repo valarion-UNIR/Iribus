@@ -1,7 +1,6 @@
 using Eflatun.SceneReference;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -26,7 +25,7 @@ public class SubGameScreen : MonoBehaviour
     private MeshRenderer meshRenderer;
     private SubGameInteractable interactable;
     private RenderTexture renderTexture;
-    private Material material;
+    private Material originalMaterial;
     
     // Properties for external access
     public AudioSource AudioSourceTemplate => audioSourceTemplate;
@@ -69,6 +68,7 @@ public class SubGameScreen : MonoBehaviour
 
     private static async Awaitable LoadSceneInner(SceneReference newScene, SceneReference loadingScene, LocalPhysicsMode physics, Awaitable currentSceneLoading, SubGameScreen screen)
     {
+        // Wait for last scene load
         if (currentSceneLoading != null)
             await currentSceneLoading;
 
@@ -103,29 +103,29 @@ public class SubGameScreen : MonoBehaviour
 
     private void InitializeFromScene(SceneReference newScene, bool resetSceneLoading)
     {
+        // Set properties
         sceneReference = newScene;
         scene = newScene.LoadedScene;
+
+        // Find scene camera
         sceneCamera = scene.GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
+
+        // Create render texture from camera and assign it
         if (renderTexture != null)
             renderTexture.Release();
-        if (material == null)
-            material = meshRenderer.material;
-        renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
-        meshRenderer.material = new Material(material) { mainTexture = renderTexture };
+        sceneCamera.targetTexture = renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
 
-        sceneCamera.targetTexture = renderTexture;
+        // Create material from render texture and assign it to MeshRender
+        if (originalMaterial == null)
+            originalMaterial = meshRenderer.material;
+        meshRenderer.material = new Material(originalMaterial) { mainTexture = renderTexture };
 
+        // Disable scene audio listeners
         foreach (var listener in scene.GetSceneComponents<AudioListener>())
             listener.enabled = false;
 
+        // Reset the scene loading variable if needed
         if (resetSceneLoading)
             sceneLoading = null;
     }
-
-}
-
-public static class ScreenExtensions
-{
-    public static IEnumerable<T> GetSceneComponents<T>(this Scene scene, bool includeInactive = true)
-        => scene.GetRootGameObjects().SelectMany(c => c.GetComponents<T>().Concat(c.GetComponentsInChildren<T>(includeInactive)));
 }
