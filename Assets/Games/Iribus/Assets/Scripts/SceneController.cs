@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Eflatun.SceneReference;
 
 public class SceneController : MonoBehaviour
 {
     private Animator transicionAnimator;
+    [SerializeField] private SceneReference sceneReference;
 
     public static SceneController Instance { get; private set; }
 
@@ -39,7 +41,8 @@ public class SceneController : MonoBehaviour
         {
             yield return new WaitForSeconds(1.5f);
         }
-        SceneManager.LoadScene(escena);
+        SubGameSceneManager.LoadScene(SubGame.Iribus, sceneReference, null, LocalPhysicsMode.None);
+        //SceneManager.LoadScene(escena);
     }
 
     private void PlayAnimacionTransicion(int transicion)

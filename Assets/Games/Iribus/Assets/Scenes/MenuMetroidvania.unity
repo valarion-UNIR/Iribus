@@ -1703,6 +1703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d16e165b3583247baefa06cc4c94e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneReference:
+    asset: {fileID: 102900000, guid: 3e637cf02392a7640a565cbeb8111e58, type: 3}
+    guid: 3e637cf02392a7640a565cbeb8111e58
 --- !u!4 &1418524904
 Transform:
   m_ObjectHideFlags: 0
@@ -1780,7 +1783,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 2
+  m_RendererIndex: 3
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1844,8 +1847,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0.5428329
+    height: 0.7164179
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
