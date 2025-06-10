@@ -11,17 +11,24 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SubGameInteractable))]
 public class SubGameScreen : MonoBehaviour
 {
-    private SubGameInteractable interactable;
-    private AudioSource audioSourceTemplate;
-
-    private SceneReference sceneReference;
+    private static Awaitable sceneLoadingStatic;
     private Awaitable sceneLoading;
-    private MeshRenderer meshRenderer;
-    private Material material;
-    private Scene scene;
-    private Camera sceneCamera;
-    private RenderTexture renderTexture;
 
+    // Scene properties
+    private SceneReference sceneReference;
+    private Scene scene;
+
+    // SubGame GameObjects
+    private Camera sceneCamera;
+
+    // Real world GameObjects
+    private AudioSource audioSourceTemplate;
+    private MeshRenderer meshRenderer;
+    private SubGameInteractable interactable;
+    private RenderTexture renderTexture;
+    private Material material;
+    
+    // Properties for external access
     public AudioSource AudioSourceTemplate => audioSourceTemplate;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,52 +37,57 @@ public class SubGameScreen : MonoBehaviour
         interactable = GetComponent<SubGameInteractable>();
         SubGameScreenManager.instance.Register(interactable.SubGame, this);
 
+        // Speakers search
         audioSourceTemplate = GetComponentsInChildren<AudioSource>().Where(c => c.CompareTag("Speakers")).FirstOrDefault();
         if(audioSourceTemplate == null)
         {
-            Debug.LogWarning("No speakers found in hierarchy, creating one");
+            if (interactable.SubGame != SubGame.None)
+                Debug.LogWarning("No speakers found in hierarchy, creating one");
             var speakers = new GameObject("Speakers");
             speakers.transform.SetParent(transform, false);
             audioSourceTemplate = speakers.AddComponent<AudioSource>();
         }
 
+        // Renderer search
         meshRenderer = GetComponentsInChildren<MeshRenderer>().Where(c => c.CompareTag(TagsIribus.Screen)).FirstOrDefault();
         if (meshRenderer == null)
         {
-            Debug.LogError("No screen found in hierarchy");
+            if(interactable.SubGame != SubGame.None)
+                Debug.LogError("No screen found in hierarchy");
             return;
         }
 
-        meshRenderer.material.mainTexture = renderTexture;
-        sceneReference = SubGameDataManagerSingleton.Data[interactable.SubGame].MainScene;
+        var sceneReference = SubGameDataManagerSingleton.Data[interactable.SubGame].MainScene;
         LoadScene(sceneReference, physics: LocalPhysicsMode.Physics2D | LocalPhysicsMode.Physics3D);
     }
 
-    public void LoadScene(SceneReference newScene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
-        => sceneLoading = LoadSceneInner(newScene, loadingScene, physics, sceneLoading);
+    public Awaitable LoadScene(SceneReference newScene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
+        => sceneLoading = LoadSceneInner(newScene, loadingScene, physics, sceneLoading, this);
 
-    private async Awaitable LoadSceneInner(SceneReference newScene, SceneReference loadingScene, LocalPhysicsMode physics, Awaitable currentSceneLoading)
+    public static Awaitable LoadSceneStatic(SceneReference newScene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
+        => sceneLoadingStatic = LoadSceneInner(newScene, loadingScene, physics, sceneLoadingStatic, null);
+
+    private static async Awaitable LoadSceneInner(SceneReference newScene, SceneReference loadingScene, LocalPhysicsMode physics, Awaitable currentSceneLoading, SubGameScreen screen)
     {
         if (currentSceneLoading != null)
-            await sceneLoading;
+            await currentSceneLoading;
 
         // Ensure running in main thread
         await Awaitable.MainThreadAsync();
 
-        var previousScene = scene;
+        var previousScene = screen != null ? (Scene?)screen.scene : null;
 
         // Load "loading" scene if it exists
         if (loadingScene != null)
         {
             await SceneManager.LoadSceneAsync(loadingScene.Name, new LoadSceneParameters(LoadSceneMode.Additive, LocalPhysicsMode.Physics2D | LocalPhysicsMode.Physics3D));
-            sceneReference = loadingScene;
-            scene = newScene.LoadedScene;
-            InitializeFromScene();
+            if(screen != null)
+                screen.InitializeFromScene(loadingScene, false);
         }
 
         // Unload previous scene if it exists
-        if (!string.IsNullOrWhiteSpace(previousScene.name))
-            await SceneManager.UnloadSceneAsync(previousScene);
+        if (!string.IsNullOrWhiteSpace(previousScene?.name))
+            await SceneManager.UnloadSceneAsync(previousScene.Value);
 
         // Load new scene
         await SceneManager.LoadSceneAsync(newScene.Name, new LoadSceneParameters(LoadSceneMode.Additive, physics));
@@ -85,26 +97,15 @@ public class SubGameScreen : MonoBehaviour
             await SceneManager.UnloadSceneAsync(loadingScene.LoadedScene);
 
         // Initialize 
+        if (screen != null)
+            screen.InitializeFromScene(newScene, true);
+    }
+
+    private void InitializeFromScene(SceneReference newScene, bool resetSceneLoading)
+    {
         sceneReference = newScene;
         scene = newScene.LoadedScene;
-        InitializeFromScene();
-
-        sceneLoading = null;
-    }
-
-    private void SceneManager_sceneLoaded(Scene loadedScene, LoadSceneMode mode)
-    {
-        if(loadedScene.name == sceneReference.Name)
-        {
-            scene = loadedScene;
-            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-            InitializeFromScene();
-        }
-    }
-
-    private void InitializeFromScene()
-    {
-        sceneCamera = GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
+        sceneCamera = scene.GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
         if (renderTexture != null)
             renderTexture.Release();
         if (material == null)
@@ -114,10 +115,17 @@ public class SubGameScreen : MonoBehaviour
 
         sceneCamera.targetTexture = renderTexture;
 
-        foreach (var listener in GetSceneComponents<AudioListener>())
+        foreach (var listener in scene.GetSceneComponents<AudioListener>())
             listener.enabled = false;
+
+        if (resetSceneLoading)
+            sceneLoading = null;
     }
 
-    private IEnumerable<T> GetSceneComponents<T>(bool includeInactive = true)
+}
+
+public static class ScreenExtensions
+{
+    public static IEnumerable<T> GetSceneComponents<T>(this Scene scene, bool includeInactive = true)
         => scene.GetRootGameObjects().SelectMany(c => c.GetComponents<T>().Concat(c.GetComponentsInChildren<T>(includeInactive)));
 }

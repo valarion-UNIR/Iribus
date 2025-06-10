@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 
 public static class SubGameSceneManager
 {
-    public static void LoadScene(SubGame subGame, SceneReference scene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
-        => SubGameScreenManager.instance[subGame].LoadScene(scene, loadingScene, physics);
+    public static Awaitable LoadScene(SubGame subGame, SceneReference scene, SceneReference loadingScene = null, LocalPhysicsMode physics = LocalPhysicsMode.None)
+    {
+        var screen = SubGameScreenManager.instance[subGame];
+        if (screen != null)
+            return SubGameScreenManager.instance[subGame].LoadScene(scene, loadingScene, physics);
+        else
+            return SubGameScreen.LoadSceneStatic(scene, loadingScene, physics);
+    }
 }
