@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SubGameInteractable))]
@@ -109,11 +110,15 @@ public class SubGameScreen : MonoBehaviour
 
         // Find scene camera
         sceneCamera = scene.GetSceneComponents<Camera>().Where(c => c.CompareTag("MainCamera")).First();
+        sceneCamera.TryGetComponent<PixelPerfectCamera>(out var pixelCamera);
 
         // Create render texture from camera and assign it
         if (renderTexture != null)
             renderTexture.Release();
-        sceneCamera.targetTexture = renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        if (pixelCamera != null)
+            sceneCamera.targetTexture = renderTexture = new RenderTexture(pixelCamera.refResolutionX, pixelCamera.refResolutionY, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        else
+            sceneCamera.targetTexture = renderTexture = new RenderTexture(sceneCamera.pixelWidth, sceneCamera.pixelHeight, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
 
         // Create material from render texture and assign it to MeshRender
         if (originalMaterial == null)
