@@ -47,7 +47,7 @@ public class StackerTile : MonoBehaviour
                 return;
             }
 
-            GameObject _lostTile = Instantiate(lostTile);
+            GameObject _lostTile = Instantiate(lostTile, transform);
             _lostTile.transform.localScale = new Vector3(lostLength, transform.localScale.y, transform.localScale.z);
             _lostTile.transform.position = new Vector3(transform.position.x
                 + (distance > 0 ? 1 : -1) * (transform.localScale.x - lostLength) / 2,

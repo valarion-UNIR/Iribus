@@ -1,6 +1,8 @@
+using Eflatun.SceneReference;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StackerSpawner : SubGamePlayerController
@@ -43,6 +45,9 @@ public class StackerSpawner : SubGamePlayerController
     public bool gameOverBool;
     private Vector3 initialCameraPosition;
 
+    [SerializeField] private Camera cameraToMove;
+    [SerializeField] private Canvas canvas;
+
     public static StackerSpawner instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Awake()
@@ -55,7 +60,7 @@ public class StackerSpawner : SubGamePlayerController
             Destroy(gameObject);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         baseSpeedTile = moveSpeedTiles;
         baseFailThresholdTiles = failThresholdTiles;
@@ -64,14 +69,13 @@ public class StackerSpawner : SubGamePlayerController
         LocatePrize(mediumPrizeSign, mpNumber);
         LocatePrize(highPrizeSign, hpNumber);
 
-        initialCameraPosition = FindFirstObjectByType<Camera>().transform.position;
+        initialCameraPosition = cameraToMove.transform.position;
         stackOfTiles = new List<GameObject>();
         hasGameEnded = false;
         hasGameStarted = true;
         modifier = 1;
         colorIndex = 0;
         stackOfTiles.Add(bottomTile);
-        //stackOfTiles[0].GetComponent<MeshRenderer>().material.color = listColors[0];
         CreateTile();
     }
 
@@ -106,7 +110,7 @@ public class StackerSpawner : SubGamePlayerController
     IEnumerator MoveCamera()
     {
         float moveLenght = tile.transform.localScale.y;
-        GameObject camera = FindFirstObjectByType<Camera>().gameObject;
+        GameObject camera = cameraToMove.gameObject;
         while (moveLenght > 0)
         {
             float stepLenght = 0.1f;
@@ -134,7 +138,7 @@ public class StackerSpawner : SubGamePlayerController
         GameObject activeTile;
         GameObject previousTile = stackOfTiles[stackOfTiles.Count - 1];
 
-        activeTile = Instantiate(tile);
+        activeTile = Instantiate(tile,transform);
         stackOfTiles.Add(activeTile);
 
         if (stackOfTiles.Count > 2)
@@ -167,11 +171,22 @@ public class StackerSpawner : SubGamePlayerController
     public void GameOver()
     {
         hasGameEnded = true;
+        StartCoroutine(CorroutineEndGame());
+    }
+
+    IEnumerator CorroutineEndGame()
+    {
+        if(canvas.TryGetComponent(out StackerGameMenu sgm))
+        {
+            sgm.GameOver();
+        }
+        yield return new WaitForSeconds(2f);
+        SubGameSceneManager.LoadScene(SubGame.Stacker, SceneReference.FromScenePath(gameObject.scene.path));
     }
 
     private void LocatePrize(GameObject sign, int signNumber)
     {
-        GameObject obj = Instantiate(sign);
+        GameObject obj = Instantiate(sign, transform);
         obj.transform.position = new Vector3(0, (signNumber * 2) - 1,0.5f);
         if (goalsInMovement)
         {

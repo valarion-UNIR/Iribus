@@ -96,7 +96,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
     - _BumpScale: 1
-    - _CellShading: 251
+    - _CellShading: 255
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Color_Threshold: 0.1
