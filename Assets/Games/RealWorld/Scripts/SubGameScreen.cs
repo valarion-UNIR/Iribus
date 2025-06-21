@@ -76,7 +76,7 @@ public class SubGameScreen : MonoBehaviour
         // Ensure running in main thread
         await Awaitable.MainThreadAsync();
 
-        var previousScene = screen != null ? (Scene?)screen.scene : null;
+        var previousScene = screen != null ? (Scene?)screen.scene : SceneManager.GetActiveScene();
 
         // Load "loading" scene if it exists
         if (loadingScene != null)
