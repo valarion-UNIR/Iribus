@@ -87,11 +87,11 @@ public class SubGameScreen : MonoBehaviour
         }
 
         // Unload previous scene if it exists
-        if (!string.IsNullOrWhiteSpace(previousScene?.name))
+        if (!string.IsNullOrWhiteSpace(previousScene?.name) && SceneManager.loadedSceneCount > 1)
             await SceneManager.UnloadSceneAsync(previousScene.Value);
 
         // Load new scene
-        await SceneManager.LoadSceneAsync(newScene.Name, new LoadSceneParameters(LoadSceneMode.Additive, physics));
+        await SceneManager.LoadSceneAsync(newScene.Name, new LoadSceneParameters(SceneManager.loadedSceneCount > 1 ? LoadSceneMode.Additive : LoadSceneMode.Single, physics));
 
         // Unload "loading" scene if it exists
         if (loadingScene != null)
