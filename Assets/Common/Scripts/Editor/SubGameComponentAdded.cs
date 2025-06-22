@@ -1,4 +1,5 @@
-﻿using Unity.Cinemachine;
+﻿using System.Linq;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -13,6 +14,29 @@ public class SubGameComponentAdded
     static SubGameComponentAdded()
     {
         ObjectFactory.componentWasAdded += ObjectFactory_componentWasAdded;
+        ObjectChangeEvents.changesPublished += ObjectChangeEvents_changesPublished;
+    }
+
+    private static void ObjectChangeEvents_changesPublished(ref ObjectChangeEventStream stream)
+    {
+        for (int i = 0; i < stream.length; ++i)
+        {
+            var type = stream.GetEventType(i);
+            if (type != ObjectChangeKind.CreateGameObjectHierarchy)
+                continue;
+
+            stream.GetCreateGameObjectHierarchyEvent(i, out var createGameObjectHierarchyEvent);
+            var obj = EditorUtility.InstanceIDToObject(createGameObjectHierarchyEvent.instanceId) as GameObject;
+            foreach (var child in new[] { obj.transform }.Concat(obj.GetComponentsInChildren<Transform>()))
+            {
+                foreach (var component in child.gameObject.GetComponents<Component>())
+                {
+                    ObjectFactory_componentWasAdded(component);
+                }
+            }
+            break;
+
+        }
     }
 
     private static void ObjectFactory_componentWasAdded(Component obj)
