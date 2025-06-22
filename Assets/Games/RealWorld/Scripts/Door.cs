@@ -34,7 +34,7 @@ public class Door : MonoBehaviour, IInteract
             if (currentRotation > 1)
                 currentRotation = 1;
 
-            pivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(0, openRotation, Mathf.Min(currentRotation, 1)), 0);
+            pivot.transform.rotation = Quaternion.Euler(0, Mathf.Sign(transform.localScale.z) * Mathf.Lerp(0, openRotation, Mathf.Min(currentRotation, 1)), 0);
         }
     }
 
