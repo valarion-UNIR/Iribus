@@ -74,6 +74,7 @@ public class PachinkoManager : SubGamePlayerController
             GameObject instantiatedBall = Instantiate(ball, throwPoint.position, Quaternion.identity);
             instantiatedBall.transform.SetParent(throwPoint);
             instantiatedBall.transform.localScale = throwPoint.transform.localScale/2;
+            instantiatedBall.GetComponent<Rigidbody>().mass = transform.localScale.x;
             return instantiatedBall;
         }
         else
@@ -118,7 +119,7 @@ public class PachinkoManager : SubGamePlayerController
         {
             float inputH = Input.Pachinko.Move.ReadValue<Vector2>().x;
             Vector3 direccion = (rightLimit.position - leftLimit.position).normalized;
-            Vector3 movimiento = direccion * inputH * ballLocationMoveSpeed * Time.deltaTime;
+            Vector3 movimiento = direccion * inputH * (ballLocationMoveSpeed * transform.localScale.x) * Time.deltaTime;
             go.transform.position += movimiento;
 
             Vector3 inicioToPos = go.transform.position - leftLimit.position;
