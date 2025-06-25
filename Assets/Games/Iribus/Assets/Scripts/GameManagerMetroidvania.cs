@@ -21,12 +21,23 @@ public class GameManagerMetroidvania : MonoBehaviour
     [SerializeField] private ParticleSpawner particleSpawner;
     [SerializeField] private TextoEscribir dialogoPrueba;
 
+    [SerializeField] private GameObject dialogoCaja;
+    [SerializeField] private TextoEscribir dialogoTexto;
+
+    [SerializeField] private DialogueManager dialogueManager;
+
+    [SerializeField] private Canvas uIEstados;
+    [SerializeField] private Canvas uIDialogos;
+
     private Vector2 velPlayer;
 
     private GameObject playerInstance;
 
     private CheckPointManager checkPManager;
     private CinemachineCamera currentActiveCamera;
+
+    private CinemachineCamera dialogoCamera;
+    private CinemachineCamera onHoldCamera;
 
     private int entradaUsada;
 
@@ -42,16 +53,6 @@ public class GameManagerMetroidvania : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Start()
@@ -93,7 +94,7 @@ public class GameManagerMetroidvania : MonoBehaviour
         {
             // ACTIVAR CINEMATICA DE INICIO
             Debug.Log("No existe guardado");
-            progreso = new ProgresoMetroidvania(8, 0);
+            progreso = new ProgresoMetroidvania(1, 0);
             GuardarProgreso();
 
             sceneController.CargarEscenaMetroidvania(progreso.escena, 0, false);
@@ -182,10 +183,11 @@ public class GameManagerMetroidvania : MonoBehaviour
 
     public void SpawnPlayer(Transform spawnTransform)
     {
-        playerInstance = Instantiate(playerPrefab, spawnTransform.position, Quaternion.identity);
+        playerInstance = Instantiate(playerPrefab, spawnTransform.position, Quaternion.identity, spawnTransform);
+        playerInstance.transform.parent = null;
         if (currentActiveCamera.Follow != null)
         {
-            Debug.Log("HOLA ME CAMUI");
+            Debug.Log("Spawn player y seguir");
             currentActiveCamera.Follow = playerInstance.transform;
         }
 
@@ -198,7 +200,21 @@ public class GameManagerMetroidvania : MonoBehaviour
 
     void EnterState(GameState state)
     {
-
+        switch(state)
+        {
+            case GameState.Menu:
+                if(playerInstance != null)
+                {
+                    playerInstance.GetComponent<PlayerMovement>().BlockMovement(true);
+                }
+                break;
+            case GameState.Playing:
+                if (playerInstance != null)
+                {
+                    playerInstance.GetComponent<PlayerMovement>().BlockMovement(false);
+                }
+                break;
+        }
     }
     void ExitState(GameState state)
     {
@@ -219,14 +235,14 @@ public class GameManagerMetroidvania : MonoBehaviour
         return progreso.checkpoint;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void LoadPlayerOnScene()
     {
-        Debug.Log($"Escena: {scene.name} (modo: {mode})");
-
         checkPManager = FindAnyObjectByType<CheckPointManager>();
 
         if(checkPManager != null)
         {
+            uIEstados.worldCamera = checkPManager.GetSceneCamera();
+            uIDialogos.worldCamera = checkPManager.GetSceneCamera();
             RespawnPlayer();
         }
     }
@@ -257,5 +273,47 @@ public class GameManagerMetroidvania : MonoBehaviour
     public ParticleSpawner GetParticleSpawner()
     {
         return particleSpawner;
+    }
+
+    public DialogueManager GetDialogueManager()
+    {
+        return dialogueManager;
+    }
+
+    public void StartDialogue(DialogoConcreto dialogo, CinemachineCamera dialogoCamera)
+    {
+        if(CurrentState != GameState.Playing)
+        {
+            Debug.Log("No se puede iniciar dialogo");
+            return;
+        }
+
+        ChangeState(GameState.Menu);
+
+        this.dialogoCamera = dialogoCamera;
+
+        onHoldCamera = checkPManager.GetActiveCMCamera();
+        onHoldCamera.enabled = false;
+        dialogoCamera.enabled = true;
+
+        dialogoCaja.SetActive(true);
+        dialogoTexto.SetDialogoEscribir(dialogo);
+        dialogoTexto.EscribirDialogo();
+    }
+
+    public void EndDialogue()
+    {
+        if (CurrentState != GameState.Menu)
+        {
+            Debug.Log("No se puede terminar dialogo");
+            return;
+        }
+
+        dialogoCaja.SetActive(false);
+
+        dialogoCamera.enabled = false;
+        onHoldCamera.enabled = true;
+
+        ChangeState(GameState.Playing);
     }
 }

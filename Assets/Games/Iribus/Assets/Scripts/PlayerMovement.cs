@@ -3,46 +3,71 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public float groundAcceleration = 1f;
-    public float airAcceleration = 0.5f;
-    public float stopDrag = 10f;
-    public float moveDrag = 0f;
+    //MOVIMIENTO SUELO
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float groundAcceleration = 1f;
+    [SerializeField] private float airAcceleration = 0.5f;
+    [SerializeField] private float stopDrag = 10f;
+    [SerializeField] private float moveDrag = 0f;
 
-    public float jumpForce = 18f;
-    public float fallMultiplier = 6f;
-    public float lowJumpMultiplier = 10f;
-
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
-
-    public float groundAccelerationTime = 0.1f; 
-
-    private Rigidbody2D rb;
-    private float moveInput;
-    private bool isGrounded;
-    private bool jumpPressed;
+    //SALTO
+    [SerializeField] private float jumpForce = 18f;
+    [SerializeField] private float fallMultiplier = 6f;
+    [SerializeField] private float lowJumpMultiplier = 10f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundAccelerationTime = 0.1f;
+    [SerializeField] private float maxFallSpeed = 20f;
 
     private float coyoteTime = 0.1f;
     private float coyoteCounter;
     private float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
 
-    public float maxFallSpeed = 20f;
+    //SALTO BOMBA O GROUND POUND PARA LOS AMIGOS
+    [SerializeField] private float groundPoundImpulsoInicial = 20f;
+    [SerializeField] private float groundPoundFallMult = 8f;
+    [SerializeField] private bool groundPoundeadaDeManual = false;
+    [SerializeField] private float groundPoundTime = 0.25f;
+    [SerializeField] private float groundPoundJumpForce = 24f;
 
-    public float groundPoundImpulsoInicial = 20f;
-    public float groundPoundFallMult = 8f;
-    public bool groundPoundeadaDeManual = false;
     private bool particulasGroundPound = false;
-    public float groundPoundTime = 0.25f;
     private float groundPoundCounter;
-    public float groundPoundJumpForce = 24f;
+
+    //ATACAR
+    [SerializeField] GameObject attackHitbox;
+    [SerializeField] private float attackDuration = 0.3f;
+    [SerializeField] private float attackDelay = 0.3f;
+
+    private bool isAttacking = false;
+    private float attackTimer = 0f;
+    private float attackDelayTimer = 0f;
+
+    //SER GOLPEADO
+    [SerializeField] private float hurtSideForce = 8f;
+    [SerializeField] private float hurtUpForce = 7f;
+    [SerializeField] private float hurtNoControlTime = 0.15f;
+    [SerializeField] private float iFrames = 0.5f;
+
+    private bool gotHurt = false;
+    private float hurtTimer = 0f;
+    private float iFramesTimer = 0f;
+
+    //GENERAL
+    [SerializeField] private ParticleSystem particulasHumo;
+    [SerializeField] private ParticleSystem particulasHumo2;
+
+    [SerializeField] private InteractorMV interactor;
 
     private Animator animator;
     private SpriteRenderer sprite;
-    [SerializeField] private ParticleSystem particulasHumo;
-    [SerializeField] private ParticleSystem particulasHumo2;
+    private Rigidbody2D rb;
+    private float moveInput;
+    private bool isGrounded;
+    private bool jumpPressed;
+
+    private bool blocked = false;
 
     void Start()
     {
@@ -50,15 +75,28 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.linearDamping = moveDrag;
+        attackHitbox.GetComponent<AtaqueHitbox>().pMovement = this;
     }
 
     void Update()
     {
+        if (blocked) return;
+
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
+        {
+            Debug.Log("Atacar");
+            StartAttack();
+        }
+
         moveInput = Input.GetAxisRaw("Horizontal");
-        if (moveInput > 0)
-            sprite.flipX = false;
-        else if (moveInput < 0)
-            sprite.flipX = true;
+
+        if (!isAttacking)
+        {
+            //if (moveInput > 0) sprite.flipX = false;
+            //else if (moveInput < 0) sprite.flipX = true;
+            if (moveInput > 0) transform.localScale = new Vector3(1, 1, 1);
+            else if (moveInput < 0) transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         if (Input.GetButtonDown("Jump"))
             jumpBufferCounter = jumpBufferTime;
@@ -94,6 +132,11 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerDie();
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            interactor.Interactuar();
+        }
     }
 
     private void GroundPoundear()
@@ -108,9 +151,33 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isAttacking)
+        {
+            attackTimer -= Time.fixedDeltaTime;
+            if (attackTimer <= 0f)
+            {
+                attackHitbox.SetActive(false);
+
+                attackDelayTimer -= Time.fixedDeltaTime;
+                if (attackDelayTimer <= 0f)
+                {
+                    isAttacking = false;
+                    Debug.Log("Se acabo atacar");
+                }
+            }
+        }
+
         CheckGround();
-        Move();
-        BetterJump();
+        if (gotHurt)
+        {
+            hurtTimer -= Time.fixedDeltaTime;
+            if (hurtTimer <= 0f) gotHurt = false;
+        }
+        else
+        {
+            Move();
+        }
+        JumpController();
 
         if (jumpPressed)
         {
@@ -139,6 +206,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetBool("saltando", !isGrounded);
+    }
+
+    private void StartAttack()
+    {
+        isAttacking = true;
+        attackTimer = attackDuration;
+        attackDelayTimer = attackDelay;
+        //animator.SetTrigger("Attack");
+        attackHitbox.SetActive(true);
     }
 
     void Move()
@@ -177,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void BetterJump()
+    void JumpController()
     {
         if (rb.linearVelocity.y < 0)
             rb.gravityScale = fallMultiplier;
@@ -202,5 +278,41 @@ public class PlayerMovement : MonoBehaviour
         GameManagerMetroidvania.Instance.GetParticleSpawner().SpawnByIndex(0, transform.localPosition, transform.rotation);
         GameManagerMetroidvania.Instance.PlayerMuerte();
         Destroy(gameObject);
+    }
+
+    public void GetHurt(Transform enemigo)
+    {
+        if (!gotHurt)
+        {
+            gotHurt = true;
+            hurtTimer = hurtNoControlTime;
+            rb.linearDamping = 0;
+            float dirToPlayer = enemigo.position.x - transform.position.x;
+            float moveDir = Mathf.Sign(dirToPlayer);
+
+            Vector2 forcePupa = new Vector2(hurtSideForce * -moveDir, hurtUpForce);
+
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(forcePupa, ForceMode2D.Impulse);
+        }
+    }
+
+    public void ApplyKnockback(Vector3 direction, float force)
+    {
+        if (gotHurt) return;
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
+    }
+
+    public void BlockMovement(bool block)
+    {
+        if(block)
+        {
+            blocked = true;
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            blocked = false;
+        }
     }
 }

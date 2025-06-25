@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb34a1bfc9da1f44a3bf9ec87384e6e, type: 3}
   m_Name: DialogoConcreto
   m_EditorClassIdentifier: 
-  subGame: Iribus
+  subGame: Metroidvania
   skipeable: 0
   dialogos:
-  - dialogoTexto: You adentrate in the absolute disgrace
+  - dialogoTexto: Hello, how are you?
     dialogoVelocidad: 0.05
-  - dialogoTexto: Repent yourself or die duckling
+  - dialogoTexto: You are approaching the dark cave
     dialogoVelocidad: 0.05
-  - dialogoTexto: The Setul won't forgive you
+  - dialogoTexto: Yield or die
     dialogoVelocidad: 0.025

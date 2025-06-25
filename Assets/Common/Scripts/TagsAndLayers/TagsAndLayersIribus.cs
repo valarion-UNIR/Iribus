@@ -13,6 +13,8 @@ public static class TagsIribus
     public const string RealWorld_Interacter = "RealWorld Interacter";
     public const string SCKFloor = "SCKFloor";
     public const string Speakers = "Speakers";
+    public const string EnemigoMV = "EnemigoMV";
+    public const string InteractableMV = "InteractableMV";
 }
 public static class LayersIribus
 {

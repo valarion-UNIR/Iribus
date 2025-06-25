@@ -16,7 +16,6 @@ public class BolitaRojaEnemigo : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        player = GameManagerMetroidvania.Instance.GetPlayerTransform();
     }
 
     void FixedUpdate()
@@ -39,6 +38,7 @@ public class BolitaRojaEnemigo : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+            if(player == null) player = GameManagerMetroidvania.Instance.GetPlayerTransform();
             playerInRange = true;
     }
 

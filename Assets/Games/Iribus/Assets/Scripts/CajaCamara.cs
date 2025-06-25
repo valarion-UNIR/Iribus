@@ -7,6 +7,8 @@ public class CajaCamara : MonoBehaviour
     [SerializeField] private CinemachineCamera puntoDrc;
     [SerializeField] private bool vertical = false;
 
+    [SerializeField] CheckPointManager pointManager;
+
     //private void Start()
     //{
     //    if (puntoIzq == null)
@@ -32,11 +34,13 @@ public class CajaCamara : MonoBehaviour
                 {
                     puntoDrc.enabled = false;
                     puntoIzq.enabled = true;
+                    pointManager.SetActiveCMCamera(puntoIzq);
                 }
                 else
                 {
                     puntoIzq.enabled = false;
                     puntoDrc.enabled = true;
+                    pointManager.SetActiveCMCamera(puntoDrc);
                 }
             }
             else

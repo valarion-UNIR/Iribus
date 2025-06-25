@@ -21,6 +21,9 @@ public class TextoEscribir : MonoBehaviour
 
     [SerializeField]
     private float delayEscribir = 0.05f;
+
+    [SerializeField]
+    bool textoAutomatico;
     [SerializeField]
     private float waitText = 1f;
     [SerializeField]
@@ -29,15 +32,33 @@ public class TextoEscribir : MonoBehaviour
     [SerializeField]
     private TypingFinishedEvent OnTypingFinished;
 
-    private void Start()
+    private bool textoCompletado = false;
+
+    private void Awake()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
-        maxDialogues = dialogosAEscribir.dialogos.Length;
+        if(dialogosAEscribir != null) maxDialogues = dialogosAEscribir.dialogos.Length;
+    }
+
+    private void Update()
+    {
+        if(textoCompletado)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                CompleteSentence();
+            }
+        }
     }
 
     public void EscribirDialogo()
     {
-        textMeshPro.text = FindAnyObjectByType<DialogueManager>().GetDialogue(dialogosAEscribir.dialogos[index].dialogoTexto);
+        if (dialogosAEscribir == null)
+        {
+            Debug.Log("No dialogues que escribir");
+            return;
+        }
+        textMeshPro.text = GameManagerMetroidvania.Instance.GetDialogueManager().GetDialogue(dialogosAEscribir.dialogos[index].dialogoTexto);
         delayEscribir = dialogosAEscribir.dialogos[index].dialogoVelocidad;
         fullText = textMeshPro.text;
         textMeshPro.maxVisibleCharacters = 0;
@@ -46,6 +67,7 @@ public class TextoEscribir : MonoBehaviour
 
     private IEnumerator RevealText()
     {
+        textoCompletado = false;
 
         yield return new WaitForSeconds(waitText);
 
@@ -55,21 +77,41 @@ public class TextoEscribir : MonoBehaviour
 
             yield return new WaitForSeconds(delayEscribir);
         }
+        if (textoAutomatico)
+        {
+            yield return new WaitForSeconds(waitAutocompletable);
+            CompleteSentence();
+        }
 
-        yield return new WaitForSeconds(waitAutocompletable);
-        CompleteSentence();
+        textoCompletado = true;
     }
 
     public void CompleteSentence()
     {
         //textoAEscribir.text = texto;
         //Debug.Log("Terminada");   
-        OnTypingFinished?.Invoke(fullText);
+        //OnTypingFinished?.Invoke(fullText);
         index++;
         if(index == maxDialogues)
         {
+            ResetTextoEscribir();
+            GameManagerMetroidvania.Instance.EndDialogue();
             return;
         }
         EscribirDialogo();
+    }
+
+    public void ResetTextoEscribir()
+    {
+        textMeshPro.text = "";
+        index = 0;
+    }
+
+
+    public void SetDialogoEscribir(DialogoConcreto dialogo)
+    {
+        dialogosAEscribir = dialogo;
+        maxDialogues = dialogosAEscribir.dialogos.Length;
+        Debug.Log(maxDialogues);
     }
 }

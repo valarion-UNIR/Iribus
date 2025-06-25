@@ -1,10 +1,14 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CheckPointManager : MonoBehaviour
 {
     [SerializeField] private List<CheckPoint> checkPoints;
     [SerializeField] private List<CheckPoint> entradas;
+
+    [SerializeField] private Camera sceneMainCamera;
+    [SerializeField] private CinemachineCamera activeCamera;
 
     public CheckPoint GetCheckPoint(int index)
     {
@@ -16,4 +20,18 @@ public class CheckPointManager : MonoBehaviour
         return entradas[index];
     }
 
+    public Camera GetSceneCamera()
+    {
+        return sceneMainCamera;
+    }
+
+    public void SetActiveCMCamera(CinemachineCamera activeCamera)
+    {
+        this.activeCamera = activeCamera;
+    }
+
+    public CinemachineCamera GetActiveCMCamera()
+    {
+        return activeCamera;
+    }
 }

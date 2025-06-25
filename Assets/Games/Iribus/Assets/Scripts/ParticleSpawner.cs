@@ -14,16 +14,16 @@ public class ParticleSpawner : MonoBehaviour
             return;
         }
 
-        var instance = Instantiate(prefab, position, rotation);
-        StartCoroutine(DestroyWhenComplete(instance));
+        ParticleSystem instance = Instantiate(prefab, position, rotation);
+        //StartCoroutine(DestroyWhenComplete(instance));
     }
 
-    private IEnumerator DestroyWhenComplete(ParticleSystem ps)
-    {
-        while (ps != null && ps.IsAlive(true))
-            yield return null;
+    //private IEnumerator DestroyWhenComplete(ParticleSystem ps)
+    //{
+    //    while (ps != null && ps.IsAlive(true))
+    //        yield return null;
 
-        if (ps != null)
-            Destroy(ps.gameObject);
-    }
+    //    if (ps != null)
+    //        Destroy(ps.gameObject);
+    //}
 }

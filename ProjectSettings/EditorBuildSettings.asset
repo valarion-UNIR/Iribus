@@ -42,6 +42,6 @@ EditorBuildSettings:
     path: Assets/Games/Minigames/Stacker/Scenes/StackerMinigame.unity
     guid: d54f30ef00011d343934bd703d0f7e5d
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: a1f1417478abb3a4481f932fcedbff05, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: e06daaa37641164439938e43f52cdd1f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
