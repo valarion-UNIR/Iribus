@@ -168,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckGround();
+
         if (gotHurt)
         {
             hurtTimer -= Time.fixedDeltaTime;
@@ -228,9 +229,19 @@ public class PlayerMovement : MonoBehaviour
         float forceX = rb.mass * speedDiff * accelRate;
         rb.AddForce(Vector2.right * forceX, ForceMode2D.Force);
 
-        rb.linearDamping = (moveInput == 0 && isGrounded)
-            ? stopDrag
-            : moveDrag;
+        if(jumpPressed)
+        {
+            rb.linearDamping = moveDrag;
+        }
+        else
+        {
+            rb.linearDamping = (moveInput == 0 && isGrounded)
+                ? stopDrag
+                : moveDrag;
+        }
+
+        //Debug.Log(rb.linearDamping);
+        //if(jumpPressed) rb.linearDamping = moveDrag;
 
         if (Mathf.Abs(rb.linearVelocity.x) < 0.01f)
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -308,6 +319,7 @@ public class PlayerMovement : MonoBehaviour
         if(block)
         {
             blocked = true;
+            moveInput = 0;
             rb.linearVelocity = Vector2.zero;
         }
         else

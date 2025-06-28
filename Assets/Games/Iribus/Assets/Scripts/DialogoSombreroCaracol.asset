@@ -13,11 +13,28 @@ MonoBehaviour:
   m_Name: DialogoSombreroCaracol
   m_EditorClassIdentifier: 
   subGame: Metroidvania
-  skipeable: 0
+  loopeable: 0
+  nextIndex: 1
   dialogos:
-  - dialogoTexto: My hat is better than yours.
+  - dialogoTexto: I hate flowers, I'm not going to pick them up.
     dialogoVelocidad: 0.05
-  - dialogoTexto: Yeah, your hat sucks and it makes me sick.
+    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    skipeable: 1
+    autocompletable: 0
+  - dialogoTexto: So what if I can't go back in town? I rather stay here.
     dialogoVelocidad: 0.1
-  - dialogoTexto: I'd be sad if I was you, with that dumb hat... get a new one.
-    dialogoVelocidad: 0.025
+    spritePortrait: {fileID: 0}
+    skipeable: 1
+    autocompletable: 0
+  - dialogoTexto: Are you going to pick up flowers
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 21300000, guid: 0d751bf10b45eb245986d82723206cdd, type: 3}
+    skipeable: 1
+    autocompletable: 0
+  preguntaOcurre: 1
+  pregunta:
+    preguntaTexto: Are you going to pick up flowers like the rest?
+    respuestaVelocidad: 0.05
+    respuestaTexto1: I guess I'll have to
+    respuestaTexto2: Never, death to flowers
+    nextIndex2: 2

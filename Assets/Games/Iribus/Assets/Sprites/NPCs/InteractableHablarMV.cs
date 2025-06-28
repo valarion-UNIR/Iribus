@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -5,22 +6,35 @@ public class InteractableHablarMV : MonoBehaviour, IInteractMV
 {
     public GameObject GameObject => gameObject;
 
-    [SerializeField] DialogoConcreto dialogoNPC;
+    [SerializeField] List<DialogoConcreto> dialogoNPC;
     [SerializeField] CinemachineCamera dialogoCamera;
+
+    private int indexDialogos = 0;
 
     void Start()
     {
         Debug.Log("Start " + gameObject.name);
     }
 
-    void Update()
+    public void SetIndexDialogos(int indexDialogos)
     {
-        
+        this.indexDialogos = indexDialogos;
+    }
+
+    public int GetIndexDialogos()
+    {
+        return indexDialogos;
+    }
+
+    public DialogoConcreto GetDialogosByIndex(int index)
+    {
+        return dialogoNPC[index];
     }
 
     public void InteractMV()
     {
-        GameManagerMetroidvania.Instance.StartDialogue(dialogoNPC, dialogoCamera);
+        Debug.Log(indexDialogos);
+        GameManagerMetroidvania.Instance.StartDialogue(dialogoNPC[indexDialogos], dialogoCamera, this);
     }
 
     public void Highlight()

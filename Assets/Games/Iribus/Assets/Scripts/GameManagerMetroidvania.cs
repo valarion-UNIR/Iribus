@@ -19,12 +19,12 @@ public class GameManagerMetroidvania : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoSave;
 
     [SerializeField] private ParticleSpawner particleSpawner;
-    [SerializeField] private TextoEscribir dialogoPrueba;
+    [SerializeField] private DialogoManager dialogoPrueba;
 
     [SerializeField] private GameObject dialogoCaja;
-    [SerializeField] private TextoEscribir dialogoTexto;
+    [SerializeField] private DialogoManager dialogoTexto;
 
-    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private LanguageManager dialogueManager;
 
     [SerializeField] private Canvas uIEstados;
     [SerializeField] private Canvas uIDialogos;
@@ -74,11 +74,11 @@ public class GameManagerMetroidvania : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            GetComponent<DialogueManager>().SetLanguage("ja");
+            GetComponent<LanguageManager>().SetLanguage("ja");
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log(GetComponent<DialogueManager>().GetDialogue("Hello wellers"));
+            Debug.Log(GetComponent<LanguageManager>().GetDialogue("Hello wellers"));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -275,12 +275,12 @@ public class GameManagerMetroidvania : MonoBehaviour
         return particleSpawner;
     }
 
-    public DialogueManager GetDialogueManager()
+    public LanguageManager GetDialogueManager()
     {
         return dialogueManager;
     }
 
-    public void StartDialogue(DialogoConcreto dialogo, CinemachineCamera dialogoCamera)
+    public void StartDialogue(DialogoConcreto dialogo, CinemachineCamera dialogoCamera, InteractableHablarMV npc)
     {
         if(CurrentState != GameState.Playing)
         {
@@ -297,8 +297,9 @@ public class GameManagerMetroidvania : MonoBehaviour
         dialogoCamera.enabled = true;
 
         dialogoCaja.SetActive(true);
-        dialogoTexto.SetDialogoEscribir(dialogo);
-        dialogoTexto.EscribirDialogo();
+        Debug.Log(npc.gameObject.name);
+        dialogoTexto.SetDialogoEscribir(dialogo, npc);
+        dialogoTexto.EmpezarDialogo();
     }
 
     public void EndDialogue()

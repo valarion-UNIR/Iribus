@@ -32,12 +32,22 @@ public class CajaCamara : MonoBehaviour
             {
                 if (exitingObjectPosition.x < triggerCenterPosition.x)
                 {
+                    if(puntoIzq.Follow != null)
+                    {
+                        puntoIzq.Follow = other.transform;
+                        Debug.Log("Cambiando follow");
+                    }
                     puntoDrc.enabled = false;
                     puntoIzq.enabled = true;
                     pointManager.SetActiveCMCamera(puntoIzq);
                 }
                 else
                 {
+                    if (puntoDrc.Follow != null)
+                    {
+                        puntoDrc.Follow = other.transform;
+                        Debug.Log("Cambiando follow");
+                    }
                     puntoIzq.enabled = false;
                     puntoDrc.enabled = true;
                     pointManager.SetActiveCMCamera(puntoDrc);
@@ -47,14 +57,27 @@ public class CajaCamara : MonoBehaviour
             {
                 if (exitingObjectPosition.y < triggerCenterPosition.y)
                 {
-                    //camara.Follow = puntoIzq;
+                    if (puntoIzq.Follow != null)
+                    {
+                        puntoIzq.Follow = other.transform;
+                        Debug.Log("Cambiando follow");
+                    }
+                    puntoDrc.enabled = false;
+                    puntoIzq.enabled = true;
+                    pointManager.SetActiveCMCamera(puntoIzq);
                 }
                 else
                 {
-                    //camara.Follow = puntoDrc;
+                    if (puntoDrc.Follow != null)
+                    {
+                        puntoDrc.Follow = other.transform;
+                        Debug.Log("Cambiando follow");
+                    }
+                    puntoIzq.enabled = false;
+                    puntoDrc.enabled = true;
+                    pointManager.SetActiveCMCamera(puntoDrc);
                 }
             }
-
         }
     }
 }

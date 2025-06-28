@@ -7,7 +7,7 @@ public class ProgresoMetroidvania
 {
     public int escena;
     public int checkpoint;
-    public List<string> objetos;
+    public Dictionary<string, int> objetos;
 
     public ProgresoMetroidvania(int escena, int checkpoint)
     {
