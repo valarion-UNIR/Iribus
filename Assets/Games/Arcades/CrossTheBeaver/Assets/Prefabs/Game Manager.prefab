@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1187723523033553327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6092776902962942768}
+  - component: {fileID: 4133020559901938152}
+  m_Layer: 17
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6092776902962942768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187723523033553327}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4133020559901938152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187723523033553327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39770a91ce873d047bd5736f073c09e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraController: {fileID: 0}
+  player: {fileID: 1198489812914063873, guid: 8782298aa3709c445a735c03206d1163, type: 3}
+  currentLevelIndex: 0
+  levels:
+  - {fileID: 1030121550326179541, guid: 256dfb644c422d8468a65efe52537ba7, type: 3}
+  - {fileID: 1030121550326179541, guid: 5a187d6229c2fb24fb293ac8836dc19c, type: 3}
+  - {fileID: 1030121550326179541, guid: dfedaeceec6205e45bd738bdcf0ba7d1, type: 3}
+  - {fileID: 1030121550326179541, guid: 08a4eee6b7c21754283ccbb9cf387d96, type: 3}
+  - {fileID: 1030121550326179541, guid: 3f54c8663b536bf44ad08c6f4050a7c2, type: 3}
+  - {fileID: 1030121550326179541, guid: d270c98e5238ff6498d43698943fcce4, type: 3}
+  menuScene:
+    asset: {fileID: 102900000, guid: d8c1db1f84491fc47aace3111643519a, type: 3}
+    guid: d8c1db1f84491fc47aace3111643519a
+  gameScene:
+    asset: {fileID: 102900000, guid: 611b594f8c6900544991754914462f1e, type: 3}
+    guid: 611b594f8c6900544991754914462f1e

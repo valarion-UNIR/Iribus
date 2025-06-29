@@ -1,8 +1,11 @@
+using Eflatun.SceneReference;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -16,13 +19,23 @@ public class BeaverManager : MonoBehaviour
     [SerializeField] private BeaverCameraController cameraController;
     //Luego cambiar esto para ajustarse a los planos pero en principio asi
     private float cameraDistance = 10 * 2;
+    private bool gameHasStarted = false;
+
     [Header("Levels")]
-    [SerializeField] private GameObject player;
-    public int currentLevelIndex = 0;
+    [SerializeField] private GameObject playerPrefab;
+    private GameObject player;
+    [HideInInspector] public int currentLevelIndex = 0;
     [SerializeField] private List<GameObject> levels;
     private GameObject currentLevel;
-
     private BeaverData saveData = new BeaverData(0);
+
+    [Header("Canvas")]
+    [SerializeField] private GameObject panel;
+
+    [Header("Scenes")]
+    [SerializeField] private SceneReference gameScene;
+
+    private List<GameObject> recycleBin = new List<GameObject>();
 
     private void Awake()
     {
@@ -40,7 +53,13 @@ public class BeaverManager : MonoBehaviour
 
     //IMPLEMENTAR POOLING PARA LOS TRONCOS //Igual tampoco es necesario
 
-
+    private void Update()
+    {
+        if (!gameHasStarted)
+        {
+            if(Input.GetKeyDown(KeyCode.Space)) { SetupGameScene(false); }
+        }
+    }
     private void OnEnable()
     {
         NextLevelTrigger.OnNextScreenTriggered += AdvanceScreen;
@@ -54,14 +73,14 @@ public class BeaverManager : MonoBehaviour
     public void StartNewGame()
     {
         DeleteData();
-        StartCoroutine(SetupGameScene(true));
+        SetupGameScene(true);
     }
     
     public void ContinueGame()
     {
         Debug.Log("COntinueGame");
         LoadData();
-        StartCoroutine (SetupGameScene(false));
+        SetupGameScene(false);
 
     }
     
@@ -78,6 +97,8 @@ public class BeaverManager : MonoBehaviour
             new Vector3(0, previousLevelTop, 0),
             levels[currentLevelIndex].transform.rotation
         );
+
+        recycleBin.Add( currentLevel );
         
         SaveFile();
         cameraController.GoUp(cameraDistance);
@@ -119,52 +140,72 @@ public class BeaverManager : MonoBehaviour
         return player.GetComponent<BeaverController>();
     }
 
-    private IEnumerator SetupGameScene(bool newGame)
+    private void SetupGameScene(bool newGame)
     {
         
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(4);
-        yield return new WaitUntil(() => asyncLoad.isDone);
-        yield return null;
+        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(4);
+        //SubGameSceneManager.LoadScene(SubGame.CrossTheBeaver, gameScene);
+        //yield return new WaitUntil(() => asyncLoad.isDone);
+        //yield return new WaitForSeconds(1f);
 
         if (!newGame)
-        {
+        {   
+            LoadData();
             currentLevelIndex = saveData.levelNumber;
         }
 
-        Instantiate(player, new Vector3(0f, 1f, -0.48f), Quaternion.identity);
+        player = Instantiate(playerPrefab, new Vector3(0f, 1f, -0.48f), Quaternion.identity);
+        recycleBin.Add(player);
 
-        cameraController = FindAnyObjectByType<BeaverCameraController>();
+        //cameraController = FindAnyObjectByType<BeaverCameraController>();
         currentLevel = Instantiate(levels[currentLevelIndex], new Vector3(0, 10, 0), levels[currentLevelIndex].transform.rotation);
+        recycleBin.Add(currentLevel);
         Debug.Log(currentLevelIndex);
+        panel.SetActive(false);
+        gameHasStarted = true;
+        ReturnBeaver().CanMove = true;
+        
     }
 
-    private IEnumerator ReturnToMenu()
+    public void ReturnToMenu()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(3);
-        yield return new WaitUntil(() => asyncLoad.isDone);
-        yield return null;
+        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(3);
+        //SubGameSceneManager.LoadScene(SubGame.CrossTheBeaver, menuScene);
+        //yield return new WaitUntil(() => asyncLoad.isDone);
 
-        Debug.Log("Cambia de escena");
 
-        GameObject botonContinuar = GameObject.Find("Continue");
-        GameObject botonNuevo = GameObject.Find("New Game");
+        //Debug.Log("Cambia de escena");
 
-        if (botonContinuar != null && botonNuevo != null)
-        {
-            Debug.Log("Botones encontrados correctamente.");
-            botonContinuar.GetComponent<Button>().onClick.AddListener(() => BeaverManager.Instance.ContinueGame());
-            botonNuevo.GetComponent<Button>().onClick.AddListener(() => BeaverManager.Instance.StartNewGame());
+        //GameObject botonContinuar = GameObject.Find("Continue");
+        //GameObject botonNuevo = GameObject.Find("New Game");
+
+        //if (botonContinuar != null && botonNuevo != null)
+        //{
+        //    Debug.Log("Botones encontrados correctamente.");
+        //    botonContinuar.GetComponent<Button>().onClick.AddListener(() => BeaverManager.Instance.ContinueGame());
+        //    botonNuevo.GetComponent<Button>().onClick.AddListener(() => BeaverManager.Instance.StartNewGame());
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("No se encontraron los botones.");
+        //}
+
+        //panel.SetActive(true);
+        //gameHasStarted = false;
+        //ReturnBeaver().CanMove = false;
+
+        //MIRAR ESTO
+        //SceneManager.UnloadSceneAsync(4);
+        for (int i = recycleBin.Count -1 ; i >= 0 ; i--)
+        {   
+            Destroy(recycleBin[i]);
+            recycleBin.RemoveAt(i);
         }
-        else
-        {
-            Debug.LogWarning("No se encontraron los botones.");
-        }
+        SaveFile();
+        cameraController.ResetCam();
+        gameHasStarted = false;
+        panel.SetActive(true);
 
-    }
-
-    public void ReturnToMenuCall()
-    {
-        StartCoroutine(ReturnToMenu());
     }
 
 }

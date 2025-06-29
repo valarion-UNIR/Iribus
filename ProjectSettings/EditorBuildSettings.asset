@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Games/Iribus/Scenes/IribusMainMenu.unity
     guid: 84b93f5f89ad6be40bec9baaf097ba61
   - enabled: 1
-    path: Assets/Games/Arcades/CrossTheBeaver/Scenes/CrossTheBeaverMainMenu.unity
-    guid: d8c1db1f84491fc47aace3111643519a
-  - enabled: 1
     path: Assets/Games/Arcades/CrossTheBeaver/Scenes/CrossTheBeaverGame.unity
     guid: 611b594f8c6900544991754914462f1e
   - enabled: 1

@@ -7,11 +7,13 @@ public class BeaverController : SubGamePlayerController
 {
     public override SubGame SubGame => SubGame.CrossTheBeaver;
 
+    public bool CanMove { get => canMove; set => canMove = value; }
+
     [SerializeField] private float moveDistanceVertical = 1.0f;
     [SerializeField] private float moveDistanceHorizontal = 1.0f;
     [SerializeField] private float moveSpeed = 50;
     private bool isMoving = false;
-
+    private bool canMove = false;
     private Vector2 inputDir;
     private Vector2 lastInput;
     private Vector3 targetPos;
@@ -37,7 +39,7 @@ public class BeaverController : SubGamePlayerController
 
     private void FixedUpdate()
     {
-        if (isAlive) { 
+        if (isAlive && canMove) { 
             float clapmedX = Mathf.Clamp(transform.position.x, -13, 13);
             transform.position = new Vector3(clapmedX, transform.position.y, transform.position.z);
             // Lee el input actual del vector 2D
@@ -143,6 +145,6 @@ public class BeaverController : SubGamePlayerController
     {
         isAlive = false;
         yield return new WaitForSeconds(2);
-        BeaverManager.Instance.ReturnToMenuCall();
+        BeaverManager.Instance.ReturnToMenu();
     }
 }
