@@ -317,7 +317,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147402713480534447, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &745637835
@@ -474,7 +474,7 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 1191240136
   moveSpeedTiles: 1
-  increaserSpeed: 0.02
+  increaserSpeed: 0.03
   failThresholdTiles: 0.75
   decreaserFailThreshold: 0.035
   goalsInMovement: 0
@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 968517092}
   - component: {fileID: 968517094}
   - component: {fileID: 968517093}
+  - component: {fileID: 968517095}
   m_Layer: 6
   m_Name: PressToStart
   m_TagString: Untagged
@@ -690,10 +691,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press 'Space' or 'X' to start the game
+  m_text: Insert coin to start playing
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
-  m_sharedMaterial: {fileID: 2147402713480534447, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -769,6 +770,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968517091}
   m_CullTransparentMesh: 1
+--- !u!114 &968517095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968517091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fe20ddc0d928146b5a945993b807a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 0.6313726, g: 0.4156863, b: 0.43529415, a: 1}
+  color2: {r: 255, g: 255, b: 255, a: 0}
 --- !u!1 &1026219821
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,8 +892,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: The Stacker Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
-  m_sharedMaterial: {fileID: 2147402713480534447, guid: afd9616ccc543e64396d9335cfe98ae6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -6,16 +6,18 @@ using UnityEngine;
 public class Flicker : MonoBehaviour
 {
     private TMP_Text text;
-    private Color color1 = new Color(255, 255, 255, 1);
-    private Color color2 = new Color(255, 255, 255, 0);
+    [SerializeField] private Color color1 = new Color(255, 255, 255, 1);
+    [SerializeField] private Color color2 = new Color(255, 255, 255, 0);
 
     private void Start()
     {
         text = GetComponent<TMP_Text>();
         StartCoroutine(FlickerText());
     }
+
     private void OnEnable()
     {
+        text = GetComponent<TMP_Text>();
         StartCoroutine(FlickerText());
     }
 
@@ -23,7 +25,8 @@ public class Flicker : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    private IEnumerator FlickerText()
+
+    IEnumerator FlickerText()
     {
         while (true)
         {

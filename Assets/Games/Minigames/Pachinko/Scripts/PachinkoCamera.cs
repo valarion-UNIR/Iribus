@@ -10,7 +10,7 @@ public class PachinkoCamera : SubGamePlayerController
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        topLimit = transform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -23,20 +23,11 @@ public class PachinkoCamera : SubGamePlayerController
     {
         float inputV = Input.Pachinko.Move.ReadValue<Vector2>().y;
 
-        Vector3 top = new Vector3(transform.position.x, topLimit, transform.position.z);
-        Vector3 bottom = new Vector3(transform.position.x, bottomLimit, transform.position.z);
+        Vector3 currentPosition = transform.localPosition;
+        currentPosition.y += inputV * speedMovement * Time.deltaTime;
 
-        // Dirección ahora apunta hacia arriba
-        Vector3 direccion = (top - bottom).normalized;
+        currentPosition.y = Mathf.Clamp(currentPosition.y, bottomLimit, topLimit);
 
-        Vector3 movimiento = direccion * inputV * speedMovement * Time.deltaTime;
-        transform.position += movimiento;
-
-        // Clampear la posición para que no se salga de los límites
-        float distanciaTotal = Vector3.Distance(top, bottom);
-        float proyeccion = Vector3.Dot(transform.position - bottom, direccion);
-        proyeccion = Mathf.Clamp(proyeccion, 0f, distanciaTotal);
-
-        transform.position = bottom + direccion * proyeccion;
+        transform.localPosition = currentPosition;
     }
 }
