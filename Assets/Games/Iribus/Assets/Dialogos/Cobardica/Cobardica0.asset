@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb34a1bfc9da1f44a3bf9ec87384e6e, type: 3}
+  m_Name: Cobardica0
+  m_EditorClassIdentifier: 
+  subGame: Metroidvania
+  loopeable: 0
+  nextIndex: 1
+  dialogos:
+  - dialogoTexto: There's a flower over there...
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: BUT BE CAREFUL OR YOU'LL DIE!!!
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: There's an evil enemy guarding it. I've been studying it's movements
+      all day.
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: It's not a common enemy that one... no... it's probably the most
+      dangerous enemy you'll ever see.
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: I'd back down if I were you, and try to find another flower...
+      that one is out of reach for us.
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  preguntaOcurre: 1
+  pregunta:
+    preguntaTexto: You are not going to risk it are you?
+    respuestaVelocidad: 0.05
+    respuestaTexto1: I'll risk it
+    respuestaTexto2: Sounds dangerous
+    nextIndex2: 2

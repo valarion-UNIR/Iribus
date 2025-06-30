@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
                 marginado.SetIndexDialogos(3);
                 break;
             case 3:
-                guardia.SetIndexDialogos(3);
+                guardia.SetIndexDialogos(4);
                 break;
             case 4:
                 marginado.SetIndexDialogos(4);

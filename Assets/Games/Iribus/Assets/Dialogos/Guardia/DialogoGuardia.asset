@@ -13,16 +13,30 @@ MonoBehaviour:
   m_Name: DialogoGuardia
   m_EditorClassIdentifier: 
   subGame: Metroidvania
-  skipeable: 0
+  loopeable: 0
+  nextIndex: 3
   dialogos:
-  - dialogoTexto: Uhhh you want your money back? Y-yeah sure, give me a second, I
-      have it right here...
+  - dialogoTexto: Stop right there! You know the rules, if you have no flowers you
+      can't get in.
     dialogoVelocidad: 0.05
     spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
-  - dialogoTexto: Rumble Rumble... Where did I put this thing...
-    dialogoVelocidad: 0.1
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: You got... let me check... 6 flowers yesterday, I'll let you pass
+      if you bring 3.
+    dialogoVelocidad: 0.05
     spritePortrait: {fileID: 0}
-  - dialogoTexto: Hello! I'm Bigotorgolont. I know nothing about Gorgolont or anyone
-      with a similar name.
+    skipeable: 0
+    autocompletable: 0
+  - dialogoTexto: Hurry up, and avoid the monsters! I don't want anyone getting hurt.
     dialogoVelocidad: 0.05
     spritePortrait: {fileID: 21300000, guid: 0d751bf10b45eb245986d82723206cdd, type: 3}
+    skipeable: 0
+    autocompletable: 0
+  preguntaOcurre: 1
+  pregunta:
+    preguntaTexto: Go grab at least 3 flowers!
+    respuestaVelocidad: 0.05
+    respuestaTexto1: On my way boss!
+    respuestaTexto2: And what if I don't
+    nextIndex2: 1

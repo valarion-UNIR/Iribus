@@ -21,7 +21,8 @@ public class AtaqueHitbox : MonoBehaviour
         {
             if(collision.TryGetComponent<IHitteable>(out IHitteable hitteable))
             {
-                float knockback = hitteable.GetHit(transform.up, DamageTypes.MELEE);
+                Vector3 directionHit = new Vector3(collision.transform.position.x - pMovement.transform.position.x, collision.transform.position.y - pMovement.transform.position.y, 0);
+                float knockback = hitteable.GetHit(directionHit, DamageTypes.MELEE);
                 pMovement.ApplyKnockback(transform.up, knockback);
             }
         }

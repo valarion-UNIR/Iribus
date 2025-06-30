@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbb34a1bfc9da1f44a3bf9ec87384e6e, type: 3}
-  m_Name: DialogoSombreroCaracol 2
+  m_Name: Cobardica4
   m_EditorClassIdentifier: 
   subGame: Metroidvania
   loopeable: 0
-  nextIndex: 1
-  dialogos: []
-  preguntaOcurre: 0
+  nextIndex: 5
+  dialogos:
+  - dialogoTexto: ...
+    dialogoVelocidad: 0.1
+    spritePortrait: {fileID: 0}
+    skipeable: 0
+    autocompletable: 0
+  preguntaOcurre: 1
   pregunta:
-    preguntaTexto: Are you going to pick up flowers like the rest?
+    preguntaTexto: 
     respuestaVelocidad: 0.05
-    respuestaTexto1: I guess I'll have to
-    respuestaTexto2: Never, death to flowers
-    nextIndex2: 2
+    respuestaTexto1: Gotta go, bye!
+    respuestaTexto2: ...
+    nextIndex2: 4

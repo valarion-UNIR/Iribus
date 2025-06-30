@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Windows.WebCam;
 
 public class CajaCamara : MonoBehaviour
 {
@@ -39,6 +40,10 @@ public class CajaCamara : MonoBehaviour
                     }
                     puntoDrc.enabled = false;
                     puntoIzq.enabled = true;
+
+                    //puntoIzq.Priority = 20;
+                    //puntoDrc.Priority = 10;
+
                     pointManager.SetActiveCMCamera(puntoIzq);
                 }
                 else
@@ -50,6 +55,10 @@ public class CajaCamara : MonoBehaviour
                     }
                     puntoIzq.enabled = false;
                     puntoDrc.enabled = true;
+
+                    //puntoDrc.Priority = 20;
+                    //puntoIzq.Priority = 10;
+
                     pointManager.SetActiveCMCamera(puntoDrc);
                 }
             }
