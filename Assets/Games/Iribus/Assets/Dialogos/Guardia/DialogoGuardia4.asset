@@ -14,17 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subGame: Metroidvania
   loopeable: 0
-  nextIndex: 3
+  nextIndex: 5
   dialogos:
-  - dialogoTexto: Bring me at least 3 flowers.
+  - dialogoTexto: Hmm, good job, that's three more fresh flowers for the ritual.
     dialogoVelocidad: 0.05
     spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
     skipeable: 0
     autocompletable: 0
-  preguntaOcurre: 0
+    eventoDialogo: Verja
+  - dialogoTexto: 'You can come in, I''ll get there when my shift is over. '
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    skipeable: 0
+    autocompletable: 0
+    eventoDialogo: 
+  preguntaOcurre: 1
   pregunta:
-    preguntaTexto: 
+    preguntaTexto: See you there.
     respuestaVelocidad: 0.05
-    respuestaTexto1: 
-    respuestaTexto2: 
-    nextIndex2: 2
+    respuestaTexto1: Aren't you forgetting something?
+    respuestaTexto2: I'll see you there.
+    nextIndex2: 6

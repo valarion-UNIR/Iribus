@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb34a1bfc9da1f44a3bf9ec87384e6e, type: 3}
+  m_Name: DialogoGuardia7
+  m_EditorClassIdentifier: 
+  subGame: Metroidvania
+  loopeable: 0
+  nextIndex: 8
+  dialogos:
+  - dialogoTexto: Stop right there! You know the rules, if you have no flowers you
+      can't get in.
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    skipeable: 0
+    autocompletable: 0
+    eventoDialogo: 
+  - dialogoTexto: Wait... you have the flowers already? Let me see... you got 6 yesterday...
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    skipeable: 0
+    autocompletable: 0
+    eventoDialogo: 
+  - dialogoTexto: So those 3 are enough, wow, I didn't expect this diligence from
+      you.
+    dialogoVelocidad: 0.05
+    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    skipeable: 0
+    autocompletable: 0
+    eventoDialogo: Amor
+  preguntaOcurre: 1
+  pregunta:
+    preguntaTexto: Impressive...
+    respuestaVelocidad: 0.05
+    respuestaTexto1: Diligent is my second name.
+    respuestaTexto2: I felt inspired today.
+    nextIndex2: 8

@@ -16,8 +16,7 @@ MonoBehaviour:
   loopeable: 0
   nextIndex: 3
   dialogos:
-  - dialogoTexto: Yeah, so get going, I'll open the gate when you bring me at least
-      3 flowers.
+  - dialogoTexto: Bring me at least 3 flowers.
     dialogoVelocidad: 0.05
     spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
     skipeable: 0

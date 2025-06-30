@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableHablarMV : MonoBehaviour, IInteractMV
 {
@@ -8,6 +9,9 @@ public class InteractableHablarMV : MonoBehaviour, IInteractMV
 
     [SerializeField] List<DialogoConcreto> dialogoNPC;
     [SerializeField] CinemachineCamera dialogoCamera;
+    [SerializeField] GameObject interactCosa;
+
+    [SerializeField] List<DialogoEventos> dialogoEventos;
 
     private int indexDialogos = 0;
 
@@ -34,16 +38,40 @@ public class InteractableHablarMV : MonoBehaviour, IInteractMV
     public void InteractMV()
     {
         Debug.Log(indexDialogos);
+        interactCosa.SetActive(false);
         GameManagerMetroidvania.Instance.StartDialogue(dialogoNPC[indexDialogos], dialogoCamera, this);
     }
 
     public void Highlight()
     {
         Debug.Log("Jilightiaron");
+        interactCosa.SetActive(true);
     }
 
     public void Unhighlight()
     {
         Debug.Log("NOOOO Unjiligtiaron");
+        interactCosa.SetActive(false);
     }
+
+    public float LlamarDialogoEvento(string eventoID)
+    {
+        foreach(DialogoEventos evento in dialogoEventos)
+        {
+            if (evento.eventoID.Equals(eventoID))
+            {
+                evento.evento.Invoke();
+                return evento.duracionEvento;
+            }
+        }
+        return 0f;
+    }
+}
+
+[System.Serializable]
+public class DialogoEventos
+{
+    public string eventoID;
+    public float duracionEvento;
+    public UnityEvent evento;
 }

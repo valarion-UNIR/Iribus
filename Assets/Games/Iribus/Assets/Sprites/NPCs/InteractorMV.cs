@@ -36,8 +36,8 @@ public class InteractorMV : MonoBehaviour
     public void Interactuar()
     {
         if (interactable == null) return;
-
-        interactable.InteractMV();
         Debug.Log(interactable.GameObject.name);
+        interactable.InteractMV();
+
     }
 }

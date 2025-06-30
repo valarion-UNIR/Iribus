@@ -20,6 +20,7 @@ public class DialogoModo
     public Sprite spritePortrait;
     public bool skipeable;
     public float autocompletable = 0;
+    public string eventoDialogo;
 }
 
 [System.Serializable]

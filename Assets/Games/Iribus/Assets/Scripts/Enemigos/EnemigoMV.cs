@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemigoMV : MonoBehaviour
+public class EnemigoMV : MonoBehaviour, IHitteable
 {
     [SerializeField] private int hp;
 
@@ -37,6 +37,11 @@ public class EnemigoMV : MonoBehaviour
     public float attackWindup = 0.5f;
     public float lungeSpeed = 8f;
     public float lungeDuration = 0.2f;
+
+    [SerializeField] private ParticleSystem hurtParticles;
+    [SerializeField] private float hurtTime = 0.5f;
+    [SerializeField] private float knockBackForce = 10f;
+    [SerializeField] private float knockBackPlayer = 25f;
 
     private bool movingRight = true;
     private Rigidbody2D rb;
@@ -180,4 +185,18 @@ public class EnemigoMV : MonoBehaviour
         Gizmos.DrawWireSphere(watchSpot.position, 3);
     }
 
+    public float GetHit(Vector3 direction, DamageTypes dmgType)
+    {
+        hp = hp - 1;
+        if (hp <= 0)
+        {
+            GameManagerMetroidvania.Instance.GetParticleSpawner().SpawnByIndex(2, transform.localPosition, transform.rotation);
+            Destroy(gameObject);
+        }
+        hurtParticles.transform.rotation = Quaternion.LookRotation(-direction);
+        hurtParticles.Play();
+        rb.AddForce(-direction * 5f, ForceMode2D.Impulse);
+        return knockBackPlayer;
+    }
 }
+

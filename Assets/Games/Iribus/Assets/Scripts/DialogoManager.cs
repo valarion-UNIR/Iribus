@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,6 +45,7 @@ public class DialogoManager : MonoBehaviour
     private bool faseAvanzada = false;
 
     private int indexRespuesta = 0;
+    private int indexPregunta = 0;
 
     //[SerializeField]
     //private TypingFinishedEvent OnTypingFinished;
@@ -58,6 +60,7 @@ public class DialogoManager : MonoBehaviour
 
     private void Update()
     {
+        if (fasePreguntas) return;
         if(faseAvanzada)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
@@ -142,7 +145,7 @@ public class DialogoManager : MonoBehaviour
         textoRespuesta1.EscribirText(textoCompleto, 
             dialogosAEscribir.pregunta.respuestaVelocidad, 
             waitText, 
-            0f, 
+            0.1f, 
             false);
 
         textoCompleto = GameManagerMetroidvania.Instance.GetDialogueManager().GetDialogue(dialogosAEscribir.pregunta.respuestaTexto2);
@@ -150,19 +153,34 @@ public class DialogoManager : MonoBehaviour
         textoRespuesta2.EscribirText(textoCompleto,
             dialogosAEscribir.pregunta.respuestaVelocidad,
             waitText,
-            0f,
+            0.1f,
             false);
     }
 
-    public void CompleteSentence()
+    public async void CompleteSentence()
     {
-
         if(fasePreguntas)
         {
-            faseAvanzada = true;
-            fasePreguntas = false;
-            EscribirRespuestas();
+            indexPregunta++;
+            if (indexPregunta == 1)
+            {
+                EscribirRespuestas();
+                return;
+            }
+            else if(indexPregunta == 3)
+            {
+                faseAvanzada = true;
+                fasePreguntas = false;
+                indexPregunta = 0;
+                return;
+            }
             return;
+        }
+
+        if(dialogosAEscribir.dialogos[index].eventoDialogo != null)
+        {
+            float tiempo = npc.LlamarDialogoEvento(dialogosAEscribir.dialogos[index].eventoDialogo);
+            await Task.Delay((int)tiempo*1000);
         }
 
         index++;
@@ -170,7 +188,6 @@ public class DialogoManager : MonoBehaviour
         {
             if(!dialogosAEscribir.preguntaOcurre) 
             {
-                Debug.Log("TERMINODRILOA");
                 if (!dialogosAEscribir.loopeable)
                 {
                     npc.SetIndexDialogos(dialogosAEscribir.nextIndex);
@@ -183,7 +200,6 @@ public class DialogoManager : MonoBehaviour
             {
                 textoDialogo.OcultarTexto();
                 imagePortrait.color = Color.clear;
-                Debug.Log("PRENTUFIA");
                 fasePreguntas = true;
                 EscribirPregunta();
                 return;
