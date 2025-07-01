@@ -19,18 +19,20 @@ MonoBehaviour:
   - dialogoTexto: If you don't you'll have to spend the night out here. And you won't
       have dinner.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 55250667d4d781746b9f7070e73ae23a, type: 3}
     skipeable: 0
     autocompletable: 0
+    eventoDialogo: 
   - dialogoTexto: Aaaand I won't help you with your sword training either.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: d4551ad7f87e5094bb582cd4b93541e3, type: 3}
     skipeable: 0
     autocompletable: 0
+    eventoDialogo: 
   preguntaOcurre: 1
   pregunta:
     preguntaTexto: 
     respuestaVelocidad: 0.05
-    respuestaTexto1: Ouch >.<
+    respuestaTexto1: Ouch... :/
     respuestaTexto2: Low blow...
     nextIndex2: 2

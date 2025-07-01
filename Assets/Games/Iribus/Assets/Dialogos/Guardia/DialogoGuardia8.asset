@@ -16,17 +16,16 @@ MonoBehaviour:
   loopeable: 0
   nextIndex: 6
   dialogos:
-  - dialogoTexto: Haha of course, how could I forget, that's the reason I married
-      you.
+  - dialogoTexto: Of course, how could I forget, that's the reason I married you.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 55250667d4d781746b9f7070e73ae23a, type: 3}
     skipeable: 0
     autocompletable: 0
     eventoDialogo: Amor
   - dialogoTexto: Oh, let me open this for you. I'll see you inside once my shift
       is over.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    spritePortrait: {fileID: 21300000, guid: d4551ad7f87e5094bb582cd4b93541e3, type: 3}
     skipeable: 0
     autocompletable: 0
     eventoDialogo: Verja

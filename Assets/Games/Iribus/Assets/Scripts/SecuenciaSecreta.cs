@@ -43,5 +43,6 @@ public class SecuenciaSecreta : MonoBehaviour
     private void TriggerAction()
     {
         GameManagerMetroidvania.Instance.GetParticleSpawner().SpawnByIndex(3, sitioExplosion.position, Quaternion.identity);
+        GameManagerMetroidvania.Instance.TpPlayerToCheckPoint(2);
     }
 }

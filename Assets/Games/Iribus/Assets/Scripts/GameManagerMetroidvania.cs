@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum GameState { Menu, Loading, Playing, Paused, Inventory, Cutscene, GameOver }
 public class GameManagerMetroidvania : MonoBehaviour
@@ -34,7 +36,6 @@ public class GameManagerMetroidvania : MonoBehaviour
     private GameObject playerInstance;
 
     private CheckPointManager checkPManager;
-    private CinemachineCamera currentActiveCamera;
 
     private CinemachineCamera dialogoCamera;
     private CinemachineCamera onHoldCamera;
@@ -166,7 +167,7 @@ public class GameManagerMetroidvania : MonoBehaviour
         if (CurrentState == GameState.GameOver) return;
         ChangeState(GameState.GameOver);
         playerInstance = null;
-
+        currentVida = maxVida;
         sceneController.CargarEscenaMetroidvania(progreso.escena, 0, true);
     }
 
@@ -185,10 +186,10 @@ public class GameManagerMetroidvania : MonoBehaviour
     {
         playerInstance = Instantiate(playerPrefab, spawnTransform.position, Quaternion.identity, spawnTransform);
         playerInstance.transform.parent = null;
-        if (currentActiveCamera.Follow != null)
+        if (checkPManager.GetActiveCMCamera().Follow != null)
         {
             Debug.Log("Spawn player y seguir");
-            currentActiveCamera.Follow = playerInstance.transform;
+            checkPManager.GetActiveCMCamera().Follow = playerInstance.transform;
         }
 
         if (velPlayer != null)
@@ -247,20 +248,46 @@ public class GameManagerMetroidvania : MonoBehaviour
         }
     }
 
+    public async void TpPlayerToCheckPoint(int checkPointID)
+    {
+        if (CurrentState != GameState.Playing) return;
+
+        playerInstance.GetComponent<PlayerMovement>().BlockMovement(true);
+
+        await sceneController.TransicionTP("TransicionIn", 2);
+
+        checkPManager.ChangeBlend(CinemachineBlendDefinition.Styles.Cut, 0f);
+
+        CheckPoint checkPoint = checkPManager.GetCheckPoint(checkPointID);
+        checkPManager.GetActiveCMCamera().enabled = false;
+        checkPManager.SetActiveCMCamera(checkPoint.GetCheckPointCamera());
+        checkPManager.GetActiveCMCamera().enabled = true;
+        if (checkPManager.GetActiveCMCamera().Follow != null) checkPManager.GetActiveCMCamera().Follow = playerInstance.transform;
+        playerInstance.transform.position = checkPoint.transform.position;
+
+        await sceneController.TransicionTP("TransicionOut", 0);
+
+        checkPManager.ChangeBlend(CinemachineBlendDefinition.Styles.EaseIn, 1.5f);
+
+        playerInstance.GetComponent<PlayerMovement>().BlockMovement(false);
+    }
+
     private void RespawnPlayer()
     {
-        if(CurrentState == GameState.GameOver)
+        SetupVida();
+        ActualizarVida();
+        if (CurrentState == GameState.GameOver)
         {
             CheckPoint checkPoint = checkPManager.GetCheckPoint(progreso.checkpoint);
-            currentActiveCamera = checkPoint.GetCheckPointCamera();
-            currentActiveCamera.enabled = true;
+            checkPManager.SetActiveCMCamera(checkPoint.GetCheckPointCamera());
+            checkPManager.GetActiveCMCamera().enabled = true;
             StartCoroutine(AnimacionSpawn(checkPoint));
         }
         else if (CurrentState == GameState.Loading)
         {
             CheckPoint checkPoint = checkPManager.GetEntrada(entradaUsada);
-            currentActiveCamera = checkPoint.GetCheckPointCamera();
-            currentActiveCamera.enabled = true;
+            checkPManager.SetActiveCMCamera(checkPoint.GetCheckPointCamera());
+            checkPManager.GetActiveCMCamera().enabled = true;
             SpawnPlayer(checkPoint.transform);
         }
     }
@@ -316,5 +343,58 @@ public class GameManagerMetroidvania : MonoBehaviour
         onHoldCamera.enabled = true;
 
         ChangeState(GameState.Playing);
+    }
+
+    int maxVida = 2;
+    int currentVida = 2;
+    public GameObject vidaPrefab;
+    public Transform vidaContainers;
+
+    private List<Image> vidas = new List<Image>();
+
+    public Sprite vidaFullSprite;
+    public Sprite vidaVaciaSprite;
+
+    private void SetupVida()
+    {
+        while (vidas.Count < maxVida)
+        {
+            GameObject newMask = Instantiate(vidaPrefab, vidaContainers);
+            vidas.Add(newMask.GetComponent<Image>());
+        }
+    }
+    public void SubirVidaMaxima()
+    {
+        maxVida++;
+        SetupVida();
+        currentVida = maxVida;
+        ActualizarVida();
+    }
+
+    public bool GetHurtPersonaje()
+    {
+        currentVida--;
+        ActualizarVida();
+        if (currentVida == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void ActualizarVida()
+    {
+        for (int i = 0; i < vidas.Count; i++)
+        {
+            if (i < currentVida)
+                vidas[i].sprite = vidaFullSprite;
+            else
+                vidas[i].sprite = vidaVaciaSprite;
+
+            vidas[i].enabled = i < maxVida;
+        }
     }
 }

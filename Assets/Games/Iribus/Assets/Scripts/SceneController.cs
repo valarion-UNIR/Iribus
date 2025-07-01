@@ -3,10 +3,11 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using Eflatun.SceneReference;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class SceneController : MonoBehaviour
 {
-    private Animator transicionAnimator;
+    [SerializeField] private Animator transicionAnimator;
     [SerializeField] private List<SceneReference> sceneReferences = new List<SceneReference>();
 
     public static SceneController Instance { get; private set; }
@@ -26,12 +27,12 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        transicionAnimator = GetComponent<Animator>();
+        //transicionAnimator = GetComponent<Animator>();
     }
 
     public void CargarEscenaMetroidvania(int escena, int transicion, bool muerte)
     {
-        PlayAnimacionTransicion(transicion);
+        //PlayAnimacionTransicion(transicion);
         StartCoroutine(CargarEscenaTransicion(escena, muerte));
     }
 
@@ -39,7 +40,8 @@ public class SceneController : MonoBehaviour
     {
         //yield return new WaitForSeconds(transicionAnimator.GetCurrentAnimatorStateInfo(0).length);
 
-        Scene oldScene = SceneManager.GetActiveScene();
+        Task task = TransicionTP("TransicionIn", 0);
+        yield return new WaitUntil(() => task.IsCompleted);
 
         if (muerte) 
         {
@@ -61,10 +63,37 @@ public class SceneController : MonoBehaviour
         //    yield return null;
 
         GameManagerMetroidvania.Instance.LoadPlayerOnScene();
+
+        task = TransicionTP("TransicionOut", 0);
+        yield return new WaitUntil(() => task.IsCompleted);
     }
 
     private void PlayAnimacionTransicion(int transicion)
     {
         Debug.Log("Transicion " + transicion);
+    }
+
+    public async Task TransicionTP(string transitionType, int transicionID)
+    {
+        transicionAnimator.SetInteger(transitionType, transicionID);
+        Debug.Log("Hola");
+        if(transitionType.Equals("TransicionIn"))
+        {
+            await WaitForAnimationToEnd("Terminado");
+        }
+        else
+        {
+            await WaitForAnimationToEnd("Empezado");
+        }
+        transicionAnimator.SetInteger(transitionType, -1);
+        Debug.Log("Hola2");
+    }
+    async Task WaitForAnimationToEnd(string tipo)
+    {
+
+        while (!transicionAnimator.GetCurrentAnimatorStateInfo(0).IsName(tipo))
+        {
+            await Task.Yield();
+        }
     }
 }

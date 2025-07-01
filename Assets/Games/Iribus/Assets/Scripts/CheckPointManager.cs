@@ -25,6 +25,11 @@ public class CheckPointManager : MonoBehaviour
         return sceneMainCamera;
     }
 
+    public void ChangeBlend(CinemachineBlendDefinition.Styles blendType, float time)
+    {
+        sceneMainCamera.GetComponent<CinemachineBrain>().DefaultBlend = new CinemachineBlendDefinition(blendType, time);
+    }
+
     public void SetActiveCMCamera(CinemachineCamera activeCamera)
     {
         this.activeCamera = activeCamera;

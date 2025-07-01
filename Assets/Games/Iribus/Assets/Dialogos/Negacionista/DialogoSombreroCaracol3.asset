@@ -18,14 +18,14 @@ MonoBehaviour:
   dialogos:
   - dialogoTexto: Then you- Huh...? You hate flowers too?
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 5eb3079214878db488730f0cbeb444dc, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 
   - dialogoTexto: I see... you are not like the rest. Death to flowers and to everyone
       that likes them!
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 5eb3079214878db488730f0cbeb444dc, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 

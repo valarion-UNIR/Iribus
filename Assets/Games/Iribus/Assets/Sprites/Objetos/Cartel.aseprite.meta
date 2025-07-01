@@ -125,7 +125,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Cartel
     originalName: 
-    pivot: {x: 0.44444445, y: 0}
+    pivot: {x: 0.44827586, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,8 +133,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 27
-      height: 30
+      width: 29
+      height: 31
     spriteID: ce7ff16c467e7d14aac50166fe9ce476
     spriteBone: []
     spriteOutline: []
@@ -157,10 +157,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 4
+        x: 3
         y: 0
-        width: 27
-        height: 30
+        width: 29
+        height: 31
       spriteId: ce7ff16c467e7d14aac50166fe9ce476
     linkedCells: []
     parentIndex: -1

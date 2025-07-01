@@ -18,13 +18,13 @@ MonoBehaviour:
   dialogos:
   - dialogoTexto: I hate flowers, I'm not going to pick them up.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 5eb3079214878db488730f0cbeb444dc, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 
   - dialogoTexto: So what if I can't go back in town? I rather stay here.
     dialogoVelocidad: 0.1
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 5eb3079214878db488730f0cbeb444dc, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 

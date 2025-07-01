@@ -19,20 +19,20 @@ MonoBehaviour:
   - dialogoTexto: Stop right there! You know the rules, if you have no flowers you
       can't get in.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 9d0eb3377f3c82c4fa82f999dfdae7c5, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 8cda3fc3b7adc1942a23dca8cd1646ef, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 
   - dialogoTexto: You got... let me check... 6 flowers yesterday, I'll let you pass
       if you bring 3.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 8cda3fc3b7adc1942a23dca8cd1646ef, type: 3}
     skipeable: 1
     autocompletable: 0
-    eventoDialogo: Amor
+    eventoDialogo: 
   - dialogoTexto: Hurry up, and avoid the monsters! I don't want anyone getting hurt.
     dialogoVelocidad: 0.05
-    spritePortrait: {fileID: 21300000, guid: 0d751bf10b45eb245986d82723206cdd, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 55250667d4d781746b9f7070e73ae23a, type: 3}
     skipeable: 1
     autocompletable: 0
     eventoDialogo: 

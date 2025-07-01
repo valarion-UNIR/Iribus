@@ -295,6 +295,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gotHurt)
         {
+            if(GameManagerMetroidvania.Instance.GetHurtPersonaje()) PlayerDie();
+
             gotHurt = true;
             hurtTimer = hurtNoControlTime;
             rb.linearDamping = 0;
