@@ -15,6 +15,7 @@ public static class TagsIribus
     public const string Speakers = "Speakers";
     public const string EnemigoMV = "EnemigoMV";
     public const string InteractableMV = "InteractableMV";
+    public const string Unlock = "Unlock";
 }
 public static class LayersIribus
 {

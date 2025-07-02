@@ -19,6 +19,7 @@ TagManager:
   - Speakers
   - EnemigoMV
   - InteractableMV
+  - Unlock
   layers:
   - Default
   - TransparentFX

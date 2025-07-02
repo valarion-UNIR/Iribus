@@ -6,7 +6,7 @@ public class BeaverPickUp : MonoBehaviour
     {
         if (collision.CompareTag("Beaver"))
         {
-            //Unlockear lo que sea
+            ProgressManager.Instance.setMeleeUnlocked(true);
             Destroy(gameObject);
         }
     }

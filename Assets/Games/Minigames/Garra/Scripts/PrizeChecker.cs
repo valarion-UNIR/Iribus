@@ -2,10 +2,27 @@ using UnityEngine;
 
 public class PrizeChecker : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Health")) { Debug.Log("Heath up"); }
-        else if (other.CompareTag("Ammo")) { Debug.Log("Ammo up"); }
+        switch (other.gameObject.tag)
+        {
+            case ("Health"):
+                Debug.Log("Health up");
+                ProgressManager.Instance.addHealth(1);
+                break;
+
+            case ("Ammo"):
+                Debug.Log("Ammo up");
+                ProgressManager.Instance.addFirecrackers(1);
+                break;
+
+            case ("Unlock"):
+                Debug.Log("Unlock");
+                ProgressManager.Instance.setJoystickPicked(true);
+                break;
+        }
+
+        Destroy(other.gameObject);
     }
+
 }
