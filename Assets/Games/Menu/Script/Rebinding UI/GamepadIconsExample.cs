@@ -13,18 +13,23 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// </summary>
     public class GamepadIconsExample : MonoBehaviour
     {
+        public GameObject imageGO;
         public GamepadIcons xbox;
         public GamepadIcons ps4;
 
+
         protected void OnEnable()
         {
-            // Hook into all updateBindingUIEvents on all RebindActionUI components in our hierarchy.
             var rebindUIComponents = transform.GetComponentsInChildren<RebindActionUI>();
+
+            imageGO = transform.GetChild(0).GetChild(1).gameObject;
+
             foreach (var component in rebindUIComponents)
             {
                 component.updateBindingUIEvent.AddListener(OnUpdateBindingDisplay);
                 component.UpdateBindingDisplay();
             }
+
         }
 
         protected void OnUpdateBindingDisplay(RebindActionUI component, string bindingDisplayString, string deviceLayoutName, string controlPath)
@@ -41,7 +46,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             var textComponent = component.bindingText;
 
             // Grab Image component.
-            var imageGO = textComponent.transform.parent.Find("ActionBindingIcon");
+            //var imageGO = textComponent.transform.parent.Find("ActionBindingIcon");
             var imageComponent = imageGO.GetComponent<Image>();
 
             if (icon != null)

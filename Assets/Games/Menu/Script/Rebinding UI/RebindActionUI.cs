@@ -7,8 +7,6 @@ using UnityEngine.UI;
 ////TODO: localization support
 
 ////TODO: deal with composites that have parts bound in different control schemes
-
-
     /// <summary>
     /// A reusable component with a self-contained UI for rebinding a single action.
     /// </summary>

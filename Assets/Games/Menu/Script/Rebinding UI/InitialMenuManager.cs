@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -39,6 +38,22 @@ public class InitialMenuManager : MonoBehaviour
     [SerializeField] private GameObject yesNewButton;
     [SerializeField] private GameObject noNewButton;
 
+    [Header("KEY BINDING BUTTONS")]
+    [SerializeField] private GameObject saveKeyBindButton;
+    [SerializeField] private GameObject defaultKeyBindButton;
+
+    [Header("PLATFORM BUTTONS")]
+    [SerializeField] private Color colorSelected;
+    [SerializeField] private Color colorNotSelected;
+    [SerializeField] private GameObject pcPlatformButton;
+    [SerializeField] private GameObject xboxPlatformButton;
+    [SerializeField] private GameObject ps4PlatformButton;
+
+    [Header("PLATFORM SCROLL VIEW")]
+    [SerializeField] private GameObject pcPlatformSV;
+    [SerializeField] private GameObject xboxPlatformSV;
+    [SerializeField] private GameObject ps4PlatformSV;
+
     [Header("SPRITES")]
     [SerializeField] private Sprite sprite;
     [SerializeField] private Sprite spriteSelected;
@@ -48,10 +63,11 @@ public class InitialMenuManager : MonoBehaviour
 
     [Header("SAVE AND LOAD")]
     [SerializeField] private GameObject saveAndLoadObject;
+    [SerializeField] private GameObject checkUnsavedObject;
 
     private Animator animator;
     private MenuWindow menuWindow;
-    
+    private bool HasUnsavedChanges;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -88,6 +104,15 @@ public class InitialMenuManager : MonoBehaviour
                 break;
             case MenuWindow.Menu:
                 break;
+        }
+
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            saveKeyBindButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            saveKeyBindButton.GetComponent<Button>().interactable = false;
         }
     }
 
@@ -131,6 +156,11 @@ public class InitialMenuManager : MonoBehaviour
 
     public void SettingsToMenu()
     {
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            checkUnsavedObject.SetActive(true);
+            return;
+        }
         animator.SetTrigger("SettingsMenu");
         menuWindow = MenuWindow.Menu;
         DisableExceptMenu();
@@ -203,7 +233,18 @@ public class InitialMenuManager : MonoBehaviour
 
     public void SaveKeyBinding()
     {
-        
+        saveAndLoadObject.GetComponent<RebindSaveLoad>().SaveInputSystemRebindings();
+    }
+
+    public void YesUnsavedBinding()
+    {
+        saveAndLoadObject.GetComponent<RebindSaveLoad>().RevertChanges();
+        checkUnsavedObject.SetActive(false);
+    }
+
+    public void NoUnsavedBinding()
+    {
+        checkUnsavedObject.SetActive(false);
     }
 
     private void DisableInteractableItems(GameObject root)
@@ -245,23 +286,59 @@ public class InitialMenuManager : MonoBehaviour
 
     public void SettingGame()
     {
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            checkUnsavedObject.SetActive(true);
+            return;
+        }
         ActivateSettingsPanels(gamePanelSettings, gameButton);
     }
 
     public void SettingControls()
     {
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            checkUnsavedObject.SetActive(true);
+            return;
+        }
         ActivateSettingsPanels(controlsPanelSettings, controlsButton);
     }
 
     public void SettingVideo()
     {
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            checkUnsavedObject.SetActive(true);
+            return;
+        }
         ActivateSettingsPanels(videoPanelSettings, videoButton);
     }
 
     public void SettingKeyBinding()
     {
+        if (saveAndLoadObject.GetComponent<RebindSaveLoad>().HasUnsavedChanges())
+        {
+            checkUnsavedObject.SetActive(true);
+            return;
+        }
         ActivateSettingsPanels(keyBindingPanelSettings, keyBindingButton);
     }
+
+    public void PCButton()
+    {
+        ActivatePlatformPanels(pcPlatformSV, pcPlatformButton);
+    }
+
+    public void XboxButton()
+    {
+        ActivatePlatformPanels(xboxPlatformSV, xboxPlatformButton);
+    }
+
+    public void PS4Button()
+    {
+        ActivatePlatformPanels(ps4PlatformSV, ps4PlatformButton);
+    }
+
 
     public void NewGame()
     {
@@ -283,6 +360,27 @@ public class InitialMenuManager : MonoBehaviour
         ActivatePlayPanels(null, continueButton);
         //Cargar save file
         SceneManager.LoadSceneAsync(0);
+    }
+
+    private void ActivatePlatformPanels(GameObject panel, GameObject button)
+    {
+        //Scroll View
+        pcPlatformSV.SetActive(false);
+        xboxPlatformSV.SetActive(false);
+        ps4PlatformSV.SetActive(false);
+
+        //Buttons
+        pcPlatformButton.GetComponent<Image>().color = colorNotSelected;
+        pcPlatformButton.GetComponent<Button>().interactable = true;
+        xboxPlatformButton.GetComponent<Image>().color = colorNotSelected;
+        xboxPlatformButton.GetComponent<Button>().interactable = true;
+        ps4PlatformButton.GetComponent<Image>().color = colorNotSelected;
+        ps4PlatformButton.GetComponent<Button>().interactable = true;
+
+        //Activate Corrects
+        panel.SetActive(true);
+        button.GetComponent<Image>().color = colorSelected;
+        button.GetComponent<Button>().interactable = false;
     }
 
     private void ActivateSettingsPanels(GameObject panel, GameObject button)
