@@ -35,10 +35,7 @@ public class RebindSaveLoad : MonoBehaviour
 
     public void RevertChanges()
     {
-        foreach (var map in actions.actionMaps)
-        {
-            map.LoadBindingOverridesFromJson(savedBindingsJson);
-        }
+        actions.LoadBindingOverridesFromJson(savedBindingsJson);
 
         RebindActionUI[] rebindingUIs = GameObject.FindObjectsByType<RebindActionUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (var ui in rebindingUIs)

@@ -1,9 +1,12 @@
 
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Samples.RebindUI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum MenuWindow{ Menu, Play, Settings, Credits, Exit }
+public enum MenuWindow { Menu, Play, Settings, Credits, Exit }
+public enum KeyBindingPlatforms { PC, Xbox, PlayStation }
 public class InitialMenuManager : MonoBehaviour
 {
     [Header("MENUS")]
@@ -59,22 +62,28 @@ public class InitialMenuManager : MonoBehaviour
     [SerializeField] private Sprite spriteSelected;
 
     [Header("FLAGS")]
-    [SerializeField] private bool exitsSaveFile;
+    [SerializeField] private bool existsSaveFile;
 
     [Header("SAVE AND LOAD")]
     [SerializeField] private GameObject saveAndLoadObject;
     [SerializeField] private GameObject checkUnsavedObject;
 
+    [SerializeField] private List<RebindActionUI> listRebindKeysPC;
+    [SerializeField] private List<RebindActionUI> listRebindKeysXbox;
+    [SerializeField] private List<RebindActionUI> listRebindKeysPlayStation;
+
     private Animator animator;
     private MenuWindow menuWindow;
     private bool HasUnsavedChanges;
-    
+    private KeyBindingPlatforms kbp = KeyBindingPlatforms.PC;
+    public GameObject rebindOverlay;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = transform.GetComponent<Animator>();
 
-        if (exitsSaveFile) 
+        if (existsSaveFile)
         {
             continueButton.SetActive(true);
         }
@@ -82,6 +91,9 @@ public class InitialMenuManager : MonoBehaviour
         {
             continueButton.SetActive(false);
         }
+        AddRebindKeys(this.gameObject, listRebindKeysPC, "PC_");
+        AddRebindKeys(this.gameObject, listRebindKeysPlayStation, "PS_");
+        AddRebindKeys(this.gameObject, listRebindKeysXbox, "Xbox_");
 
         DisableExceptMenu();
     }
@@ -183,11 +195,11 @@ public class InitialMenuManager : MonoBehaviour
 
     public void ExitTheGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
 			Application.Quit();
-        #endif
+#endif
     }
 
     public void LinePlayHover(bool x)
@@ -271,7 +283,7 @@ public class InitialMenuManager : MonoBehaviour
 
         // Activar botón si existe en este GameObject
         Button button = root.GetComponent<Button>();
-        
+
         if (button != null && !root.GetComponent<Image>().sprite.Equals(spriteSelected))
         {
             button.interactable = true;
@@ -281,6 +293,25 @@ public class InitialMenuManager : MonoBehaviour
         foreach (Transform child in root.transform)
         {
             EnableInteractableItems(child.gameObject);
+        }
+    }
+
+    private void AddRebindKeys(GameObject root, List<RebindActionUI> list, string prefix)
+    {
+        if (root == null) return;
+
+        // Activar botón si existe en este GameObject
+        RebindActionUI raUI = root.GetComponent<RebindActionUI>();
+
+        if (raUI != null && raUI.name.StartsWith(prefix))
+        {
+            list.Add(raUI);
+        }
+
+        // Recorrer hijos recursivamente
+        foreach (Transform child in root.transform)
+        {
+            AddRebindKeys(child.gameObject, list, prefix);
         }
     }
 
@@ -326,23 +357,26 @@ public class InitialMenuManager : MonoBehaviour
 
     public void PCButton()
     {
+        kbp = KeyBindingPlatforms.PC;
         ActivatePlatformPanels(pcPlatformSV, pcPlatformButton);
     }
 
     public void XboxButton()
     {
+        kbp = KeyBindingPlatforms.Xbox;
         ActivatePlatformPanels(xboxPlatformSV, xboxPlatformButton);
     }
 
     public void PS4Button()
     {
+        kbp = KeyBindingPlatforms.PlayStation;
         ActivatePlatformPanels(ps4PlatformSV, ps4PlatformButton);
     }
 
 
     public void NewGame()
     {
-        if (!exitsSaveFile)
+        if (!existsSaveFile)
         {
             //-----------CAMBIAR AQUI----------------
             //Reiniciar save file
@@ -411,6 +445,26 @@ public class InitialMenuManager : MonoBehaviour
         button.GetComponent<Image>().type = Image.Type.Simple;
         button.GetComponent<Button>().interactable = false;
     }
+
+    public void ResetDefault()
+    {
+        switch (kbp)
+        {
+            case KeyBindingPlatforms.PC:
+                foreach (var h in listRebindKeysPC)
+                {
+                    h.ResetToDefault();
+                }
+                break;
+
+            case KeyBindingPlatforms.Xbox:
+                break;
+
+            case KeyBindingPlatforms.PlayStation:
+                break;
+        }
+    }
+
 
     private void ActivatePlayPanels(GameObject panel, GameObject button)
     {

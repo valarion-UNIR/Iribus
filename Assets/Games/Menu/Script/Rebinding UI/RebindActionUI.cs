@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>
+        /// 
         public InputActionReference actionReference
         {
             get => m_Action;
@@ -330,6 +332,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             s_RebindActionUIs.Add(this);
             if (s_RebindActionUIs.Count == 1)
                 InputSystem.onActionChange += OnActionChange;
+        }
+
+        private void Awake()
+        {
+            if (m_RebindOverlay == null)
+                m_RebindOverlay = FindFirstObjectByType<InitialMenuManager>().rebindOverlay;
         }
 
         protected void OnDisable()
