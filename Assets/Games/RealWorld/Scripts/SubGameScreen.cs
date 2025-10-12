@@ -115,10 +115,28 @@ public class SubGameScreen : MonoBehaviour
         // Create render texture from camera and assign it
         if (renderTexture != null)
             renderTexture.Release();
-        if (pixelCamera != null)
-            sceneCamera.targetTexture = renderTexture = new RenderTexture(pixelCamera.refResolutionX*8, pixelCamera.refResolutionY*8, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+
+        int w, h;
+        if(pixelCamera != null)
+        {
+            w = pixelCamera.refResolutionX;
+            h = pixelCamera.refResolutionY;
+        }
         else
-            sceneCamera.targetTexture = renderTexture = new RenderTexture(sceneCamera.pixelWidth*8, sceneCamera.pixelHeight*8, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        {
+            w = sceneCamera.pixelWidth;
+            h = sceneCamera.pixelHeight;
+        }
+
+        const int maxWidth = 1024;
+        if(w < maxWidth)
+        {
+            int ratio = maxWidth / w;
+            w *= ratio;
+            h *= ratio;
+        }
+
+        sceneCamera.targetTexture = renderTexture = new RenderTexture(w, h, 32, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
 
         // Create material from render texture and assign it to MeshRender
         if (originalMaterial == null)
