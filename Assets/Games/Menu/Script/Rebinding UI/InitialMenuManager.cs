@@ -1,4 +1,5 @@
 
+using Eflatun.SceneReference;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Samples.RebindUI;
@@ -67,6 +68,9 @@ public class InitialMenuManager : MonoBehaviour
     [Header("SAVE AND LOAD")]
     [SerializeField] private GameObject saveAndLoadObject;
     [SerializeField] private GameObject checkUnsavedObject;
+
+    [Header("Scenes")]
+    [SerializeField] private SceneReference sceneReference;
 
     [SerializeField] private List<RebindActionUI> listRebindKeysPC;
     [SerializeField] private List<RebindActionUI> listRebindKeysXbox;
@@ -380,7 +384,8 @@ public class InitialMenuManager : MonoBehaviour
         {
             //-----------CAMBIAR AQUI----------------
             //Reiniciar save file
-            SceneManager.LoadSceneAsync(0);
+            SubGameSceneManager.LoadScene(SubGame.RealWorld, sceneReference);
+            //SceneManager.LoadSceneAsync(1);
         }
         else
         {
@@ -393,7 +398,8 @@ public class InitialMenuManager : MonoBehaviour
     {
         ActivatePlayPanels(null, continueButton);
         //Cargar save file
-        SceneManager.LoadSceneAsync(0);
+        SubGameSceneManager.LoadScene(SubGame.RealWorld, sceneReference);
+        //SceneManager.LoadSceneAsync(1);
     }
 
     private void ActivatePlatformPanels(GameObject panel, GameObject button)

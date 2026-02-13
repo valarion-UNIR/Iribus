@@ -23016,6 +23016,9 @@ MonoBehaviour:
   existsSaveFile: 0
   saveAndLoadObject: {fileID: 2090778147}
   checkUnsavedObject: {fileID: 1733613864}
+  sceneReference:
+    asset: {fileID: 102900000, guid: ac6bfcb939dd65742ad4029b4ddc21aa, type: 3}
+    guid: ac6bfcb939dd65742ad4029b4ddc21aa
   listRebindKeysPC: []
   listRebindKeysXbox: []
   listRebindKeysPlayStation: []
